@@ -9,7 +9,10 @@ import UIKit
 import Lottie
 
 @IBDesignable class Button: UIButton {
-    private let loadingView = LottieAnimationView(name: "button-loader-white")
+    
+    let buttonPadding: CGFloat = 10
+    
+    private let loadingView = LottieAnimationView(name: AnimationName.buttonLoaderWhite)
     
     @IBInspectable var isLoading: Bool = false {
         didSet {
@@ -34,18 +37,18 @@ import Lottie
     
     private func setup() {
         addSubview(loadingView)
-        backgroundColor = UIColor(named: "app-brown")
+        backgroundColor = UIColor.appBrown
         clipsToBounds = true
         layer.cornerRadius = 6
         
-        contentEdgeInsets = .init(top: 10, left: 10, bottom: 10, right: 10)
+        contentEdgeInsets = .init(top: buttonPadding, left: buttonPadding, bottom: buttonPadding, right: buttonPadding)
         
         loadingView.translatesAutoresizingMaskIntoConstraints = false
         loadingView.isUserInteractionEnabled = false
         loadingView.loopMode = .loop
         loadingView.isHidden = true
         setTitleColor(.white, for: .normal)
-        setTitleColor(UIColor(named: "app-brown-secondary"), for: .highlighted)
+        setTitleColor(UIColor.appBrownSecondary, for: .highlighted)
         
         NSLayoutConstraint.activate([
             loadingView.centerXAnchor.constraint(equalTo: centerXAnchor),
