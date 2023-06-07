@@ -13,10 +13,17 @@ class ViewController: UIViewController {
     
 
     let sections = ["one", "two", "three"]
-    var chatData: [[String]] = [
+    let chatData: [[String]] = [
         ["lion", "tiger"],
         ["one", "tow"]
     ]
+    
+    struct message {
+        let id:String
+        let message:String
+    }
+    
+    let rows: [message] = []
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,15 +56,15 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     
-   
+    class MyTableViewCell: UITableViewCell {
+        @IBOutlet weak var avatar: UIImageView!
+        @IBOutlet weak var name: UILabel!
+        @IBOutlet weak var lastMessage: UILabel!
+        @IBOutlet weak var time: UILabel!
+        @IBOutlet weak var notifications: UILabel!
+    }
+
 
     
 }
 
-class MyTableViewCell: UITableViewCell {
-    @IBOutlet weak var avatar: UIImageView!
-    @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var lastMessage: UILabel!
-    @IBOutlet weak var time: UILabel!
-    @IBOutlet weak var notifications: UILabel!
-}
