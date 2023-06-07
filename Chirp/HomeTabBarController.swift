@@ -18,15 +18,17 @@ class HomeTabBarController: UITabBarController {
         let vc2 = SecondViewVC()
         let vc3 = ThirdViewVC()
         self.setViewControllers([vc1, vc2, vc3], animated: true)
+        self.tabBar.tintColor = .appBrown
+        self.tabBar.unselectedItemTintColor = .appBrownSecondary
         
         guard let items = self.tabBar.items else {
             return
         }
         
-        let tabIconImages = ["ellipsis.message.fill", "person.2.fill", "squareshape.split.2x2"]
+        let tabIconImages = [UIImage.ellipsisMessageFill, UIImage.personFill, UIImage.settingsFill]
         
         for i in 0..<items.count {
-            items[i].image = UIImage(systemName: tabIconImages[i])
+            items[i].image = tabIconImages[i]
         }
         
     }

@@ -13,4 +13,9 @@ extension UIImage {
     static let infoCircleFill: UIImage = UIImage(systemName: "info.circle.fill")!
     static let placeholderImage: UIImage = UIImage(named: "nophoto")!
     static let addImage:UIImage = UIImage(systemName: "plus")!
+    static let ellipsisMessageFill = UIImage(systemName: "ellipsis.message.fill")
+    static let personFill = UIImage(systemName: "person.2.fill")
+    static let settingsFill = UIImage(systemName: "squareshape.split.2x2")
+    
+    
 }
