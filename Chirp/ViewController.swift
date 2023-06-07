@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var ChatsTableView: UITableView!
+//    @IBOutlet weak var ChatsTableView: UITableView!
     
 
     let sections = ["one", "two", "three"]
@@ -23,12 +23,17 @@ class ViewController: UIViewController {
         let message:String
     }
     
-    let rows: [message] = []
+    let rows: [[message]] = []
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ChatsTableView.dataSource = self
+//        ChatsTableView.dataSource = self
+    }
+    
+    @IBAction func buttonClicked(_ sender: Any) {
+        let controller = ChatViewController()
+        present(controller, animated: true)
     }
 }
 
@@ -51,7 +56,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 //        cell.textLabel?.text = title
 //        cell.textLabel?.text = "Cell #\(indexPath.item)"
         cell.avatar.image = #imageLiteral(resourceName: "Ellipse 2testFigma_test.png")
-        cell.name.text = title
+        cell.name.text = title.message
         return cell
     }
     
