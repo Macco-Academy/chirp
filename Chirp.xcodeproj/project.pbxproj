@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F1411392A2E59910073B0F1 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1411372A2E59910073B0F1 /* OTPViewController.swift */; };
+		5FD8BC4F2A2E75530038D2BE /* PasscodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD8BC4E2A2E75530038D2BE /* PasscodeView.swift */; };
+		5FD8BC512A2E79030038D2BE /* PasscodeBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD8BC502A2E79030038D2BE /* PasscodeBoxView.swift */; };
+		5FD8BC532A2F81D70038D2BE /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD8BC522A2F81D70038D2BE /* CountdownView.swift */; };
 		E56C731F2A2D216D00532B3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56C731E2A2D216D00532B3D /* AppDelegate.swift */; };
 		E56C73212A2D216D00532B3D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56C73202A2D216D00532B3D /* SceneDelegate.swift */; };
 		E56C73232A2D216D00532B3D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56C73222A2D216D00532B3D /* ViewController.swift */; };
@@ -16,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F1411372A2E59910073B0F1 /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
+		5FD8BC4E2A2E75530038D2BE /* PasscodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeView.swift; sourceTree = "<group>"; };
+		5FD8BC502A2E79030038D2BE /* PasscodeBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeBoxView.swift; sourceTree = "<group>"; };
+		5FD8BC522A2F81D70038D2BE /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
 		E56C731B2A2D216D00532B3D /* Chirp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chirp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56C731E2A2D216D00532B3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E56C73202A2D216D00532B3D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +45,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F1411362A2E58C50073B0F1 /* OTP Components */ = {
+			isa = PBXGroup;
+			children = (
+				5FD8BC4E2A2E75530038D2BE /* PasscodeView.swift */,
+				5FD8BC502A2E79030038D2BE /* PasscodeBoxView.swift */,
+				5FD8BC522A2F81D70038D2BE /* CountdownView.swift */,
+				5F1411372A2E59910073B0F1 /* OTPViewController.swift */,
+			);
+			path = "OTP Components";
+			sourceTree = "<group>";
+		};
 		E56C73122A2D216D00532B3D = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +78,7 @@
 				E56C731E2A2D216D00532B3D /* AppDelegate.swift */,
 				E56C73202A2D216D00532B3D /* SceneDelegate.swift */,
 				E56C73222A2D216D00532B3D /* ViewController.swift */,
+				5F1411362A2E58C50073B0F1 /* OTP Components */,
 				E56C73242A2D216D00532B3D /* Main.storyboard */,
 				E56C73272A2D216F00532B3D /* Assets.xcassets */,
 				E56C73292A2D216F00532B3D /* LaunchScreen.storyboard */,
@@ -138,7 +158,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FD8BC512A2E79030038D2BE /* PasscodeBoxView.swift in Sources */,
+				5F1411392A2E59910073B0F1 /* OTPViewController.swift in Sources */,
 				E56C73232A2D216D00532B3D /* ViewController.swift in Sources */,
+				5FD8BC532A2F81D70038D2BE /* CountdownView.swift in Sources */,
+				5FD8BC4F2A2E75530038D2BE /* PasscodeView.swift in Sources */,
 				E56C731F2A2D216D00532B3D /* AppDelegate.swift in Sources */,
 				E56C73212A2D216D00532B3D /* SceneDelegate.swift in Sources */,
 			);
