@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		042D1F9B2A2F667D009D2573 /* button-loader-white.json in Resources */ = {isa = PBXBuildFile; fileRef = 042D1F9A2A2F667D009D2573 /* button-loader-white.json */; };
-		042D1F9F2A2F6FBB009D2573 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1F9E2A2F6FBB009D2573 /* Button.swift */; };
 		042D1FA12A2FA765009D2573 /* AnimationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1FA02A2FA765009D2573 /* AnimationName.swift */; };
 		042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1FA22A2FAE7D009D2573 /* UIColor+Extension.swift */; };
 		5F1411392A2E59910073B0F1 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1411372A2E59910073B0F1 /* OTPViewController.swift */; };
@@ -18,6 +16,10 @@
 		467B96F82A30AB700012AB04 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467B96F72A30AB700012AB04 /* RegistrationViewController.swift */; };
 		467B96FB2A30ABB10012AB04 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467B96FA2A30ABB10012AB04 /* User.swift */; };
 		809A35A9CD04CE147A4F0B6F /* Pods_Chirp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6EC265D6F867AC01E03BB0 /* Pods_Chirp.framework */; };
+		467B97032A30F8610012AB04 /* button-loader-white.json in Resources */ = {isa = PBXBuildFile; fileRef = 467B96FE2A30F8610012AB04 /* button-loader-white.json */; };
+		467B97042A30F8610012AB04 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467B96FF2A30F8610012AB04 /* Button.swift */; };
+		467B97052A30F8610012AB04 /* AlertToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467B97012A30F8610012AB04 /* AlertToast.swift */; };
+		467B97062A30F8610012AB04 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467B97022A30F8610012AB04 /* AlertType.swift */; };
 		5F1411392A2E59910073B0F1 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1411372A2E59910073B0F1 /* OTPViewController.swift */; };
 		5FD8BC4F2A2E75530038D2BE /* PasscodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD8BC4E2A2E75530038D2BE /* PasscodeView.swift */; };
 		5FD8BC512A2E79030038D2BE /* PasscodeBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD8BC502A2E79030038D2BE /* PasscodeBoxView.swift */; };
@@ -28,18 +30,18 @@
 		E56C73262A2D216D00532B3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56C73242A2D216D00532B3D /* Main.storyboard */; };
 		E56C73282A2D216F00532B3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E56C73272A2D216F00532B3D /* Assets.xcassets */; };
 		E56C732B2A2D216F00532B3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56C73292A2D216F00532B3D /* LaunchScreen.storyboard */; };
-		E5AC47E32A306AB00055C83A /* AlertToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AC47E22A306AB00055C83A /* AlertToast.swift */; };
-		E5AC47E52A306AE70055C83A /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AC47E42A306AE70055C83A /* AlertType.swift */; };
 		E5AC47E72A306AFD0055C83A /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AC47E62A306AFD0055C83A /* UIImage+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		042D1F9A2A2F667D009D2573 /* button-loader-white.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "button-loader-white.json"; sourceTree = "<group>"; };
-		042D1F9E2A2F6FBB009D2573 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		042D1FA02A2FA765009D2573 /* AnimationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationName.swift; sourceTree = "<group>"; };
 		042D1FA22A2FAE7D009D2573 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		467B96F72A30AB700012AB04 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		467B96FA2A30ABB10012AB04 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		467B96FE2A30F8610012AB04 /* button-loader-white.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "button-loader-white.json"; sourceTree = "<group>"; };
+		467B96FF2A30F8610012AB04 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		467B97012A30F8610012AB04 /* AlertToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertToast.swift; sourceTree = "<group>"; };
+		467B97022A30F8610012AB04 /* AlertType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		529183B6341C55015C9D160F /* Pods-Chirp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chirp.debug.xcconfig"; path = "Target Support Files/Pods-Chirp/Pods-Chirp.debug.xcconfig"; sourceTree = "<group>"; };
 		5F1411372A2E59910073B0F1 /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		5FD8BC4E2A2E75530038D2BE /* PasscodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeView.swift; sourceTree = "<group>"; };
@@ -59,8 +61,6 @@
 		E56C73272A2D216F00532B3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E56C732A2A2D216F00532B3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E56C732C2A2D216F00532B3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E5AC47E22A306AB00055C83A /* AlertToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertToast.swift; sourceTree = "<group>"; };
-		E5AC47E42A306AE70055C83A /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		E5AC47E62A306AFD0055C83A /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,17 +76,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-
-		042D1F952A2F5D3D009D2573 /* Components */ = {
+		467B96F52A30AB150012AB04 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				E5AC47E12A3069DF0055C83A /* AlertToast */,
-				E5AC47E02A305C810055C83A /* Button */,
+				467B96F62A30AB480012AB04 /* RegistrationPage */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		467B96F62A30AB480012AB04 /* RegistrationPage */ = {
+			isa = PBXGroup;
+			children = (
+				467B96F72A30AB700012AB04 /* RegistrationViewController.swift */,
+			);
+			path = RegistrationPage;
+			sourceTree = "<group>";
+		};
+		467B96F92A30AB9E0012AB04 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				467B96FA2A30ABB10012AB04 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		467B96FC2A30F8610012AB04 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				467B96FD2A30F8610012AB04 /* Button */,
+				467B97002A30F8610012AB04 /* AlertToast */,
 			);
 			path = Components;
 			sourceTree = "<group>";
 		};
-		5F1411362A2E58C50073B0F1 /* OTP Screen */ = {
+		467B96FD2A30F8610012AB04 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				467B96FE2A30F8610012AB04 /* button-loader-white.json */,
+				467B96FF2A30F8610012AB04 /* Button.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		467B97002A30F8610012AB04 /* AlertToast */ = {
+			isa = PBXGroup;
+			children = (
+				467B97012A30F8610012AB04 /* AlertToast.swift */,
+				467B97022A30F8610012AB04 /* AlertType.swift */,
+			);
+			path = AlertToast;
+			sourceTree = "<group>";
+		};
+		F1411362A2E58C50073B0F1 /* OTP Screen */ = {
 			isa = PBXGroup;
 			children = (
 				5FD8BC4E2A2E75530038D2BE /* PasscodeView.swift */,
@@ -179,7 +220,9 @@
 				042D1F952A2F5D3D009D2573 /* Components */,
 				5F1411362A2E58C50073B0F1 /* OTP Screen */,
 				5F1411362A2E58C50073B0F1 /* OTP Components */,
+				5F1411362A2E58C50073B0F1 /* OTP Screen */,
 				E56C73242A2D216D00532B3D /* Main.storyboard */,
+				467B96FC2A30F8610012AB04 /* Components */,
 				E56C73272A2D216F00532B3D /* Assets.xcassets */,
 				E56C73292A2D216F00532B3D /* LaunchScreen.storyboard */,
 				E56C732C2A2D216F00532B3D /* Info.plist */,
@@ -195,24 +238,6 @@
 				E5AC47E62A306AFD0055C83A /* UIImage+Extension.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		E5AC47E02A305C810055C83A /* Button */ = {
-			isa = PBXGroup;
-			children = (
-				042D1F9E2A2F6FBB009D2573 /* Button.swift */,
-				042D1F9A2A2F667D009D2573 /* button-loader-white.json */,
-			);
-			path = Button;
-			sourceTree = "<group>";
-		};
-		E5AC47E12A3069DF0055C83A /* AlertToast */ = {
-			isa = PBXGroup;
-			children = (
-				E5AC47E22A306AB00055C83A /* AlertToast.swift */,
-				E5AC47E42A306AE70055C83A /* AlertType.swift */,
-			);
-			path = AlertToast;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,8 +302,8 @@
 			files = (
 				E56C732B2A2D216F00532B3D /* LaunchScreen.storyboard in Resources */,
 				E56C73282A2D216F00532B3D /* Assets.xcassets in Resources */,
+				467B97032A30F8610012AB04 /* button-loader-white.json in Resources */,
 				E56C73262A2D216D00532B3D /* Main.storyboard in Resources */,
-				042D1F9B2A2F667D009D2573 /* button-loader-white.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,7 +356,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				042D1F9F2A2F6FBB009D2573 /* Button.swift in Sources */,
 				042D1FA12A2FA765009D2573 /* AnimationName.swift in Sources */,
 				5FD8BC512A2E79030038D2BE /* PasscodeBoxView.swift in Sources */,
 				5F1411392A2E59910073B0F1 /* OTPViewController.swift in Sources */,
@@ -343,11 +367,16 @@
 				5FD8BC512A2E79030038D2BE /* PasscodeBoxView.swift in Sources */,
 				5F1411392A2E59910073B0F1 /* OTPViewController.swift in Sources */,
 				E56C73232A2D216D00532B3D /* ViewController.swift in Sources */,
+				E5AC47E72A306AFD0055C83A /* UIImage+Extension.swift in Sources */,
+				467B96F82A30AB700012AB04 /* RegistrationViewController.swift in Sources */,
+				467B97052A30F8610012AB04 /* AlertToast.swift in Sources */,
+				042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */,
 				5FD8BC532A2F81D70038D2BE /* CountdownView.swift in Sources */,
 				5FD8BC4F2A2E75530038D2BE /* PasscodeView.swift in Sources */,
 				E56C731F2A2D216D00532B3D /* AppDelegate.swift in Sources */,
+				467B97062A30F8610012AB04 /* AlertType.swift in Sources */,
 				E56C73212A2D216D00532B3D /* SceneDelegate.swift in Sources */,
-				E5AC47E32A306AB00055C83A /* AlertToast.swift in Sources */,
+				467B97042A30F8610012AB04 /* Button.swift in Sources */,
 				467B96FB2A30ABB10012AB04 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

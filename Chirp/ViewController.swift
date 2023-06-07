@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         let vc = RegistrationViewController()
         present(vc, animated: true)
     }
