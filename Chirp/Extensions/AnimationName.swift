@@ -8,7 +8,6 @@
 import Foundation
 
 struct AnimationName {
-    
     static let buttonLoaderWhite: String = "button-loader-white"
 }
 

@@ -53,9 +53,7 @@
 		042D1F952A2F5D3D009D2573 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				042D1F9E2A2F6FBB009D2573 /* Button.swift */,
-				042D1F9A2A2F667D009D2573 /* button-loader-white.json */,
-				042D1FA02A2FA765009D2573 /* AnimationName.swift */,
+				E5AC47E02A305C810055C83A /* Button */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -114,9 +112,19 @@
 		E5AC47DF2A305C270055C83A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				042D1FA02A2FA765009D2573 /* AnimationName.swift */,
 				042D1FA22A2FAE7D009D2573 /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E5AC47E02A305C810055C83A /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				042D1F9E2A2F6FBB009D2573 /* Button.swift */,
+				042D1F9A2A2F667D009D2573 /* button-loader-white.json */,
+			);
+			path = Button;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
