@@ -59,6 +59,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         setupUserImage()
         tuneAddBtn()
         setupTextField()
+        checkButton()
     }
 
     private func addSubviews(){
@@ -94,6 +95,18 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
             submitButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25),
             submitButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -25)
         ])
+    }
+    
+    private func checkButton(){
+        submitButton.addTarget(self, action: #selector(validateForm), for: .touchUpInside)
+    }
+    
+    @objc private func validateForm(){
+        if let text = userNameTextField.text {
+            if text.trimmingCharacters(in: .whitespaces).isEmpty {
+                AlertToast.showAlert(message: "Please, enter your name", type: .error)
+            }
+        }
     }
 
     private func setupUserImage(){
