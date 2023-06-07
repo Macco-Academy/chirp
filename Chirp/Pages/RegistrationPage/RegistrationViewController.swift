@@ -87,6 +87,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     private func setupUserImage(){
         userAvatarImage.layoutIfNeeded()
+        userAvatarImage.contentMode = .scaleAspectFill
         userAvatarImage.layer.masksToBounds = true
         userAvatarImage.layer.cornerRadius = userAvatarImage.layer.frame.size.width/2
     }
@@ -120,7 +121,11 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc private func addImageBtn(){
-        print("Here's some code to upload the image")
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -134,3 +139,16 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
+extension RegistrationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
+            userAvatarImage.image = image
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+}

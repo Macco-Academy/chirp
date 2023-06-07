@@ -23,5 +23,7 @@
 	</dict>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Please, allow permission to select photos to import to your profile</string>
 </dict>
 </plist>
