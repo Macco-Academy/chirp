@@ -18,6 +18,9 @@
 		E56C73262A2D216D00532B3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56C73242A2D216D00532B3D /* Main.storyboard */; };
 		E56C73282A2D216F00532B3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E56C73272A2D216F00532B3D /* Assets.xcassets */; };
 		E56C732B2A2D216F00532B3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56C73292A2D216F00532B3D /* LaunchScreen.storyboard */; };
+		E5AC47E32A306AB00055C83A /* AlertToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AC47E22A306AB00055C83A /* AlertToast.swift */; };
+		E5AC47E52A306AE70055C83A /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AC47E42A306AE70055C83A /* AlertType.swift */; };
+		E5AC47E72A306AFD0055C83A /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AC47E62A306AFD0055C83A /* UIImage+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		E56C73272A2D216F00532B3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E56C732A2A2D216F00532B3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E56C732C2A2D216F00532B3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5AC47E22A306AB00055C83A /* AlertToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertToast.swift; sourceTree = "<group>"; };
+		E5AC47E42A306AE70055C83A /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
+		E5AC47E62A306AFD0055C83A /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +59,7 @@
 		042D1F952A2F5D3D009D2573 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E5AC47E12A3069DF0055C83A /* AlertToast */,
 				E5AC47E02A305C810055C83A /* Button */,
 			);
 			path = Components;
@@ -114,6 +121,7 @@
 			children = (
 				042D1FA02A2FA765009D2573 /* AnimationName.swift */,
 				042D1FA22A2FAE7D009D2573 /* UIColor+Extension.swift */,
+				E5AC47E62A306AFD0055C83A /* UIImage+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -125,6 +133,15 @@
 				042D1F9A2A2F667D009D2573 /* button-loader-white.json */,
 			);
 			path = Button;
+			sourceTree = "<group>";
+		};
+		E5AC47E12A3069DF0055C83A /* AlertToast */ = {
+			isa = PBXGroup;
+			children = (
+				E5AC47E22A306AB00055C83A /* AlertToast.swift */,
+				E5AC47E42A306AE70055C83A /* AlertType.swift */,
+			);
+			path = AlertToast;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,9 +263,12 @@
 				042D1F9F2A2F6FBB009D2573 /* Button.swift in Sources */,
 				042D1FA12A2FA765009D2573 /* AnimationName.swift in Sources */,
 				E56C73232A2D216D00532B3D /* ViewController.swift in Sources */,
+				E5AC47E72A306AFD0055C83A /* UIImage+Extension.swift in Sources */,
 				042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */,
+				E5AC47E52A306AE70055C83A /* AlertType.swift in Sources */,
 				E56C731F2A2D216D00532B3D /* AppDelegate.swift in Sources */,
 				E56C73212A2D216D00532B3D /* SceneDelegate.swift in Sources */,
+				E5AC47E32A306AB00055C83A /* AlertToast.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

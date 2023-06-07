@@ -8,5 +8,6 @@ target 'Chirp' do
   # Pods for Chirp
 
   pod 'lottie-ios'
+  pod 'SwiftMessages'
 
 end
