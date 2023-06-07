@@ -11,6 +11,7 @@
 		042D1F9F2A2F6FBB009D2573 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1F9E2A2F6FBB009D2573 /* Button.swift */; };
 		042D1FA12A2FA765009D2573 /* AnimationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1FA02A2FA765009D2573 /* AnimationName.swift */; };
 		042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1FA22A2FAE7D009D2573 /* UIColor+Extension.swift */; };
+		0B617B082A30DFA5002C3EE6 /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B617B072A30DFA5002C3EE6 /* LoginPageViewController.swift */; };
 		5F1411392A2E59910073B0F1 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1411372A2E59910073B0F1 /* OTPViewController.swift */; };
 		5FD8BC4F2A2E75530038D2BE /* PasscodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD8BC4E2A2E75530038D2BE /* PasscodeView.swift */; };
 		5FD8BC512A2E79030038D2BE /* PasscodeBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD8BC502A2E79030038D2BE /* PasscodeBoxView.swift */; };
@@ -32,6 +33,7 @@
 		042D1F9E2A2F6FBB009D2573 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		042D1FA02A2FA765009D2573 /* AnimationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationName.swift; sourceTree = "<group>"; };
 		042D1FA22A2FAE7D009D2573 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		0B617B072A30DFA5002C3EE6 /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
 		529183B6341C55015C9D160F /* Pods-Chirp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chirp.debug.xcconfig"; path = "Target Support Files/Pods-Chirp/Pods-Chirp.debug.xcconfig"; sourceTree = "<group>"; };
 		5F1411372A2E59910073B0F1 /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		5FD8BC4E2A2E75530038D2BE /* PasscodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeView.swift; sourceTree = "<group>"; };
@@ -71,6 +73,14 @@
 				E5AC47E02A305C810055C83A /* Button */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		0B617B062A30DF88002C3EE6 /* Login Page */ = {
+			isa = PBXGroup;
+			children = (
+				0B617B072A30DFA5002C3EE6 /* LoginPageViewController.swift */,
+			);
+			path = "Login Page";
 			sourceTree = "<group>";
 		};
 		5F1411362A2E58C50073B0F1 /* OTP Screen */ = {
@@ -122,6 +132,7 @@
 		E56C731D2A2D216D00532B3D /* Chirp */ = {
 			isa = PBXGroup;
 			children = (
+				0B617B062A30DF88002C3EE6 /* Login Page */,
 				E56C731E2A2D216D00532B3D /* AppDelegate.swift */,
 				E56C73202A2D216D00532B3D /* SceneDelegate.swift */,
 				E56C73222A2D216D00532B3D /* ViewController.swift */,
@@ -285,6 +296,7 @@
 				5FD8BC512A2E79030038D2BE /* PasscodeBoxView.swift in Sources */,
 				5F1411392A2E59910073B0F1 /* OTPViewController.swift in Sources */,
 				E56C73232A2D216D00532B3D /* ViewController.swift in Sources */,
+				0B617B082A30DFA5002C3EE6 /* LoginPageViewController.swift in Sources */,
 				E5AC47E72A306AFD0055C83A /* UIImage+Extension.swift in Sources */,
 				042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */,
 				E5AC47E52A306AE70055C83A /* AlertType.swift in Sources */,

@@ -9,5 +9,7 @@ target 'Chirp' do
 
   pod 'lottie-ios'
   pod 'SwiftMessages'
+  pod 'PhoneNumberKit'
+  
 
 end
