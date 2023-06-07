@@ -38,6 +38,13 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         return textField
     }()
     
+    let submitButton: Button = {
+        let button = Button()
+        button.setTitle("Register", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     var user = User()
 
     override func viewDidLoad() {
@@ -60,6 +67,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(userAvatarImage)
         view.addSubview(addImage)
         view.addSubview(userNameTextField)
+        view.addSubview(submitButton)
     }
     
     private func setupConstraints(){
@@ -81,7 +89,11 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
             userNameTextField.topAnchor.constraint(equalTo: userAvatarImage.bottomAnchor, constant: 30),
             userNameTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25),
             userNameTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -25),
-            userNameTextField.heightAnchor.constraint(equalToConstant: 50)
+            userNameTextField.heightAnchor.constraint(equalToConstant: 40),
+            
+            submitButton.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: 30),
+            submitButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25),
+            submitButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -25)
         ])
     }
     
@@ -108,15 +120,10 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         userNameTextField.leftViewMode = .always
         userNameTextField.layer.borderWidth = 0.1
         userNameTextField.layer.cornerRadius = 8
-        userNameTextField.font = UIFont.systemFont(ofSize: 20, weight: .light)
     }
     
-    private func backgroundTapped(){
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        view.addGestureRecognizer(tapGesture)
-    }
-    
-    @objc func dismissKeyboard() {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
         view.endEditing(true)
     }
     
@@ -126,16 +133,6 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         vc.delegate = self
         vc.allowsEditing = true
         present(vc, animated: true)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        userNameTextField.resignFirstResponder()
-        guard let text = userNameTextField.text, !text.isEmpty else {
-            return false
-        }
-        print("User Name is \(text)")
-        user.name = text
-        return true
     }
 }
 
