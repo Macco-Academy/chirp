@@ -10,19 +10,22 @@ import UIKit
 class ChatViewController: UIViewController {
     
     private let tableView = UITableView()
+//    private let label = UILabel()
+    
+    
     
     private var messages: [Message] = [
-        .init(id: "1", message: "Hello", senderId: "user1"),
-        .init(id: "1", message: "Hello", senderId: "user2"),
-        .init(id: "1", message: "Hello", senderId: "user1"),
-        .init(id: "1", message: "Hello", senderId: "user2"),
-        .init(id: "1", message: "Hello", senderId: "user1"),
-        .init(id: "1", message: "Hello", senderId: "user2"),
+        .init(id: "1", message: "Hello1", senderId: "user1"),
+        .init(id: "1", message: "Hello2", senderId: "user2"),
+        .init(id: "1", message: "Hello1", senderId: "user1"),
+        .init(id: "1", message: "Hello2", senderId: "user2"),
+        .init(id: "1", message: "Hello1", senderId: "user1"),
+        .init(id: "1", message: "Hello2", senderId: "user2"),
     ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupViews()
         setupConstraints()
     }
@@ -35,6 +38,10 @@ class ChatViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(ReceiverTableViewCell.self, forCellReuseIdentifier: ReceiverTableViewCell.identifier)
         tableView.register(SenderTableViewCell.self, forCellReuseIdentifier: SenderTableViewCell.identifier)
+        
+//        view.addSubview(label)
+//        label.translatesAutoresizingMaskIntoConstraints = false
+        
     }
     
     private func setupConstraints() {
@@ -54,12 +61,17 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let userId = messages[indexPath.row].senderId
+        let message = messages[indexPath.row].message
         if userId == "user1" {
             let cell = tableView.dequeueReusableCell(withIdentifier: SenderTableViewCell.identifier) as! SenderTableViewCell
+//            label.text = message
+            
             cell.setup()
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: ReceiverTableViewCell.identifier) as! ReceiverTableViewCell
+//            label.text = message
+            
             cell.setup()
             return cell
         }

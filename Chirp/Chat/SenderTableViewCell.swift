@@ -10,11 +10,29 @@ import UIKit
 class SenderTableViewCell: UITableViewCell {
     static let identifier = "SenderTableViewCell"
     
+    private let stackView: UIStackView = {
+        let view = UIStackView()
+        view.backgroundColor = .appBrownSecondary
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     func setup() {
-        backgroundColor = .appBrownSecondary
-        
-        translatesAutoresizingMaskIntoConstraints = false
-        heightAnchor.constraint(equalToConstant: 100).isActive = true
+        setupViews()
+        setupConstraints()
     }
 
+    private func setupViews() {
+        addSubview(stackView)
+    }
+
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: -150),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+//            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+            stackView.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
 }

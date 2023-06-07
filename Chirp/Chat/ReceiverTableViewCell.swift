@@ -10,6 +10,12 @@ import UIKit
 class ReceiverTableViewCell: UITableViewCell {
     static let identifier = "ReceiverTableViewCell"
     
+    private let label: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private let stackView: UIStackView = {
         let view = UIStackView()
         view.backgroundColor = .appBrown
@@ -32,7 +38,9 @@ class ReceiverTableViewCell: UITableViewCell {
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -150),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
-            stackView.heightAnchor.constraint(equalToConstant: 40)
+            stackView.heightAnchor.constraint(equalToConstant: 50),
+            
+            label.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
         ])
     }
 }
