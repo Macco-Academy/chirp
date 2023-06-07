@@ -24,11 +24,25 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         return imageView
     }()
 
-    let addImage: UIImageView = {
+    let addImage: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .appBrown
+        view.layer.cornerRadius = 15
         let addImage = UIImageView()
         addImage.translatesAutoresizingMaskIntoConstraints = false
         addImage.image = UIImage.addImage
-        return addImage
+        addImage.tintColor = .white
+        view.addSubview(addImage)
+        
+        let imagePadding: CGFloat = 3
+        NSLayoutConstraint.activate([
+            addImage.topAnchor.constraint(equalTo: view.topAnchor, constant: imagePadding),
+            addImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: imagePadding),
+            addImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -imagePadding),
+            addImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -imagePadding),
+        ])
+        return view
     }()
 
     let userNameTextField: UITextField = {
