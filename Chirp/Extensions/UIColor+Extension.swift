@@ -8,7 +8,6 @@
 import UIKit
 
 extension  UIColor {
-    
     static let appBrown: UIColor = UIColor(named: "app-brown")!
     static let appBrownSecondary: UIColor = UIColor(named: "app-brown-secondary")!
 }

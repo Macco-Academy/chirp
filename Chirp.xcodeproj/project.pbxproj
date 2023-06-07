@@ -10,7 +10,7 @@
 		042D1F9B2A2F667D009D2573 /* button-loader-white.json in Resources */ = {isa = PBXBuildFile; fileRef = 042D1F9A2A2F667D009D2573 /* button-loader-white.json */; };
 		042D1F9F2A2F6FBB009D2573 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1F9E2A2F6FBB009D2573 /* Button.swift */; };
 		042D1FA12A2FA765009D2573 /* AnimationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1FA02A2FA765009D2573 /* AnimationName.swift */; };
-		042D1FA32A2FAE7D009D2573 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1FA22A2FAE7D009D2573 /* UIColor + Extension.swift */; };
+		042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1FA22A2FAE7D009D2573 /* UIColor+Extension.swift */; };
 		809A35A9CD04CE147A4F0B6F /* Pods_Chirp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6EC265D6F867AC01E03BB0 /* Pods_Chirp.framework */; };
 		E56C731F2A2D216D00532B3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56C731E2A2D216D00532B3D /* AppDelegate.swift */; };
 		E56C73212A2D216D00532B3D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56C73202A2D216D00532B3D /* SceneDelegate.swift */; };
@@ -24,7 +24,7 @@
 		042D1F9A2A2F667D009D2573 /* button-loader-white.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "button-loader-white.json"; sourceTree = "<group>"; };
 		042D1F9E2A2F6FBB009D2573 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		042D1FA02A2FA765009D2573 /* AnimationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationName.swift; sourceTree = "<group>"; };
-		042D1FA22A2FAE7D009D2573 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
+		042D1FA22A2FAE7D009D2573 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		529183B6341C55015C9D160F /* Pods-Chirp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chirp.debug.xcconfig"; path = "Target Support Files/Pods-Chirp/Pods-Chirp.debug.xcconfig"; sourceTree = "<group>"; };
 		B739D4B4B8974D1601276D8A /* Pods-Chirp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chirp.release.xcconfig"; path = "Target Support Files/Pods-Chirp/Pods-Chirp.release.xcconfig"; sourceTree = "<group>"; };
 		DB6EC265D6F867AC01E03BB0 /* Pods_Chirp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chirp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,7 +56,6 @@
 				042D1F9E2A2F6FBB009D2573 /* Button.swift */,
 				042D1F9A2A2F667D009D2573 /* button-loader-white.json */,
 				042D1FA02A2FA765009D2573 /* AnimationName.swift */,
-				042D1FA22A2FAE7D009D2573 /* UIColor + Extension.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -102,6 +101,7 @@
 				E56C731E2A2D216D00532B3D /* AppDelegate.swift */,
 				E56C73202A2D216D00532B3D /* SceneDelegate.swift */,
 				E56C73222A2D216D00532B3D /* ViewController.swift */,
+				E5AC47DF2A305C270055C83A /* Extensions */,
 				042D1F952A2F5D3D009D2573 /* Components */,
 				E56C73242A2D216D00532B3D /* Main.storyboard */,
 				E56C73272A2D216F00532B3D /* Assets.xcassets */,
@@ -109,6 +109,14 @@
 				E56C732C2A2D216F00532B3D /* Info.plist */,
 			);
 			path = Chirp;
+			sourceTree = "<group>";
+		};
+		E5AC47DF2A305C270055C83A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				042D1FA22A2FAE7D009D2573 /* UIColor+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,7 +238,7 @@
 				042D1F9F2A2F6FBB009D2573 /* Button.swift in Sources */,
 				042D1FA12A2FA765009D2573 /* AnimationName.swift in Sources */,
 				E56C73232A2D216D00532B3D /* ViewController.swift in Sources */,
-				042D1FA32A2FAE7D009D2573 /* UIColor + Extension.swift in Sources */,
+				042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */,
 				E56C731F2A2D216D00532B3D /* AppDelegate.swift in Sources */,
 				E56C73212A2D216D00532B3D /* SceneDelegate.swift in Sources */,
 			);
