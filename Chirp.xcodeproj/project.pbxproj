@@ -10,6 +10,7 @@
 		042D1FA12A2FA765009D2573 /* AnimationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1FA02A2FA765009D2573 /* AnimationName.swift */; };
 		042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1FA22A2FAE7D009D2573 /* UIColor+Extension.swift */; };
 		0B3CE82B2A312CC800D6305F /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3CE82A2A312CC800D6305F /* LoginPageViewController.swift */; };
+		0B8530E82A3273F700AF66D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B8530E72A3273F700AF66D3 /* GoogleService-Info.plist */; };
 		467B96F82A30AB700012AB04 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467B96F72A30AB700012AB04 /* RegistrationViewController.swift */; };
 		467B96FB2A30ABB10012AB04 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467B96FA2A30ABB10012AB04 /* User.swift */; };
 		467B97032A30F8610012AB04 /* button-loader-white.json in Resources */ = {isa = PBXBuildFile; fileRef = 467B96FE2A30F8610012AB04 /* button-loader-white.json */; };
@@ -33,6 +34,7 @@
 		042D1FA02A2FA765009D2573 /* AnimationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationName.swift; sourceTree = "<group>"; };
 		042D1FA22A2FAE7D009D2573 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		0B3CE82A2A312CC800D6305F /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
+		0B8530E72A3273F700AF66D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		467B96F72A30AB700012AB04 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		467B96FA2A30ABB10012AB04 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		467B96FE2A30F8610012AB04 /* button-loader-white.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "button-loader-white.json"; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				E56C73202A2D216D00532B3D /* SceneDelegate.swift */,
 				E56C73272A2D216F00532B3D /* Assets.xcassets */,
 				E56C73292A2D216F00532B3D /* LaunchScreen.storyboard */,
+				0B8530E72A3273F700AF66D3 /* GoogleService-Info.plist */,
 				E56C732C2A2D216F00532B3D /* Info.plist */,
 			);
 			path = Chirp;
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E56C732B2A2D216F00532B3D /* LaunchScreen.storyboard in Resources */,
+				0B8530E82A3273F700AF66D3 /* GoogleService-Info.plist in Resources */,
 				E56C73282A2D216F00532B3D /* Assets.xcassets in Resources */,
 				467B97032A30F8610012AB04 /* button-loader-white.json in Resources */,
 			);

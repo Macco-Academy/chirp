@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import FirebaseCore
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backIndicatorImage = .backTailedArrow
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = .backTailedArrow
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000, vertical: 0), for:UIBarMetrics.default)
+        
+        FirebaseApp.configure()
 
         return true
     }
