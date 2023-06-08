@@ -11,5 +11,5 @@ import UIKit
 struct User {
     var name: String?
     var phoneNumber: String?
-    var profilePicture: UIImage?
+    var profilePicture: String?
 }
