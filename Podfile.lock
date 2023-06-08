@@ -1,22 +1,31 @@
 PODS:
   - lottie-ios (4.2.0)
+  - PhoneNumberKit (3.3.4):
+    - PhoneNumberKit/PhoneNumberKitCore (= 3.3.4)
+    - PhoneNumberKit/UIKit (= 3.3.4)
+  - PhoneNumberKit/PhoneNumberKitCore (3.3.4)
+  - PhoneNumberKit/UIKit (3.3.4):
+    - PhoneNumberKit/PhoneNumberKitCore
   - SwiftMessages (9.0.6):
     - SwiftMessages/App (= 9.0.6)
   - SwiftMessages/App (9.0.6)
 
 DEPENDENCIES:
   - lottie-ios
+  - PhoneNumberKit
   - SwiftMessages
 
 SPEC REPOS:
   trunk:
     - lottie-ios
+    - PhoneNumberKit
     - SwiftMessages
 
 SPEC CHECKSUMS:
   lottie-ios: 809ecf2d460ed650a6aed7aa88b2ec45fab4779c
+  PhoneNumberKit: 441e8b26ec88d598e3591de9061eff18f5dd12e8
   SwiftMessages: f0c7ef4705a570ad6c5e208b611f4333e660ed92
 
-PODFILE CHECKSUM: 7d06449d250519683a50a918fd60ffb9a5533edc
+PODFILE CHECKSUM: 800e37103ccaf4991d2ca2cbcb7c208046002e97
 
 COCOAPODS: 1.12.1
