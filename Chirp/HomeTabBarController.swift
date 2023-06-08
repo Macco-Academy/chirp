@@ -25,10 +25,12 @@ class HomeTabBarController: UITabBarController {
             return
         }
         
-        let tabIconImages = [UIImage.ellipsisMessageFill, UIImage.personFill, UIImage.settingsFill]
+        let activeImages = [UIImage.ellipsisMessageFill, UIImage.personFill, UIImage.settingsFill]
+        let inactiveImages = [UIImage.ellipsisMessageBordered, UIImage.personBordered, UIImage.settingsBordered]
         
         for i in 0..<items.count {
-            items[i].image = tabIconImages[i]
+            items[i].image = inactiveImages[i]
+            items[i].selectedImage = activeImages[i]
         }
         
     }

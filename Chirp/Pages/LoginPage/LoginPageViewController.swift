@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 import PhoneNumberKit
 
 class LoginPageViewController: UIViewController {
@@ -56,13 +57,22 @@ class LoginPageViewController: UIViewController {
     
     let constraintNumber:CGFloat = 24
     
+    var phoneNumber: String {
+        let countryCode = "+\(numberTextField.phoneNumber?.countryCode ?? 0)"
+        let nationalNumber = "\(numberTextField.phoneNumber?.nationalNumber ?? 0)"
+        return countryCode + nationalNumber
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         layout()
-        
+        setupListeners()
     }
     
+    private func setupListeners() {
+        
+    }
     
     private func layout(){
         view.addSubview(titleLabel)
@@ -71,7 +81,7 @@ class LoginPageViewController: UIViewController {
         view.addSubview(proceedButton)
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo:view.safeAreaLayoutGuide.topAnchor, constant: 60),
+            titleLabel.topAnchor.constraint(equalTo:view.safeAreaLayoutGuide.topAnchor, constant: 20),
             titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: constraintNumber),
             titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: constraintNumber),
             subTitleLabel.topAnchor.constraint(equalTo:titleLabel.bottomAnchor, constant: 4),
@@ -84,8 +94,6 @@ class LoginPageViewController: UIViewController {
             proceedButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: constraintNumber),
             proceedButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -constraintNumber),
             proceedButton.heightAnchor.constraint(equalToConstant: 40)
-            
-            
         ])
         
     }
@@ -94,6 +102,22 @@ class LoginPageViewController: UIViewController {
 extension LoginPageViewController {
     //actions
     @objc private func loginPressed() {
-        print("login pressed")
+        if numberTextField.phoneNumberKit.isValidPhoneNumber(numberTextField.text ?? "") {
+            let controller = OTPViewController()
+            controller.phoneNumber = phoneNumber
+            controller.hasAccount = { [weak self] in self?.goToNextPage(hasAccount: $0) }
+            present(controller, animated: true)
+        } else {
+            AlertToast.showAlert(message: "Please enter a valid phone number", type: .error)
+        }
+    }
+    
+    private func goToNextPage(hasAccount: Bool) {
+        if hasAccount {
+            navigationController?.setViewControllers([HomeTabBarController()], animated: true)
+        } else {
+            let controller = RegistrationViewController()
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }

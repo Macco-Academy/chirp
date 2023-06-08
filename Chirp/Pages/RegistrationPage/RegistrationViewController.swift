@@ -86,7 +86,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
 
     private func setupConstraints(){
         NSLayoutConstraint.activate([
-            createAccLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
+            createAccLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             createAccLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25),
             createAccLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -25),
 
@@ -119,6 +119,8 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         if let text = userNameTextField.text {
             if text.trimmingCharacters(in: .whitespaces).isEmpty {
                 AlertToast.showAlert(message: "Please, enter your name", type: .error)
+            } else {
+                navigationController?.setViewControllers([HomeTabBarController()], animated: true)
             }
         }
     }

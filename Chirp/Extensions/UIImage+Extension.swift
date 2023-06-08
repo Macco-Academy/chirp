@@ -14,8 +14,11 @@ extension UIImage {
     static let placeholderImage: UIImage = UIImage(named: "nophoto")!
     static let addImage:UIImage = UIImage(systemName: "plus")!
     static let ellipsisMessageFill = UIImage(systemName: "ellipsis.message.fill")
+    static let ellipsisMessageBordered = UIImage(systemName: "ellipsis.message")
     static let personFill = UIImage(systemName: "person.2.fill")
-    static let settingsFill = UIImage(systemName: "squareshape.split.2x2")
-    
+    static let personBordered = UIImage(systemName: "person.2")
+    static let settingsFill = UIImage(systemName: "square.grid.2x2.fill")
+    static let settingsBordered = UIImage(systemName: "square.grid.2x2")
+    static let backTailedArrow = UIImage(systemName: "arrow.backward")
     
 }

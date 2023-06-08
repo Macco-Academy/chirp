@@ -12,6 +12,7 @@ class OTPViewController: UIViewController {
     var code: String?
     var phoneNumber: String?
     var countdownDuration: Double = 30
+    var hasAccount: ((Bool) -> Void)?
     
     private let xPadding: CGFloat = 25
 
@@ -48,7 +49,7 @@ class OTPViewController: UIViewController {
         NSLayoutConstraint.activate([
             closeButton.widthAnchor.constraint(equalToConstant: 45),
             closeButton.heightAnchor.constraint(equalToConstant: 45),
-            closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 5),
+            closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
             closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             
             titleLabel.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 20),
@@ -112,7 +113,9 @@ class OTPViewController: UIViewController {
         passcodeView.didFinishEnteringCode = { [weak self] code in
             //TODO: Validate code
             // success
-            self?.dismiss(animated: true)
+            self?.dismiss(animated: true) { [weak self] in
+                self?.hasAccount?(false)
+            }
             
             // invalid
             // TODO: Show error
