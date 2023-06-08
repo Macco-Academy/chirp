@@ -25,6 +25,9 @@
 		467B97042A30F8610012AB04 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467B96FF2A30F8610012AB04 /* Button.swift */; };
 		467B97052A30F8610012AB04 /* AlertToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467B97012A30F8610012AB04 /* AlertToast.swift */; };
 		467B97062A30F8610012AB04 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467B97022A30F8610012AB04 /* AlertType.swift */; };
+		469CED882A3210F700AED489 /* MorePageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469CED872A3210F700AED489 /* MorePageTableViewCell.swift */; };
+		469CED8A2A32110600AED489 /* MorePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469CED892A32110600AED489 /* MorePageViewController.swift */; };
+		469CED8C2A32524B00AED489 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469CED8B2A32524B00AED489 /* CustomHeader.swift */; };
 		809A35A9CD04CE147A4F0B6F /* Pods_Chirp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6EC265D6F867AC01E03BB0 /* Pods_Chirp.framework */; };
 		E56C731F2A2D216D00532B3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56C731E2A2D216D00532B3D /* AppDelegate.swift */; };
 		E56C73212A2D216D00532B3D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56C73202A2D216D00532B3D /* SceneDelegate.swift */; };
@@ -53,6 +56,9 @@
 		467B96FF2A30F8610012AB04 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		467B97012A30F8610012AB04 /* AlertToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertToast.swift; sourceTree = "<group>"; };
 		467B97022A30F8610012AB04 /* AlertType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
+		469CED872A3210F700AED489 /* MorePageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorePageTableViewCell.swift; sourceTree = "<group>"; };
+		469CED892A32110600AED489 /* MorePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorePageViewController.swift; sourceTree = "<group>"; };
+		469CED8B2A32524B00AED489 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
 		529183B6341C55015C9D160F /* Pods-Chirp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chirp.debug.xcconfig"; path = "Target Support Files/Pods-Chirp/Pods-Chirp.debug.xcconfig"; sourceTree = "<group>"; };
 		B739D4B4B8974D1601276D8A /* Pods-Chirp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chirp.release.xcconfig"; path = "Target Support Files/Pods-Chirp/Pods-Chirp.release.xcconfig"; sourceTree = "<group>"; };
 		DB6EC265D6F867AC01E03BB0 /* Pods_Chirp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chirp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				0B3CE8292A312CB400D6305F /* LoginPage */,
+				469CED862A3210DF00AED489 /* MorePage */,
 				467B96F62A30AB480012AB04 /* RegistrationPage */,
 				EEB1A4902A312A5500F6899D /* HomeTabBarController.swift */,
 				04163DF72A326E8C003DF7B1 /* ContactsPage */,
@@ -176,6 +183,16 @@
 				467B97022A30F8610012AB04 /* AlertType.swift */,
 			);
 			path = AlertToast;
+			sourceTree = "<group>";
+		};
+		469CED862A3210DF00AED489 /* MorePage */ = {
+			isa = PBXGroup;
+			children = (
+				469CED872A3210F700AED489 /* MorePageTableViewCell.swift */,
+				469CED892A32110600AED489 /* MorePageViewController.swift */,
+				469CED8B2A32524B00AED489 /* CustomHeader.swift */,
+			);
+			path = MorePage;
 			sourceTree = "<group>";
 		};
 		8F9E9B659D2909F0BC07190E /* Frameworks */ = {
@@ -374,6 +391,9 @@
 				042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */,
 				04163E032A326EC4003DF7B1 /* CountdownView.swift in Sources */,
 				04163E052A326EC4003DF7B1 /* PasscodeBoxView.swift in Sources */,
+				469CED8C2A32524B00AED489 /* CustomHeader.swift in Sources */,
+				469CED8A2A32110600AED489 /* MorePageViewController.swift in Sources */,
+				469CED882A3210F700AED489 /* MorePageTableViewCell.swift in Sources */,
 				E56C731F2A2D216D00532B3D /* AppDelegate.swift in Sources */,
 				04163E042A326EC4003DF7B1 /* PasscodeView.swift in Sources */,
 				EEB1A4912A312A5500F6899D /* HomeTabBarController.swift in Sources */,
