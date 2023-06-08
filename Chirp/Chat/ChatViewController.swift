@@ -65,14 +65,16 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
         if userId == "user1" {
             let cell = tableView.dequeueReusableCell(withIdentifier: SenderTableViewCell.identifier) as! SenderTableViewCell
             cell.setup()
-            cell.textLabel?.text = message
-            cell.textLabel?.textColor = .appBrown
+//            label.text = message
+//            cell.textLabel?.text = message
+//            cell.textLabel?.textColor = .appBrown
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: ReceiverTableViewCell.identifier) as! ReceiverTableViewCell
             cell.setup()
-            cell.textLabel?.text = message
-            cell.textLabel?.textColor = .white
+//            label.text = message
+//            cell.textLabel?.text = message
+//            cell.textLabel?.textColor = .white
             return cell
         }
         

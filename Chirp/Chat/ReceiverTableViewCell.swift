@@ -13,6 +13,11 @@ class ReceiverTableViewCell: UITableViewCell {
     private let label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.text = "Hello 2"
+        label.textColor = .white
+        label.numberOfLines = 0
+        label.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         return label
     }()
     
