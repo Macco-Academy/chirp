@@ -14,7 +14,7 @@ class HomeTabBarController: UITabBarController {
         // Do any additional setup after loading the view.
   
         
-        let vc1 = FirstViewVC()
+        let vc1 = ChatsViewController()
         let vc2 = UINavigationController(rootViewController: ContactsViewController())
         let vc3 = UINavigationController(rootViewController: MorePageViewController())
         
@@ -43,13 +43,4 @@ class HomeTabBarController: UITabBarController {
     
 
 
-}
-
-
-class FirstViewVC: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = .cyan
-    }
 }
