@@ -28,6 +28,7 @@ class ChatsTableViewCell: UITableViewCell {
         label.text = "Full Name"
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return label
     }()
     
@@ -44,6 +45,8 @@ class ChatsTableViewCell: UITableViewCell {
         label.text = "Last Message Time"
         label.font = UIFont.systemFont(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return label
     }()
     
@@ -55,6 +58,8 @@ class ChatsTableViewCell: UITableViewCell {
         label.clipsToBounds = true
         label.font = UIFont.systemFont(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .center
         return label
     }()
     
@@ -66,9 +71,18 @@ class ChatsTableViewCell: UITableViewCell {
     }()
     
     // Setup tableview cell
-    func setup() {
+    func setup(viewModel: ChatsListViewModel) {
+        populateData(viewModel: viewModel)
         setupViews()
         setupConstraints()
+    }
+    
+    private func populateData(viewModel: ChatsListViewModel) {
+        fullNameLabel.text = viewModel.title
+        lastMessageLabel.text = viewModel.description
+        lastMessageTimeLabel.text = viewModel.timeStamp?.asTimeAgo
+        unreadMessageCounterLabel.text = "\(viewModel.unreadCount ?? 0)"
+        unreadMessageCounterLabel.alpha = unreadMessageCounterLabel.text == "0" ? 0 : 1
     }
     
     override func layoutSubviews() {
@@ -103,6 +117,7 @@ class ChatsTableViewCell: UITableViewCell {
             friendImageView.heightAnchor.constraint(equalToConstant: imageViewWidth),
             
             fullNameLabel.leadingAnchor.constraint(equalTo: friendImageView.trailingAnchor, constant: leadingTrailingAnchor),
+            fullNameLabel.trailingAnchor.constraint(equalTo: lastMessageTimeLabel.leadingAnchor, constant: -4),
             fullNameLabel.heightAnchor.constraint(equalToConstant: labelHeight),
             fullNameLabel.topAnchor.constraint(equalTo: friendImageView.topAnchor, constant: leadingTrailingAnchor),
             
@@ -116,6 +131,7 @@ class ChatsTableViewCell: UITableViewCell {
             
             unreadMessageCounterLabel.trailingAnchor.constraint(equalTo: cellBoundaryview.trailingAnchor),
             unreadMessageCounterLabel.heightAnchor.constraint(equalToConstant: labelHeight),
+            unreadMessageCounterLabel.widthAnchor.constraint(equalToConstant: labelHeight),
             unreadMessageCounterLabel.bottomAnchor.constraint(equalTo: friendImageView.bottomAnchor, constant: -leadingTrailingAnchor)
         ])
     }

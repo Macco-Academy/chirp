@@ -12,9 +12,7 @@ class HomeTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-  
-        
-        let vc1 = ChatsViewController()
+        let vc1 = UINavigationController(rootViewController: ChatsViewController())
         let vc2 = UINavigationController(rootViewController: ContactsViewController())
         let vc3 = UINavigationController(rootViewController: MorePageViewController())
         
@@ -37,10 +35,7 @@ class HomeTabBarController: UITabBarController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
-    
-
-
+    }   
 }

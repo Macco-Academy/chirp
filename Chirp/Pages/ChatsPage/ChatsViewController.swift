@@ -7,7 +7,22 @@
 
 import UIKit
 
+// TODO: Remove
+let dummyData: [RecentChat] = [RecentChat(id: "123",
+                                          members: [User(id: "user1",name: "Tony", profileImage: ""), User(id: "user2",name: "James", profileImage: "")],
+                                          lastMessage: Message(senderId: "user1", message: "abucdefg", timeStamp: Date()), unreadCount: ["user1": 2]), RecentChat(id: "123",
+                                                                                                                                                                  members: [User(id: "user1",name: "Tony", profileImage: ""), User(id: "user2",name: "Heidi Tom", profileImage: "")],
+                                                                                                                                                                  lastMessage: Message(senderId: "user1", message: "abucdefg", timeStamp: Calendar.current.date(byAdding: .day, value: -1, to: Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date())!)!), unreadCount: ["user1": 2]), RecentChat(id: "123",
+                                                                                                                                                                                                                                                                                                                                                                                                                      members: [User(id: "user1",name: "Tony", profileImage: ""), User(id: "user2",name: "Tom Hanks", profileImage: "")],
+                                                                                                                                                                                                                                                                                                                                                                                                                      lastMessage: Message(senderId: "user1", message: "abucdefg", timeStamp: Date()), unreadCount: ["user1": 1232]), RecentChat(id: "123",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 members: [User(id: "user1",name: "Tony", profileImage: ""), User(id: "user2",name: "emmanuel this is a long name and to check it", profileImage: "")],
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 lastMessage: Message(senderId: "user1", message: "abucdefg", timeStamp: Calendar.current.date(byAdding: .day, value: -1, to: Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date())!)!), unreadCount: ["user1": 0])]
+
 class ChatsViewController: UIViewController {
+    
+    let fullList: [ChatsListViewModel] = dummyData.map {$0.asChatListViewModel}
+    
+    var list: [ChatsListViewModel] = []
     
     var chatsTableView: UITableView = {
         let tableView = UITableView()
@@ -30,17 +45,17 @@ class ChatsViewController: UIViewController {
         setupSearchBar()
         setupViews()
         setupConstraints()
+        self.list = fullList
     }
     
     private func setupNavigationBarTitle() {
         title = "Chats"
         navigationController?.navigationBar.prefersLargeTitles = true
-        // TODO: Check if this is not needed
-        navigationItem.hidesBackButton = true
     }
     
     private func setupSearchBar() {
         searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
     }
     
@@ -63,15 +78,12 @@ class ChatsViewController: UIViewController {
 
 extension ChatsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // TODO: Update when we have actual data
-        return 10
+        return list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ChatsTableViewCell.identifier, for: indexPath) as! ChatsTableViewCell
-        cell.setup()
-        // TODO: Update when we have actual data
-        cell.friendImageView.image = UIImage(named: "nophoto")
+        cell.setup(viewModel: list[indexPath.row])
         return cell
     }
 }
@@ -80,10 +92,30 @@ extension ChatsViewController: UITableViewDelegate {
     
 }
 
-extension ChatsViewController: UISearchResultsUpdating {
+extension ChatsViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
-        guard let search = searchController.searchBar.searchTextField.text else { return }
-        // TODO: Update this
-        print(search)
+        updateSearchResult()
     }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        updateSearchResult()
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        updateSearchResult()
+    }
+    
+    private func updateSearchResult() {
+        guard let search = searchController.searchBar.searchTextField.text,
+              !search.isEmpty else {
+            self.list = fullList
+            chatsTableView.reloadData()
+            return
+        }
+        list = fullList.filter {
+            $0.title?.lowercased().contains(search.lowercased()) ?? false
+        }
+        chatsTableView.reloadData()
+    }
+    
 }
