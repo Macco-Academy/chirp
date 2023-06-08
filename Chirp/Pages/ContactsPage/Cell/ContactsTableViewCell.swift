@@ -37,7 +37,14 @@ class ContactsTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    let typesLabel = UILabel.create(text:"Salary", textColor: .black, font: UIFont.systemFont(ofSize: 16, weight: .regular), textAlignment: .left)
+    let typesLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Test"
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.textAlignment = .left
+        return label
+    }()
     
     private lazy var hStack: UIStackView = {
         let stackView = UIStackView()

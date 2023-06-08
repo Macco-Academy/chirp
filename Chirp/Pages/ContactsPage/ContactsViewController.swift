@@ -79,13 +79,14 @@ class ContactsViewController: UIViewController {
     
     func setupTableData() -> [Contacts] {
         let unsortedData = [
-            ContactsDetails(image: UIImage.infoCircleFill, text: "Arlene McCoy"),
-            ContactsDetails(image: UIImage.infoCircleFill, text: "Avon Lane"),
-            ContactsDetails(image: UIImage.infoCircleFill, text: "Ben Dark"), ContactsDetails(image: UIImage.infoCircleFill, text: "Bishop Pope"),
-            ContactsDetails(image: UIImage.infoCircleFill, text: "Aessie Cooper"),
-            ContactsDetails(image: UIImage.infoCircleFill, text: "Cardless King"),
-            ContactsDetails(image: UIImage.infoCircleFill, text: "Card Boy"),
-            ContactsDetails(image: UIImage.infoCircleFill, text: "Mike Boy")
+            ContactsDetails(image: UIImage.placeholderImage, text: "Arlene McCoy"),
+            ContactsDetails(image: UIImage.placeholderImage, text: "Avon Lane"),
+            ContactsDetails(image: UIImage.placeholderImage, text: "Ben Dark"),
+            ContactsDetails(image: UIImage.placeholderImage, text: "Bishop Pope"),
+            ContactsDetails(image: UIImage.placeholderImage, text: "Aessie Cooper"),
+            ContactsDetails(image: UIImage.placeholderImage, text: "Cardless King"),
+            ContactsDetails(image: UIImage.placeholderImage, text: "Card Boy"),
+            ContactsDetails(image: UIImage.placeholderImage, text: "Mike Boy")
         ]
         
         var grouped: [String: [ContactsDetails]] = [:]
@@ -95,6 +96,7 @@ class ContactsViewController: UIViewController {
             users.append($0)
             grouped[key] = users
         }
+        
         let contacts = grouped.values.map {
             var key = ""
             
@@ -107,8 +109,6 @@ class ContactsViewController: UIViewController {
         }
         return contacts.sorted(by: { $0.sectionName < $1.sectionName })
     }
-    
-    
 }
 
 extension ContactsViewController :UITableViewDataSource, UITableViewDelegate {
