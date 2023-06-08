@@ -39,6 +39,7 @@ class LoginPageViewController: UIViewController {
         textField.withFlag = true
         textField.placeholder = "Enter your mobile number"
         textField.withExamplePlaceholder = true
+        textField.withDefaultPickerUI = true
         textField.textContentType = .telephoneNumber
         
         return textField
