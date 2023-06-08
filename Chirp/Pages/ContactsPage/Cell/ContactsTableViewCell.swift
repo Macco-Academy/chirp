@@ -31,8 +31,11 @@ class ContactsTableViewCell: UITableViewCell {
     let image: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage.infoCircleFill
-        imageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 30
+        imageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
