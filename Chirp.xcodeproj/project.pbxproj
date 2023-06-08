@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04163DF42A320AA9003DF7B1 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04163DF22A320AA8003DF7B1 /* Contacts.swift */; };
+		04163DF52A320AA9003DF7B1 /* ContactsDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04163DF32A320AA9003DF7B1 /* ContactsDetails.swift */; };
+		042D1F9B2A2F667D009D2573 /* button-loader-white.json in Resources */ = {isa = PBXBuildFile; fileRef = 042D1F9A2A2F667D009D2573 /* button-loader-white.json */; };
+		042D1F9F2A2F6FBB009D2573 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1F9E2A2F6FBB009D2573 /* Button.swift */; };
 		042D1FA12A2FA765009D2573 /* AnimationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1FA02A2FA765009D2573 /* AnimationName.swift */; };
 		042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1FA22A2FAE7D009D2573 /* UIColor+Extension.swift */; };
 		0B3CE82B2A312CC800D6305F /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3CE82A2A312CC800D6305F /* LoginPageViewController.swift */; };
@@ -15,7 +19,6 @@
 		042D1FA92A30925C009D2573 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1FA82A30925C009D2573 /* ContactsViewController.swift */; };
 		042D1FAC2A3092A8009D2573 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1FAB2A3092A8009D2573 /* ContactsTableViewCell.swift */; };
 		042D1FAE2A309427009D2573 /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1FAD2A309426009D2573 /* UILabel + Extension.swift */; };
-		042D1FB12A30ABF1009D2573 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1FB02A30ABF1009D2573 /* Models.swift */; };
 		809A35A9CD04CE147A4F0B6F /* Pods_Chirp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6EC265D6F867AC01E03BB0 /* Pods_Chirp.framework */; };
 		467B97032A30F8610012AB04 /* button-loader-white.json in Resources */ = {isa = PBXBuildFile; fileRef = 467B96FE2A30F8610012AB04 /* button-loader-white.json */; };
 		467B97042A30F8610012AB04 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467B96FF2A30F8610012AB04 /* Button.swift */; };
@@ -35,6 +38,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04163DF22A320AA8003DF7B1 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
+		04163DF32A320AA9003DF7B1 /* ContactsDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsDetails.swift; sourceTree = "<group>"; };
+		042D1F9A2A2F667D009D2573 /* button-loader-white.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "button-loader-white.json"; sourceTree = "<group>"; };
+		042D1F9E2A2F6FBB009D2573 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		042D1FA02A2FA765009D2573 /* AnimationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationName.swift; sourceTree = "<group>"; };
 		042D1FA22A2FAE7D009D2573 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		0B3CE82A2A312CC800D6305F /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
@@ -47,7 +54,6 @@
 		042D1FA82A30925C009D2573 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		042D1FAB2A3092A8009D2573 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
 		042D1FAD2A309426009D2573 /* UILabel + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
-		042D1FB02A30ABF1009D2573 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		529183B6341C55015C9D160F /* Pods-Chirp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chirp.debug.xcconfig"; path = "Target Support Files/Pods-Chirp/Pods-Chirp.debug.xcconfig"; sourceTree = "<group>"; };
 		5F1411372A2E59910073B0F1 /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		5FD8BC4E2A2E75530038D2BE /* PasscodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeView.swift; sourceTree = "<group>"; };
@@ -170,7 +176,8 @@
 		042D1FAF2A30ABD0009D2573 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				042D1FB02A30ABF1009D2573 /* Models.swift */,
+				04163DF22A320AA8003DF7B1 /* Contacts.swift */,
+				04163DF32A320AA9003DF7B1 /* ContactsDetails.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -365,9 +372,13 @@
 				042D1FA12A2FA765009D2573 /* AnimationName.swift in Sources */,
 				5FD8BC512A2E79030038D2BE /* PasscodeBoxView.swift in Sources */,
 				5F1411392A2E59910073B0F1 /* OTPViewController.swift in Sources */,
+				E56C73232A2D216D00532B3D /* ViewController.swift in Sources */,
+				04163DF52A320AA9003DF7B1 /* ContactsDetails.swift in Sources */,
 				E5AC47E72A306AFD0055C83A /* UIImage+Extension.swift in Sources */,
 				467B96F82A30AB700012AB04 /* RegistrationViewController.swift in Sources */,
 				042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */,
+				04163DF42A320AA9003DF7B1 /* Contacts.swift in Sources */,
+				E5AC47E52A306AE70055C83A /* AlertType.swift in Sources */,
 				5FD8BC512A2E79030038D2BE /* PasscodeBoxView.swift in Sources */,
 				5F1411392A2E59910073B0F1 /* OTPViewController.swift in Sources */,
 				E5AC47E72A306AFD0055C83A /* UIImage+Extension.swift in Sources */,
@@ -383,6 +394,7 @@
 				E56C73212A2D216D00532B3D /* SceneDelegate.swift in Sources */,
 				467B97042A30F8610012AB04 /* Button.swift in Sources */,
 				467B96FB2A30ABB10012AB04 /* User.swift in Sources */,
+				E5AC47E32A306AB00055C83A /* AlertToast.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
