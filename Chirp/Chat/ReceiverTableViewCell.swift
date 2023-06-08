@@ -30,6 +30,7 @@ class ReceiverTableViewCell: UITableViewCell {
     
     private func setupViews() {
         addSubview(stackView)
+        stackView.addArrangedSubview(label)
     }
 
     private func setupConstraints() {
@@ -39,8 +40,6 @@ class ReceiverTableViewCell: UITableViewCell {
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -150),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
             stackView.heightAnchor.constraint(equalToConstant: 50),
-            
-            label.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
         ])
     }
 }
