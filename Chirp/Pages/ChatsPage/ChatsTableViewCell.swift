@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ChatsTableViewCell: UITableViewCell {
     
@@ -17,7 +18,7 @@ class ChatsTableViewCell: UITableViewCell {
     
     lazy var friendImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -83,6 +84,7 @@ class ChatsTableViewCell: UITableViewCell {
         lastMessageTimeLabel.text = viewModel.timeStamp?.asTimeAgo
         unreadMessageCounterLabel.text = "\(viewModel.unreadCount ?? 0)"
         unreadMessageCounterLabel.alpha = unreadMessageCounterLabel.text == "0" ? 0 : 1
+        friendImageView.kf.setImage(with: URL(string: viewModel.imageUrl ?? ""), placeholder: UIImage.placeholderImage)
     }
     
     override func layoutSubviews() {

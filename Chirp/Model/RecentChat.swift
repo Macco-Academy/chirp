@@ -15,13 +15,12 @@ struct RecentChat: Codable {
 }
 
 extension RecentChat {
-    
+    //TODO: fix this with actual data
     var asChatListViewModel: ChatsListViewModel {
-        
         let secondUser = members?.first{
             $0.id != "user1"
         }
-        //check for unread count if >1000 & <5000 1k+ , >5000 5k+, >2000 2k+ and pass it to unreadcount
+        //TODO: check for unread count if >1000 & <5000 =  1k+ , >5000 = 5k+, >2000 = 2k+ and pass it to unreadCount
         return ChatsListViewModel(imageUrl: secondUser?.profileImage,
                                   title: secondUser?.name,
                                   description: self.lastMessage?.message,

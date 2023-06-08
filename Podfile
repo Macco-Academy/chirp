@@ -24,5 +24,6 @@ target 'Chirp' do
   pod 'FirebaseFirestore'
   pod 'FirebaseMessaging'
   pod 'Firebase/Storage'
-  
+  pod 'Kingfisher'
+
 end
