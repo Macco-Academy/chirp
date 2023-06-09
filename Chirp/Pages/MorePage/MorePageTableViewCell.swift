@@ -37,6 +37,7 @@ class MorePageTableViewCell: UITableViewCell {
         addSubviews()
         setupConstraints()
         setupcImages()
+        self.selectionStyle = .none
     }
     
     private func addSubviews() {

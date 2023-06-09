@@ -15,12 +15,10 @@ class HomeTabBarController: UITabBarController {
   
         
         let vc1 = FirstViewVC()
-        let vc2 = ContactsViewController()
-        let vc3 = ThirdViewVC()
+        let vc2 = UINavigationController(rootViewController: ContactsViewController())
+        let vc3 = UINavigationController(rootViewController: MorePageViewController())
         
-        let navCon = UINavigationController(rootViewController: vc2)
-        
-        self.setViewControllers([vc1, navCon, vc3], animated: true)
+        self.setViewControllers([vc1, vc2, vc3], animated: true)
         self.tabBar.tintColor = .appBrown
         self.tabBar.unselectedItemTintColor = .appBrownSecondary
         
@@ -55,12 +53,3 @@ class FirstViewVC: UIViewController {
         view.backgroundColor = .cyan
     }
 }
-
-class ThirdViewVC: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = .brown
-    }
-}
-

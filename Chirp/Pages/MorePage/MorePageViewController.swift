@@ -20,6 +20,7 @@ class MorePageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "More"
+        navigationController?.navigationBar.prefersLargeTitles = true
         doBasicSettings()
     }
 
@@ -41,7 +42,7 @@ class MorePageViewController: UIViewController {
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            moreTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            moreTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             moreTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25),
             moreTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -25),
             moreTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50)

@@ -12,9 +12,7 @@
 		04163DFB2A326E8C003DF7B1 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04163DF82A326E8C003DF7B1 /* ContactsViewController.swift */; };
 		04163DFC2A326E8C003DF7B1 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04163DFA2A326E8C003DF7B1 /* ContactsTableViewCell.swift */; };
 		04163E022A326EC4003DF7B1 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04163DFE2A326EC4003DF7B1 /* OTPViewController.swift */; };
-		04163E032A326EC4003DF7B1 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04163DFF2A326EC4003DF7B1 /* CountdownView.swift */; };
 		04163E042A326EC4003DF7B1 /* PasscodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04163E002A326EC4003DF7B1 /* PasscodeView.swift */; };
-		04163E052A326EC4003DF7B1 /* PasscodeBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04163E012A326EC4003DF7B1 /* PasscodeBoxView.swift */; };
 		042D1FA12A2FA765009D2573 /* AnimationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1FA02A2FA765009D2573 /* AnimationName.swift */; };
 		042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1FA22A2FAE7D009D2573 /* UIColor+Extension.swift */; };
 		0B3CE82B2A312CC800D6305F /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3CE82A2A312CC800D6305F /* LoginPageViewController.swift */; };
@@ -28,6 +26,8 @@
 		469CED882A3210F700AED489 /* MorePageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469CED872A3210F700AED489 /* MorePageTableViewCell.swift */; };
 		469CED8A2A32110600AED489 /* MorePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469CED892A32110600AED489 /* MorePageViewController.swift */; };
 		469CED8C2A32524B00AED489 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469CED8B2A32524B00AED489 /* CustomHeader.swift */; };
+		469CED8F2A339F1400AED489 /* PasscodeBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04163E012A326EC4003DF7B1 /* PasscodeBoxView.swift */; };
+		469CED902A339FD500AED489 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04163DFF2A326EC4003DF7B1 /* CountdownView.swift */; };
 		809A35A9CD04CE147A4F0B6F /* Pods_Chirp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6EC265D6F867AC01E03BB0 /* Pods_Chirp.framework */; };
 		E56C731F2A2D216D00532B3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56C731E2A2D216D00532B3D /* AppDelegate.swift */; };
 		E56C73212A2D216D00532B3D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56C73202A2D216D00532B3D /* SceneDelegate.swift */; };
@@ -377,10 +377,12 @@
 			files = (
 				04163DFB2A326E8C003DF7B1 /* ContactsViewController.swift in Sources */,
 				042D1FA12A2FA765009D2573 /* AnimationName.swift in Sources */,
+				469CED902A339FD500AED489 /* CountdownView.swift in Sources */,
 				04163E022A326EC4003DF7B1 /* OTPViewController.swift in Sources */,
 				04163DF52A320AA9003DF7B1 /* ContactsDetails.swift in Sources */,
 				E5AC47E72A306AFD0055C83A /* UIImage+Extension.swift in Sources */,
 				467B96F82A30AB700012AB04 /* RegistrationViewController.swift in Sources */,
+				469CED8F2A339F1400AED489 /* PasscodeBoxView.swift in Sources */,
 				042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */,
 				04163DF42A320AA9003DF7B1 /* Contacts.swift in Sources */,
 				04163DFC2A326E8C003DF7B1 /* ContactsTableViewCell.swift in Sources */,
@@ -389,8 +391,6 @@
 				467B97052A30F8610012AB04 /* AlertToast.swift in Sources */,
 				0B3CE82B2A312CC800D6305F /* LoginPageViewController.swift in Sources */,
 				042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */,
-				5FD8BC532A2F81D70038D2BE /* CountdownView.swift in Sources */,
-				5FD8BC4F2A2E75530038D2BE /* PasscodeView.swift in Sources */,
 				469CED8C2A32524B00AED489 /* CustomHeader.swift in Sources */,
 				469CED8A2A32110600AED489 /* MorePageViewController.swift in Sources */,
 				469CED882A3210F700AED489 /* MorePageTableViewCell.swift in Sources */,
