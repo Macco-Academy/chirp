@@ -17,6 +17,13 @@ class CustomHeader: UITableViewHeaderFooterView {
         return imageView
     }()
     
+    let stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     let userNameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
@@ -50,24 +57,21 @@ class CustomHeader: UITableViewHeaderFooterView {
     
     private func setupSubviews() {
         contentView.addSubview(profilePicture)
-        contentView.addSubview(userNameLabel)
-        contentView.addSubview(userPhoneNumber)
+        contentView.addSubview(stackView)
+        stackView.addArrangedSubview(userNameLabel)
+        stackView.addArrangedSubview(userPhoneNumber)
     }
     
     private func setupConstraints(){
         NSLayoutConstraint.activate([
             profilePicture.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             profilePicture.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            profilePicture.heightAnchor.constraint(equalToConstant: 110),
-            profilePicture.widthAnchor.constraint(equalToConstant: 110),
+            profilePicture.heightAnchor.constraint(equalToConstant: 100),
+            profilePicture.widthAnchor.constraint(equalToConstant: 100),
             
-            userNameLabel.topAnchor.constraint(equalTo: profilePicture.topAnchor, constant: 15),
-            userNameLabel.leadingAnchor.constraint(equalTo: profilePicture.trailingAnchor, constant: 20),
-            userNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
-            userPhoneNumber.bottomAnchor.constraint(equalTo: profilePicture.bottomAnchor, constant: -15),
-            userPhoneNumber.leadingAnchor.constraint(equalTo: profilePicture.trailingAnchor, constant: 20),
-            userPhoneNumber.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            stackView.centerYAnchor.constraint(equalTo: profilePicture.centerYAnchor),
+            stackView.leadingAnchor.constraint(equalTo: profilePicture.trailingAnchor, constant: 10),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
         ])
     }
     
