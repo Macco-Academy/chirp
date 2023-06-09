@@ -8,6 +8,7 @@
 import UIKit
 import Combine
 import PhoneNumberKit
+import Firebase
 
 class LoginPageViewController: UIViewController {
     
@@ -105,7 +106,22 @@ extension LoginPageViewController {
             let controller = OTPViewController()
             controller.phoneNumber = phoneNumber
             controller.hasAccount = { [weak self] in self?.goToNextPage(hasAccount: $0) }
-            present(controller, animated: true)
+            
+            PhoneAuthProvider.provider()
+              .verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
+                  if let error = error {
+                    //self.showMessagePrompt(error.localizedDescription)
+                      print(error.localizedDescription)
+                    return
+                  }
+                  // Sign in using the verificationID and the code sent to the user
+                  // ...
+                  
+                  
+                  self.present(controller, animated: true)
+              }
+            
+            
         } else {
             AlertToast.showAlert(message: "Please enter a valid phone number", type: .error)
         }
