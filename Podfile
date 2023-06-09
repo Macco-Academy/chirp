@@ -10,5 +10,9 @@ target 'Chirp' do
   pod 'lottie-ios'
   pod 'SwiftMessages'
   pod 'PhoneNumberKit'
-
+  pod 'FirebaseAuth'
+  pod 'FirebaseFirestore'
+  pod 'FirebaseMessaging'
+  pod 'Firebase/Storage'
+  
 end
