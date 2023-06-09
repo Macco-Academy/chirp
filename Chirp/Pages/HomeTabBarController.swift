@@ -15,9 +15,12 @@ class HomeTabBarController: UITabBarController {
   
         
         let vc1 = FirstViewVC()
-        let vc2 = SecondViewVC()
+        let vc2 = ContactsViewController()
         let vc3 = ThirdViewVC()
-        self.setViewControllers([vc1, vc2, vc3], animated: true)
+        
+        let navCon = UINavigationController(rootViewController: vc2)
+        
+        self.setViewControllers([vc1, navCon, vc3], animated: true)
         self.tabBar.tintColor = .appBrown
         self.tabBar.unselectedItemTintColor = .appBrownSecondary
         
@@ -35,6 +38,10 @@ class HomeTabBarController: UITabBarController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     
 
 
@@ -48,16 +55,6 @@ class FirstViewVC: UIViewController {
         view.backgroundColor = .cyan
     }
 }
-
-
-class SecondViewVC: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = .white
-    }
-}
-
 
 class ThirdViewVC: UIViewController {
     override func viewDidLoad() {
