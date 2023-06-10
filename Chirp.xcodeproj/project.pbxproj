@@ -29,6 +29,8 @@
 		469CED8F2A339F1400AED489 /* PasscodeBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04163E012A326EC4003DF7B1 /* PasscodeBoxView.swift */; };
 		469CED902A339FD500AED489 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04163DFF2A326EC4003DF7B1 /* CountdownView.swift */; };
 		809A35A9CD04CE147A4F0B6F /* Pods_Chirp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6EC265D6F867AC01E03BB0 /* Pods_Chirp.framework */; };
+		E5193CCF2A34A93000BEFAB2 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5193CCE2A34A93000BEFAB2 /* Loader.swift */; };
+		E5193CD12A34A9C500BEFAB2 /* loader_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = E5193CD02A34A9C400BEFAB2 /* loader_animation.json */; };
 		E56C731F2A2D216D00532B3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56C731E2A2D216D00532B3D /* AppDelegate.swift */; };
 		E56C73212A2D216D00532B3D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56C73202A2D216D00532B3D /* SceneDelegate.swift */; };
 		E56C73282A2D216F00532B3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E56C73272A2D216F00532B3D /* Assets.xcassets */; };
@@ -62,6 +64,8 @@
 		529183B6341C55015C9D160F /* Pods-Chirp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chirp.debug.xcconfig"; path = "Target Support Files/Pods-Chirp/Pods-Chirp.debug.xcconfig"; sourceTree = "<group>"; };
 		B739D4B4B8974D1601276D8A /* Pods-Chirp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chirp.release.xcconfig"; path = "Target Support Files/Pods-Chirp/Pods-Chirp.release.xcconfig"; sourceTree = "<group>"; };
 		DB6EC265D6F867AC01E03BB0 /* Pods_Chirp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chirp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5193CCE2A34A93000BEFAB2 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
+		E5193CD02A34A9C400BEFAB2 /* loader_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loader_animation.json; sourceTree = "<group>"; };
 		E56C731B2A2D216D00532B3D /* Chirp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chirp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56C731E2A2D216D00532B3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E56C73202A2D216D00532B3D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,8 +113,7 @@
 				04163E002A326EC4003DF7B1 /* PasscodeView.swift */,
 				04163E012A326EC4003DF7B1 /* PasscodeBoxView.swift */,
 			);
-			name = "OTP Components";
-			path = "Pages/OTP Components";
+			path = "OTP Components";
 			sourceTree = "<group>";
 		};
 		042D1FAF2A30ABD0009D2573 /* Models */ = {
@@ -133,6 +136,7 @@
 		467B96F52A30AB150012AB04 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				04163DFD2A326EC4003DF7B1 /* OTP Components */,
 				0B3CE8292A312CB400D6305F /* LoginPage */,
 				469CED862A3210DF00AED489 /* MorePage */,
 				467B96F62A30AB480012AB04 /* RegistrationPage */,
@@ -161,6 +165,7 @@
 		467B96FC2A30F8610012AB04 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E5193CCD2A34A92600BEFAB2 /* Loader */,
 				467B96FD2A30F8610012AB04 /* Button */,
 				467B97002A30F8610012AB04 /* AlertToast */,
 			);
@@ -212,6 +217,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E5193CCD2A34A92600BEFAB2 /* Loader */ = {
+			isa = PBXGroup;
+			children = (
+				E5193CD02A34A9C400BEFAB2 /* loader_animation.json */,
+				E5193CCE2A34A93000BEFAB2 /* Loader.swift */,
+			);
+			path = Loader;
+			sourceTree = "<group>";
+		};
 		E56C73122A2D216D00532B3D = {
 			isa = PBXGroup;
 			children = (
@@ -237,7 +251,6 @@
 				467B96F52A30AB150012AB04 /* Pages */,
 				E5AC47DF2A305C270055C83A /* Extensions */,
 				042D1FAF2A30ABD0009D2573 /* Models */,
-				04163DFD2A326EC4003DF7B1 /* OTP Components */,
 				467B96FC2A30F8610012AB04 /* Components */,
 				E56C731E2A2D216D00532B3D /* AppDelegate.swift */,
 				E56C73202A2D216D00532B3D /* SceneDelegate.swift */,
@@ -321,6 +334,7 @@
 			files = (
 				E56C732B2A2D216F00532B3D /* LaunchScreen.storyboard in Resources */,
 				0B8530E82A3273F700AF66D3 /* GoogleService-Info.plist in Resources */,
+				E5193CD12A34A9C500BEFAB2 /* loader_animation.json in Resources */,
 				E56C73282A2D216F00532B3D /* Assets.xcassets in Resources */,
 				467B97032A30F8610012AB04 /* button-loader-white.json in Resources */,
 			);
@@ -383,6 +397,7 @@
 				E5AC47E72A306AFD0055C83A /* UIImage+Extension.swift in Sources */,
 				467B96F82A30AB700012AB04 /* RegistrationViewController.swift in Sources */,
 				469CED8F2A339F1400AED489 /* PasscodeBoxView.swift in Sources */,
+				E5193CCF2A34A93000BEFAB2 /* Loader.swift in Sources */,
 				042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */,
 				04163DF42A320AA9003DF7B1 /* Contacts.swift in Sources */,
 				04163DFC2A326E8C003DF7B1 /* ContactsTableViewCell.swift in Sources */,
