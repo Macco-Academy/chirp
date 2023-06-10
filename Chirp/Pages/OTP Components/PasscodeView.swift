@@ -30,12 +30,14 @@ class PasscodeView: UIView, UITextInputTraits {
         super.init(frame: frame)
         setupUI()
         showKeyboard()
+        setupListener()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupUI()
         showKeyboard()
+        setupListener()
     }
     
     override func layoutSubviews() {
@@ -48,7 +50,7 @@ class PasscodeView: UIView, UITextInputTraits {
         return true
     }
     
-    private func showKeyboard() {
+    @objc private func showKeyboard() {
         self.becomeFirstResponder()
     }
     
@@ -64,6 +66,11 @@ class PasscodeView: UIView, UITextInputTraits {
             stack.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             stack.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
+    }
+    
+    private func setupListener() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showKeyboard))
+        addGestureRecognizer(tap)
     }
     
     private func setupStack() {
