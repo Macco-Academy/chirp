@@ -15,7 +15,7 @@ class OTPViewController: UIViewController {
     var hasAccount: ((Bool) -> Void)?
     
     private let xPadding: CGFloat = 25
-
+    
     private let closeButton = UIButton()
     private let titleLabel = UILabel()
     private let subtitleLabel = UILabel()
