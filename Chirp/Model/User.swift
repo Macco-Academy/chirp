@@ -8,7 +8,8 @@
 import Foundation
 import UIKit
 
-struct User {
+struct User: Codable{
+    var id:String?
     var name: String?
     var phoneNumber: String?
     var profilePicture: String?

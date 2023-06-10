@@ -32,7 +32,6 @@ class LoginPageViewController: UIViewController {
     }()
     private let numberTextField : PhoneNumberTextField = {
         let textField = PhoneNumberTextField()
-        let phoneNumberKit = PhoneNumberKit()
         textField.borderStyle = .roundedRect
         textField.keyboardType = .namePhonePad
         textField.translatesAutoresizingMaskIntoConstraints = false
