@@ -116,7 +116,7 @@ extension LoginPageViewController {
                   }
                   // Sign in using the verificationID and the code sent to the user
                   // ...
-                  
+                  UserDefaults.standard.otpVerificationID = verificationID
                   
                   self.present(controller, animated: true)
               }
