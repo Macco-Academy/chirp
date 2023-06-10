@@ -59,8 +59,6 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         return button
     }()
 
-    var user = User()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
