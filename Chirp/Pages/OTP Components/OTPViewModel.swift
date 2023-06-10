@@ -17,7 +17,7 @@ class OTPViewModel {
     
     func verifyOTP(code:String) {
         LoaderView.shared.show(message: "Verifying Code....")
-        let request = VerifyOPTRequest(verificationId: "", verificationCode: code)
+        let request = VerifyOPTRequest(verificationId: UserDefaults.standard.otpVerificationID ?? "", verificationCode: code)
         service.verifyPhoneNumberWithCode(request: request)
             .sink { response in
                 switch response {

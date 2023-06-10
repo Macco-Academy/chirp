@@ -2,19 +2,15 @@
 //  UserDefaults+Extension.swift
 //  Chirp
 //
-<<<<<<< HEAD
 //  Created by ioannis on 10/6/23.
-=======
 //  Created by Kwaku Dapaah on 6/10/23.
->>>>>>> 0f349b8 (added UserDefaults extension file)
 //
 
 import Foundation
 
 extension UserDefaults {
-<<<<<<< HEAD
   private enum Keys: String {
-    case currentUser
+    case currentUser, otpVerificationID
   }
 
   var currentUser: User? {
@@ -36,10 +32,6 @@ extension UserDefaults {
       synchronize()
     }
   }
-=======
-    private enum Keys: String {
-        case otpVerificationID
-    }
     
     var otpVerificationID: String? {
         get {
@@ -51,5 +43,4 @@ extension UserDefaults {
             synchronize()
         }
     }
->>>>>>> 0f349b8 (added UserDefaults extension file)
 }

@@ -16,6 +16,24 @@ private enum Table: String {
 struct NetworkService {
     static let shared = NetworkService()
     private let db = Firestore.firestore()
+    
+    func sendOTPToPhoneNumber(request: SendOTPRequest )  -> AnyPublisher<String?, Error> {
+        Deferred{
+            Future { promise in
+                PhoneAuthProvider.provider()
+                    .verifyPhoneNumber(request.phoneNumber, uiDelegate: nil) { verificationID, error in
+                        if let error = error {
+                            promise(.failure(error))
+                            return
+                        }
+                        promise(.success(verificationID))
+                    }
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    }
+    
     func verifyPhoneNumberWithCode(request:VerifyOPTRequest) -> AnyPublisher<Bool, Error> {
         Deferred{
             Future { promise in

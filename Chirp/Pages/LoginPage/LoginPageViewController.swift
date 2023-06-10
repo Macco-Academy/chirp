@@ -12,6 +12,9 @@ import Firebase
 
 class LoginPageViewController: UIViewController {
     
+    private let viewModel = LoginViewModel()
+    private var cancellables: Set<AnyCancellable> = []
+    
     private let titleLabel:UILabel = {
         let label = UILabel()
         label.text = "What’s your phone number?"
@@ -71,7 +74,13 @@ class LoginPageViewController: UIViewController {
     }
     
     private func setupListeners() {
-        
+        viewModel.otpSent.sink { [weak self] success in
+            self?.proceedButton.isLoading = false
+            if success {
+                self?.goToOTPPage()
+            }
+        }
+        .store(in: &cancellables)
     }
     
     private func layout(){
@@ -103,25 +112,9 @@ extension LoginPageViewController {
     //actions
     @objc private func loginPressed() {
         if numberTextField.phoneNumberKit.isValidPhoneNumber(numberTextField.text ?? "") {
-            let controller = OTPViewController()
-            controller.phoneNumber = phoneNumber
-            controller.hasAccount = { [weak self] in self?.goToNextPage(hasAccount: $0) }
-            
-            PhoneAuthProvider.provider()
-              .verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
-                  if let error = error {
-                    //self.showMessagePrompt(error.localizedDescription)
-                      print(error.localizedDescription)
-                    return
-                  }
-                  // Sign in using the verificationID and the code sent to the user
-                  // ...
-                  UserDefaults.standard.otpVerificationID = verificationID
-                  
-                  self.present(controller, animated: true)
-              }
-            
-            
+            proceedButton.isLoading = true
+            viewModel.sendOTP(phoneNumber: phoneNumber)
+ 
         } else {
             AlertToast.showAlert(message: "Please enter a valid phone number", type: .error)
         }
@@ -134,5 +127,12 @@ extension LoginPageViewController {
             let controller = RegistrationViewController()
             navigationController?.pushViewController(controller, animated: true)
         }
+    }
+    
+    private func goToOTPPage() {
+        let controller = OTPViewController()
+        controller.phoneNumber = phoneNumber
+        controller.hasAccount = { [weak self] in self?.goToNextPage(hasAccount: $0) }
+        self.present(controller, animated: true)
     }
 }
