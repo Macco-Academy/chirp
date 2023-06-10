@@ -37,6 +37,7 @@
 		E56C732B2A2D216F00532B3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56C73292A2D216F00532B3D /* LaunchScreen.storyboard */; };
 		E5AC47E72A306AFD0055C83A /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AC47E62A306AFD0055C83A /* UIImage+Extension.swift */; };
 		E5DBA5A12A34DE230032BD95 /* FIRDocument+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DBA5A02A34DE230032BD95 /* FIRDocument+Extension.swift */; };
+		E5DBA5A32A34E6620032BD95 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DBA5A22A34E6620032BD95 /* AppError.swift */; };
 		EEB1A4912A312A5500F6899D /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB1A4902A312A5500F6899D /* HomeTabBarController.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,7 @@
 		E56C732C2A2D216F00532B3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5AC47E62A306AFD0055C83A /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		E5DBA5A02A34DE230032BD95 /* FIRDocument+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FIRDocument+Extension.swift"; sourceTree = "<group>"; };
+		E5DBA5A22A34E6620032BD95 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		EEB1A4902A312A5500F6899D /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				467B96FA2A30ABB10012AB04 /* User.swift */,
+				E5DBA5A22A34E6620032BD95 /* AppError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				E56C73212A2D216D00532B3D /* SceneDelegate.swift in Sources */,
 				467B97042A30F8610012AB04 /* Button.swift in Sources */,
 				E5DBA5A12A34DE230032BD95 /* FIRDocument+Extension.swift in Sources */,
+				E5DBA5A32A34E6620032BD95 /* AppError.swift in Sources */,
 				467B96FB2A30ABB10012AB04 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
