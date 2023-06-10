@@ -33,7 +33,7 @@ struct NetworkService {
         .eraseToAnyPublisher()
     }
     
-    func getUserData(request:GetUserRequest) ->AnyPublisher<User,Error> {
+    func getUserData(request:GetUserRequest) ->AnyPublisher<User?,Error> {
         Deferred{
             Future { promise in
                 db.collection(Table.users.rawValue)
@@ -41,9 +41,15 @@ struct NetworkService {
                         if let error = error {
                             promise(.failure(error))
                         } else if let data = snapshot?.data(){
+                            if let user = data.decode(to: User.self) {
+                                promise(.success(user))
+
+                            } else {
+                                
+                            }
                             
-                            promise(.success(data))
-                            
+                        } else {
+                            promise(.success(nil))
                         }
                     }
             }

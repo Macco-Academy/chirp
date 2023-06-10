@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class OTPViewController: UIViewController {
     
@@ -13,6 +14,7 @@ class OTPViewController: UIViewController {
     var phoneNumber: String?
     var countdownDuration: Double = 30
     var hasAccount: ((Bool) -> Void)?
+     private let viewModel = OTPViewModel()
     
     private let xPadding: CGFloat = 25
     
@@ -23,7 +25,8 @@ class OTPViewController: UIViewController {
     private let passcodeView = PasscodeView()
     private let sendAgainPlaceholder = UIView()
     private let countdownView = CountdownView()
-    
+    private var cancellables: Set<AnyCancellable> = []
+
     var isCountdownActive = true {
         didSet { updateUI() }
     }
@@ -112,14 +115,16 @@ class OTPViewController: UIViewController {
     private func handlePasscode() {
         passcodeView.didFinishEnteringCode = { [weak self] code in
             //TODO: Validate code
-            // success
-            self?.dismiss(animated: true) { [weak self] in
-                self?.hasAccount?(false)
-            }
+            self?.viewModel.verifyOTP(code: code)
             
-            // invalid
-            // TODO: Show error
         }
+    }
+    
+    private func setUpListeners() {
+        viewModel.foundUser.sink { [weak self] userExists in
+            self?.hasAccount?(userExists)
+        }
+        .store(in: &cancellables)
     }
     
     // Send again section

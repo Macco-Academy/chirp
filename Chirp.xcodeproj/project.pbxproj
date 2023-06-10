@@ -17,9 +17,10 @@
 		042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1FA22A2FAE7D009D2573 /* UIColor+Extension.swift */; };
 		0B3CE82B2A312CC800D6305F /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3CE82A2A312CC800D6305F /* LoginPageViewController.swift */; };
 		0B8530E82A3273F700AF66D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B8530E72A3273F700AF66D3 /* GoogleService-Info.plist */; };
+		0BA0087F2A34E60700040E43 /* OTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0087E2A34E60700040E43 /* OTPViewModel.swift */; };
+		0BA008812A34E89600040E43 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA008802A34E89600040E43 /* UserDefaults+Extension.swift */; };
 		0BE0F4852A34B6D600D581CA /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE0F4842A34B6D600D581CA /* NetworkService.swift */; };
 		0BE0F4892A34C51100D581CA /* VerifyOTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE0F4882A34C51100D581CA /* VerifyOTPRequest.swift */; };
-		0BE0F48B2A34C7F500D581CA /* OTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE0F48A2A34C7F500D581CA /* OTPViewModel.swift */; };
 		0BE0F48D2A34DCF500D581CA /* GetUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE0F48C2A34DCF500D581CA /* GetUserRequest.swift */; };
 		467B96F82A30AB700012AB04 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467B96F72A30AB700012AB04 /* RegistrationViewController.swift */; };
 		467B96FB2A30ABB10012AB04 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467B96FA2A30ABB10012AB04 /* User.swift */; };
@@ -57,9 +58,10 @@
 		042D1FA22A2FAE7D009D2573 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		0B3CE82A2A312CC800D6305F /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
 		0B8530E72A3273F700AF66D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0BA0087E2A34E60700040E43 /* OTPViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPViewModel.swift; sourceTree = "<group>"; };
+		0BA008802A34E89600040E43 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		0BE0F4842A34B6D600D581CA /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		0BE0F4882A34C51100D581CA /* VerifyOTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPRequest.swift; sourceTree = "<group>"; };
-		0BE0F48A2A34C7F500D581CA /* OTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewModel.swift; sourceTree = "<group>"; };
 		0BE0F48C2A34DCF500D581CA /* GetUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserRequest.swift; sourceTree = "<group>"; };
 		467B96F72A30AB700012AB04 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		467B96FA2A30ABB10012AB04 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				04163DFF2A326EC4003DF7B1 /* CountdownView.swift */,
 				04163E002A326EC4003DF7B1 /* PasscodeView.swift */,
 				04163E012A326EC4003DF7B1 /* PasscodeBoxView.swift */,
+				0BA0087E2A34E60700040E43 /* OTPViewModel.swift */,
 			);
 			path = "OTP Components";
 			sourceTree = "<group>";
@@ -223,7 +226,6 @@
 			children = (
 				469CED872A3210F700AED489 /* MorePageTableViewCell.swift */,
 				469CED892A32110600AED489 /* MorePageViewController.swift */,
-				0BE0F48A2A34C7F500D581CA /* OTPViewModel.swift */,
 				469CED8B2A32524B00AED489 /* CustomHeader.swift */,
 			);
 			path = MorePage;
@@ -299,6 +301,7 @@
 				042D1FA22A2FAE7D009D2573 /* UIColor+Extension.swift */,
 				E5AC47E62A306AFD0055C83A /* UIImage+Extension.swift */,
 				E5DBA5A02A34DE230032BD95 /* FIRDocument+Extension.swift */,
+				0BA008802A34E89600040E43 /* UserDefaults+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */,
 				04163DF42A320AA9003DF7B1 /* Contacts.swift in Sources */,
 				04163DFC2A326E8C003DF7B1 /* ContactsTableViewCell.swift in Sources */,
+				0BA0087F2A34E60700040E43 /* OTPViewModel.swift in Sources */,
 				E5AC47E72A306AFD0055C83A /* UIImage+Extension.swift in Sources */,
 				467B96F82A30AB700012AB04 /* RegistrationViewController.swift in Sources */,
 				467B97052A30F8610012AB04 /* AlertToast.swift in Sources */,
@@ -444,10 +448,10 @@
 				04163E042A326EC4003DF7B1 /* PasscodeView.swift in Sources */,
 				EEB1A4912A312A5500F6899D /* HomeTabBarController.swift in Sources */,
 				467B97062A30F8610012AB04 /* AlertType.swift in Sources */,
+				0BA008812A34E89600040E43 /* UserDefaults+Extension.swift in Sources */,
 				E56C73212A2D216D00532B3D /* SceneDelegate.swift in Sources */,
 				0BE0F48D2A34DCF500D581CA /* GetUserRequest.swift in Sources */,
 				0BE0F4892A34C51100D581CA /* VerifyOTPRequest.swift in Sources */,
-				0BE0F48B2A34C7F500D581CA /* OTPViewModel.swift in Sources */,
 				0BE0F4852A34B6D600D581CA /* NetworkService.swift in Sources */,
 				467B97042A30F8610012AB04 /* Button.swift in Sources */,
 				E5DBA5A12A34DE230032BD95 /* FIRDocument+Extension.swift in Sources */,
