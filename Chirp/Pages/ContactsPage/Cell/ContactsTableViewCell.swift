@@ -23,7 +23,7 @@ class ContactsTableViewCell: UITableViewCell {
     }
     
     func setup(with data: ContactsDetails) {
-        image.image = data.image
+//        image.image = data.image
         typesLabel.text = data.text
     }
     

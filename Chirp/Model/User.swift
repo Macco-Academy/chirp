@@ -14,3 +14,9 @@ struct User: Codable{
     var phoneNumber: String?
     var profilePicture: String?
 }
+
+extension User {
+    var asContactDetail: ContactsDetails {
+        ContactsDetails(image: profilePicture, text: name ?? "")
+    }
+}
