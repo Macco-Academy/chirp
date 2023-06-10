@@ -21,7 +21,7 @@ extension RecentChat {
             $0.id != "user1"
         }
         //TODO: check for unread count if >1000 & <5000 =  1k+ , >5000 = 5k+, >2000 = 2k+ and pass it to unreadCount
-        return ChatsListViewModel(imageUrl: secondUser?.profileImage,
+        return ChatsListViewModel(imageUrl: secondUser?.profilePicture,
                                   title: secondUser?.name,
                                   description: self.lastMessage?.message,
                                   timeStamp: self.lastMessage?.timeStamp,
