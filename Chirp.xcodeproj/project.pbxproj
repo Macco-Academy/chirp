@@ -43,6 +43,8 @@
 		E5AC47E72A306AFD0055C83A /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AC47E62A306AFD0055C83A /* UIImage+Extension.swift */; };
 		E5DBA5A12A34DE230032BD95 /* FIRDocument+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DBA5A02A34DE230032BD95 /* FIRDocument+Extension.swift */; };
 		E5DBA5A32A34E6620032BD95 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DBA5A22A34E6620032BD95 /* AppError.swift */; };
+		EEA86C4E2A34FD2500D737DE /* SendOTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA86C4D2A34FD2500D737DE /* SendOTPRequest.swift */; };
+		EEA86C502A34FFD500D737DE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA86C4F2A34FFD500D737DE /* LoginViewModel.swift */; };
 		EEB1A4912A312A5500F6899D /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB1A4902A312A5500F6899D /* HomeTabBarController.swift */; };
 /* End PBXBuildFile section */
 
@@ -87,7 +89,10 @@
 		E5AC47E62A306AFD0055C83A /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		E5DBA5A02A34DE230032BD95 /* FIRDocument+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FIRDocument+Extension.swift"; sourceTree = "<group>"; };
 		E5DBA5A22A34E6620032BD95 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		EEA86C4D2A34FD2500D737DE /* SendOTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendOTPRequest.swift; sourceTree = "<group>"; };
+		EEA86C4F2A34FFD500D737DE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		EEB1A4902A312A5500F6899D /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
+		EEE809342A339B8F00E6986B /* Chirp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chirp.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				0B3CE82A2A312CC800D6305F /* LoginPageViewController.swift */,
+				EEA86C4F2A34FFD500D737DE /* LoginViewModel.swift */,
 			);
 			path = LoginPage;
 			sourceTree = "<group>";
@@ -162,6 +168,7 @@
 			children = (
 				0BE0F4882A34C51100D581CA /* VerifyOTPRequest.swift */,
 				0BE0F48C2A34DCF500D581CA /* GetUserRequest.swift */,
+				EEA86C4D2A34FD2500D737DE /* SendOTPRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -282,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				0BE0F4832A34B6BC00D581CA /* Networking */,
+				EEE809342A339B8F00E6986B /* Chirp.entitlements */,
 				467B96F92A30AB9E0012AB04 /* Model */,
 				467B96F52A30AB150012AB04 /* Pages */,
 				E5AC47DF2A305C270055C83A /* Extensions */,
@@ -434,12 +442,14 @@
 				E5AC47E72A306AFD0055C83A /* UIImage+Extension.swift in Sources */,
 				467B96F82A30AB700012AB04 /* RegistrationViewController.swift in Sources */,
 				469CED8F2A339F1400AED489 /* PasscodeBoxView.swift in Sources */,
+				EEA86C502A34FFD500D737DE /* LoginViewModel.swift in Sources */,
 				E5193CCF2A34A93000BEFAB2 /* Loader.swift in Sources */,
 				042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */,
 				04163DF42A320AA9003DF7B1 /* Contacts.swift in Sources */,
 				04163DFC2A326E8C003DF7B1 /* ContactsTableViewCell.swift in Sources */,
 				0BA0087F2A34E60700040E43 /* OTPViewModel.swift in Sources */,
 				E5AC47E72A306AFD0055C83A /* UIImage+Extension.swift in Sources */,
+				EEA86C4E2A34FD2500D737DE /* SendOTPRequest.swift in Sources */,
 				467B96F82A30AB700012AB04 /* RegistrationViewController.swift in Sources */,
 				467B97052A30F8610012AB04 /* AlertToast.swift in Sources */,
 				0B3CE82B2A312CC800D6305F /* LoginPageViewController.swift in Sources */,
@@ -597,11 +607,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Chirp/Chirp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RT459C64W3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Chirp/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please, allow permission to select photos to import to your profile";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -626,11 +638,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Chirp/Chirp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RT459C64W3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Chirp/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please, allow permission to select photos to import to your profile";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

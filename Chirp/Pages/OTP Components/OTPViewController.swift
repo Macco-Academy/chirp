@@ -39,6 +39,7 @@ class OTPViewController: UIViewController {
         setupUIElements()
         handlePasscode()
         isCountdownActive = true
+        setUpListeners()
     }
     
     // UI
@@ -122,7 +123,9 @@ class OTPViewController: UIViewController {
     
     private func setUpListeners() {
         viewModel.foundUser.sink { [weak self] userExists in
-            self?.hasAccount?(userExists)
+            self?.dismiss(animated: true) {
+                self?.hasAccount?(userExists)
+            }
         }
         .store(in: &cancellables)
     }
