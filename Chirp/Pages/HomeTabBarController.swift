@@ -8,17 +8,19 @@
 import UIKit
 
 class HomeTabBarController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-  
+        let vc1 = ChatsViewController()
+        let vc2 = ContactsViewController()
+        vc2.title = vc2.type.pageName
+        let vc3 = MorePageViewController()
+        vc3.title = "More"
         
-        let vc1 = FirstViewVC()
-        let vc2 = UINavigationController(rootViewController: ContactsViewController())
-        let vc3 = UINavigationController(rootViewController: MorePageViewController())
-        
-        self.setViewControllers([vc1, vc2, vc3], animated: true)
+        self.setViewControllers([UINavigationController(rootViewController: vc1),
+                                 UINavigationController(rootViewController: vc2),
+                                 UINavigationController(rootViewController: vc3)], animated: true)
         self.tabBar.tintColor = .appBrown
         self.tabBar.unselectedItemTintColor = .appBrownSecondary
         
@@ -37,19 +39,7 @@ class HomeTabBarController: UITabBarController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
-    
-
-
-}
-
-
-class FirstViewVC: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = .cyan
     }
 }
