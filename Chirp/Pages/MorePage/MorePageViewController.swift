@@ -9,7 +9,11 @@ import UIKit
 
 class MorePageViewController: UIViewController {
 
-    let cellNames: [String] = ["Push Notification", "Contributors", "Logout"]
+    enum CellNames: String, CaseIterable {
+        case pushNotification = "Push Notification"
+        case contributors = "Contributors"
+        case logout = "Logout"
+    }
         
     let moreTableView: UITableView = {
         let tableView = UITableView()
@@ -60,12 +64,13 @@ class MorePageViewController: UIViewController {
 
 extension MorePageViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellNames.count
+        return CellNames.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = moreTableView.dequeueReusableCell(withIdentifier: MorePageTableViewCell.identifier, for: indexPath) as! MorePageTableViewCell
-        let name = cellNames[indexPath.row]
+        let arrayOfNames: [CellNames] = [.pushNotification, .contributors, .logout]
+        let name = arrayOfNames[indexPath.row].rawValue
         cell.titleLabel.text = name
         cell.cellImage.image = UIImage(named: name)
         return cell
