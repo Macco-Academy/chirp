@@ -86,7 +86,12 @@ extension ChatsViewController: UITableViewDataSource {
 }
 
 extension ChatsViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewModel = MessagesViewModel(chatId: "chatId")
+        let controller = MessagesViewController(viewModel: viewModel)
+        controller.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }
 
 extension ChatsViewController: UISearchResultsUpdating, UISearchBarDelegate {

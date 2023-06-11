@@ -20,7 +20,7 @@ class ContactsViewController: UIViewController {
         var pageName: String {
             switch self {
             case .contact:
-                return "Contacts"
+                return "Users"
             case .contributors:
                 return "Contributors"
             }

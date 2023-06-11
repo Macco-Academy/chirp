@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backIndicatorImage = .backTailedArrow
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = .backTailedArrow
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000, vertical: 0), for:UIBarMetrics.default)
-        
+        UITextField.appearance().tintColor = .appBrown
+        UITextView.appearance().tintColor = .appBrown
         FirebaseApp.configure()
 
         return true
