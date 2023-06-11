@@ -13,16 +13,18 @@ private enum Table: String {
 }
 
 private enum Key: String {
-    case name, phoneNumber, profilePicture, id, messages, timestamp, isContributor
+    case name, phoneNumber, profilePicture, id, timestamp, isContributor
+    case name, phoneNumber, profilePicture, id, timestamp, fcmToken
 }
 
 private enum Collection: String {
-    case images
+    case images, messages
 }
 
 struct NetworkService {
     static let shared = NetworkService()
     private let db = Firestore.firestore()
+    private let auth = Auth.auth()
     
     func sendOTPToPhoneNumber(request: SendOTPRequest )  -> AnyPublisher<String?, Error> {
         Deferred{
@@ -183,7 +185,7 @@ struct NetworkService {
         db
             .collection(Table.chats.rawValue)
             .document(request.id)
-            .collection(Key.messages.rawValue)
+            .collection(Collection.messages.rawValue)
             .order(by: Key.timestamp.rawValue)
             .addSnapshotListener({ snapshot, error in
                 if let error = error {
@@ -218,6 +220,14 @@ struct NetworkService {
         }
         .receive(on: DispatchQueue.main)
         .eraseToAnyPublisher()
+    }
+    
+    func updateFCMToken(request: UpdateFCMTokenRequest) {
+        guard let uid = auth.currentUser?.uid else { return }
+        db
+            .collection(Table.users.rawValue)
+            .document(uid)
+            .updateData([Key.fcmToken.rawValue: request.token])
     }
 }
 

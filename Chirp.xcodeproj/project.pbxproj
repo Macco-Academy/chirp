@@ -52,6 +52,7 @@
 		E56C73212A2D216D00532B3D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56C73202A2D216D00532B3D /* SceneDelegate.swift */; };
 		E56C73282A2D216F00532B3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E56C73272A2D216F00532B3D /* Assets.xcassets */; };
 		E56C732B2A2D216F00532B3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56C73292A2D216F00532B3D /* LaunchScreen.storyboard */; };
+		E590250E2A364BAA00E05F36 /* UpdateFCMTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E590250D2A364BAA00E05F36 /* UpdateFCMTokenRequest.swift */; };
 		E5AC47E72A306AFD0055C83A /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AC47E62A306AFD0055C83A /* UIImage+Extension.swift */; };
 		E5DBA5A12A34DE230032BD95 /* FIRDocument+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DBA5A02A34DE230032BD95 /* FIRDocument+Extension.swift */; };
 		E5DBA5A32A34E6620032BD95 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DBA5A22A34E6620032BD95 /* AppError.swift */; };
@@ -119,6 +120,7 @@
 		E56C73272A2D216F00532B3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E56C732A2A2D216F00532B3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E56C732C2A2D216F00532B3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E590250D2A364BAA00E05F36 /* UpdateFCMTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateFCMTokenRequest.swift; sourceTree = "<group>"; };
 		E5AC47E62A306AFD0055C83A /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		E5DBA5A02A34DE230032BD95 /* FIRDocument+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FIRDocument+Extension.swift"; sourceTree = "<group>"; };
 		E5DBA5A22A34E6620032BD95 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				46CBF5E02A35F2DD00D59F82 /* GetContributorsRequest.swift */,
 				E5DBA5B62A35F2DB0032BD95 /* FetchMessagesRequest.swift */,
 				E5DBA5B82A35F6250032BD95 /* CreateNewChatRequest.swift */,
+				E590250D2A364BAA00E05F36 /* UpdateFCMTokenRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				04163DF42A320AA9003DF7B1 /* Contacts.swift in Sources */,
 				E5DBA5B52A35F15B0032BD95 /* Encodable+Extension.swift in Sources */,
 				E5DBA5A62A35C7E40032BD95 /* MessagesViewController.swift in Sources */,
+				E590250E2A364BAA00E05F36 /* UpdateFCMTokenRequest.swift in Sources */,
 				04163DFC2A326E8C003DF7B1 /* ContactsTableViewCell.swift in Sources */,
 				46CBF5E12A35F2DD00D59F82 /* GetContributorsRequest.swift in Sources */,
 				0BA0087F2A34E60700040E43 /* OTPViewModel.swift in Sources */,
