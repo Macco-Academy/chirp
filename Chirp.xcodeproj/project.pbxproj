@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		00950E5C2A3160F900795FC4 /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00950E5A2A3160F800795FC4 /* ChatsViewController.swift */; };
 		00950E5D2A3160F900795FC4 /* ChatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00950E5B2A3160F900795FC4 /* ChatsTableViewCell.swift */; };
+		00C79F6B2A36590C00DDE1D5 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C79F6A2A36590C00DDE1D5 /* UIViewController+Extension.swift */; };
+		00C79F6D2A365C3100DDE1D5 /* MorePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C79F6C2A365C3100DDE1D5 /* MorePageViewModel.swift */; };
 		00E4F8AE2A3274B600C6FF0E /* RecentChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E4F8AD2A3274B600C6FF0E /* RecentChat.swift */; };
 		00E4F8B02A32751C00C6FF0E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E4F8AF2A32751C00C6FF0E /* Message.swift */; };
 		00E4F8B22A32777A00C6FF0E /* ChatsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E4F8B12A32777A00C6FF0E /* ChatsListViewModel.swift */; };
@@ -58,6 +60,7 @@
 		E59025102A366ACF00E05F36 /* SendMessageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E590250F2A366ACF00E05F36 /* SendMessageRequest.swift */; };
 		E59025122A366B0700E05F36 /* UpdateLastMessageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59025112A366B0700E05F36 /* UpdateLastMessageRequest.swift */; };
 		E59025142A366BDD00E05F36 /* ChatResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59025132A366BDD00E05F36 /* ChatResponse.swift */; };
+		E59025182A36729A00E05F36 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59025172A36729A00E05F36 /* PushNotificationService.swift */; };
 		E5AC47E72A306AFD0055C83A /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AC47E62A306AFD0055C83A /* UIImage+Extension.swift */; };
 		E5DBA5A12A34DE230032BD95 /* FIRDocument+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DBA5A02A34DE230032BD95 /* FIRDocument+Extension.swift */; };
 		E5DBA5A32A34E6620032BD95 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DBA5A22A34E6620032BD95 /* AppError.swift */; };
@@ -78,6 +81,8 @@
 /* Begin PBXFileReference section */
 		00950E5A2A3160F800795FC4 /* ChatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
 		00950E5B2A3160F900795FC4 /* ChatsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewCell.swift; sourceTree = "<group>"; };
+		00C79F6A2A36590C00DDE1D5 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		00C79F6C2A365C3100DDE1D5 /* MorePageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorePageViewModel.swift; sourceTree = "<group>"; };
 		00E4F8AD2A3274B600C6FF0E /* RecentChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentChat.swift; sourceTree = "<group>"; };
 		00E4F8AF2A32751C00C6FF0E /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		00E4F8B12A32777A00C6FF0E /* ChatsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListViewModel.swift; sourceTree = "<group>"; };
@@ -131,6 +136,8 @@
 		E590250F2A366ACF00E05F36 /* SendMessageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageRequest.swift; sourceTree = "<group>"; };
 		E59025112A366B0700E05F36 /* UpdateLastMessageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLastMessageRequest.swift; sourceTree = "<group>"; };
 		E59025132A366BDD00E05F36 /* ChatResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatResponse.swift; sourceTree = "<group>"; };
+		E59025172A36729A00E05F36 /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
+		E59025192A36844800E05F36 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		E5AC47E62A306AFD0055C83A /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		E5DBA5A02A34DE230032BD95 /* FIRDocument+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FIRDocument+Extension.swift"; sourceTree = "<group>"; };
 		E5DBA5A22A34E6620032BD95 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
@@ -217,6 +224,7 @@
 				E59025152A366BE400E05F36 /* Responses */,
 				0BE0F4872A34C42400D581CA /* Requests */,
 				0BE0F4842A34B6D600D581CA /* NetworkService.swift */,
+				E59025172A36729A00E05F36 /* PushNotificationService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -312,6 +320,7 @@
 				469CED872A3210F700AED489 /* MorePageTableViewCell.swift */,
 				469CED892A32110600AED489 /* MorePageViewController.swift */,
 				469CED8B2A32524B00AED489 /* CustomHeader.swift */,
+				00C79F6C2A365C3100DDE1D5 /* MorePageViewModel.swift */,
 			);
 			path = MorePage;
 			sourceTree = "<group>";
@@ -365,6 +374,7 @@
 			children = (
 				0BE0F4832A34B6BC00D581CA /* Networking */,
 				EEE809342A339B8F00E6986B /* Chirp.entitlements */,
+				E59025192A36844800E05F36 /* Config.xcconfig */,
 				467B96F92A30AB9E0012AB04 /* Model */,
 				467B96F52A30AB150012AB04 /* Pages */,
 				E5AC47DF2A305C270055C83A /* Extensions */,
@@ -399,6 +409,7 @@
 				E5DBA5A92A35C9A60032BD95 /* UIView+Extension.swift */,
 				E5DBA5B42A35F15A0032BD95 /* Encodable+Extension.swift */,
 				E5DBA5BA2A35F7180032BD95 /* String+Extension.swift */,
+				00C79F6A2A36590C00DDE1D5 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -539,6 +550,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E59025182A36729A00E05F36 /* PushNotificationService.swift in Sources */,
 				E5DBA5B72A35F2DB0032BD95 /* FetchMessagesRequest.swift in Sources */,
 				5F6778562A35EC020045199B /* RegistrationViewModel.swift in Sources */,
 				04163DFB2A326E8C003DF7B1 /* ContactsViewController.swift in Sources */,
@@ -546,6 +558,7 @@
 				469CED902A339FD500AED489 /* CountdownView.swift in Sources */,
 				E5DBA5AA2A35C9A60032BD95 /* UIView+Extension.swift in Sources */,
 				E5DBA5AF2A35CACC0032BD95 /* MessageCellViewModel.swift in Sources */,
+				00C79F6D2A365C3100DDE1D5 /* MorePageViewModel.swift in Sources */,
 				04163E022A326EC4003DF7B1 /* OTPViewController.swift in Sources */,
 				E5DBA5BB2A35F7180032BD95 /* String+Extension.swift in Sources */,
 				04163DF52A320AA9003DF7B1 /* ContactsDetails.swift in Sources */,
@@ -598,6 +611,7 @@
 				0BE0F4852A34B6D600D581CA /* NetworkService.swift in Sources */,
 				467B97042A30F8610012AB04 /* Button.swift in Sources */,
 				E5DBA5A12A34DE230032BD95 /* FIRDocument+Extension.swift in Sources */,
+				00C79F6B2A36590C00DDE1D5 /* UIViewController+Extension.swift in Sources */,
 				E5DBA5A32A34E6620032BD95 /* AppError.swift in Sources */,
 				E59025122A366B0700E05F36 /* UpdateLastMessageRequest.swift in Sources */,
 				467B96FB2A30ABB10012AB04 /* User.swift in Sources */,
@@ -621,6 +635,7 @@
 /* Begin XCBuildConfiguration section */
 		E56C732D2A2D216F00532B3D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E59025192A36844800E05F36 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -681,6 +696,7 @@
 		};
 		E56C732E2A2D216F00532B3D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E59025192A36844800E05F36 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

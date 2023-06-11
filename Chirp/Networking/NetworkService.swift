@@ -209,8 +209,13 @@ struct NetworkService {
                 db
                     .collection(Table.chats.rawValue)
                     .document(request.id)
-                    .updateData(request.asDictionary)
-                promise(.success(true))
+                    .setData(request.asDictionary, merge: true) { error in
+                        if let error = error {
+                            promise(.failure(error))
+                        } else {
+                            promise(.success(true))
+                        }
+                    }
             }
         }
         .receive(on: DispatchQueue.main)
@@ -297,5 +302,19 @@ struct NetworkService {
             .document(request.lastMessage.chatId ?? "")
             .updateData(request.asDictionary)
     }
-}
 
+    func logout() -> AnyPublisher<Bool, Error> {
+        Deferred {
+            Future { promise in
+                do {
+                    try Auth.auth().signOut()
+                    promise(.success(true))
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    }
+}
