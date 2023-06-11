@@ -9,29 +9,29 @@
 import Foundation
 
 extension UserDefaults {
-  private enum Keys: String {
-    case currentUser, otpVerificationID
-  }
-
-  var currentUser: User? {
-    get {
-      if let data = object(forKey: Keys.currentUser.rawValue) as? Data {
-        let user = try? JSONDecoder().decode(User.self, from: data)
-        return user
-      }
-      return nil
+    private enum Keys: String {
+        case currentUser, otpVerificationID, fcmToken
     }
-
-    set {
-      if newValue == nil {
-        removeObject(forKey: Keys.currentUser.rawValue)
-      } else {
-        let data = try? JSONEncoder().encode(newValue)
-        setValue(data, forKey: Keys.currentUser.rawValue)
-      }
-      synchronize()
+    
+    var currentUser: User? {
+        get {
+            if let data = object(forKey: Keys.currentUser.rawValue) as? Data {
+                let user = try? JSONDecoder().decode(User.self, from: data)
+                return user
+            }
+            return nil
+        }
+        
+        set {
+            if newValue == nil {
+                removeObject(forKey: Keys.currentUser.rawValue)
+            } else {
+                let data = try? JSONEncoder().encode(newValue)
+                setValue(data, forKey: Keys.currentUser.rawValue)
+            }
+            synchronize()
+        }
     }
-  }
     
     var otpVerificationID: String? {
         get {
@@ -40,6 +40,17 @@ extension UserDefaults {
         
         set {
             setValue(newValue, forKey: Keys.otpVerificationID.rawValue)
+            synchronize()
+        }
+    }
+    
+    var fcmToken: String? {
+        get {
+            return string(forKey: Keys.fcmToken.rawValue)
+        }
+        
+        set {
+            setValue(newValue, forKey: Keys.fcmToken.rawValue)
             synchronize()
         }
     }

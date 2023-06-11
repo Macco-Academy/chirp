@@ -62,6 +62,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
         if let userId = UserDefaults.standard.currentUser?.id {
             let request = UpdateFCMTokenRequest(userId: userId, token: fcmToken ?? "")
             NetworkService.shared.updateFCMToken(request: request)
+            UserDefaults.standard.fcmToken = fcmToken
         }
     }
 }

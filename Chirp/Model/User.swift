@@ -14,6 +14,7 @@ struct User: Codable {
     var phoneNumber: String?
     var profilePicture: String?
     var isContributor: Bool?
+    var fcmToken: String?
 }
 
 extension User {
