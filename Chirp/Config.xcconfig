@@ -1,0 +1,10 @@
+//
+//  Config.xcconfig
+//  Chirp
+//
+//  Created by Emmanuel Okwara on 11.06.23.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+FIREBASE_SERVER_KEY=AAAADTT8lqM:APA91bEg45NeFOfVSrRRXi4A2j6mlDgxeUVx4qGwue8VlEF7h1mzQ0FI3V7uCmWoUq12Ri2CB6XO1zBICtQmtwKRGG_SHd203wnJqy7zWk9NexhK1nPEDj9wJ-XeAHHe0oO3kW5mg8br
