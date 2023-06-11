@@ -7,11 +7,13 @@
 
 import UIKit
 import Photos
+import Combine
 import MobileCoreServices
 
 class RegistrationViewController: UIViewController, UITextFieldDelegate {
 
-//    private var viewModel: RegistrationViewModel
+    private let viewModel: RegistrationViewModel
+    private var cancellables: Set<AnyCancellable> = []
     
     let createAccLabel: UILabel = {
         let label = UILabel()
@@ -62,21 +64,23 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
 
     // Life cycle
-//    init(viewModel: RegistrationViewModel) {
-//        self.viewModel = viewModel
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+    init(viewModel: RegistrationViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         doBasicSettings()
+        setupListeners()
     }
 
     // Setup
@@ -189,25 +193,33 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     // Registration
     private func setupSubmitButton(){
-        submitButton.addTarget(self, action: #selector(validateForm), for: .touchUpInside)
+        submitButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
     }
     
-    @objc private func validateForm(){
-        guard let name = userNameTextField.text else { return }
-        
-        if name.trimmingCharacters(in: .whitespaces).isEmpty {
+    @objc private func submitButtonTapped(){
+        guard let name = userNameTextField.text, !name.trimmingCharacters(in: .whitespaces).isEmpty else {
             AlertToast.showAlert(message: "Please, enter your name", type: .error)
-        } else {
-            submitButton.isLoading = true
+            return
         }
         
-        if let text = userNameTextField.text {
-            if text.trimmingCharacters(in: .whitespaces).isEmpty {
-                AlertToast.showAlert(message: "Please, enter your name", type: .error)
-            } else {
-                
-            }
+        let profileImage = userAvatarImageView.image == UIImage.placeholderImage ? nil : userAvatarImageView.image
+        viewModel.createAccount(name: name, profileImage: profileImage)
+    }
+    
+    // Listeners
+    private func setupListeners() {
+        viewModel.didRegisterUser.sink { [weak self] success in
+            guard success else { return }
+            
+            self?.navigateToHome()
         }
+        .store(in: &cancellables)
+    }
+    
+    // Navigation
+    private func navigateToHome() {
+        let homeVC = HomeTabBarController()
+        navigationController?.setViewControllers([homeVC], animated: true)
     }
 }
 
@@ -221,10 +233,6 @@ extension RegistrationViewController: UIImagePickerControllerDelegate, UINavigat
         
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             userAvatarImageView.image = image
-        }
-        
-        if let imageURL = info[UIImagePickerController.InfoKey.imageURL] as? URL {
-            print(imageURL)
         }
         
         picker.dismiss(animated: true, completion: nil)

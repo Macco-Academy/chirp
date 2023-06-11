@@ -13,6 +13,7 @@ enum AppError: Error, LocalizedError {
     case invalidUrl
     case unauthorizedAccess
     case imageUploadFailed
+    case registrationFailed
     case serverError(String)
     
     var errorDescription: String? {
@@ -27,6 +28,8 @@ enum AppError: Error, LocalizedError {
             return "Unauthorized Access!"
         case .imageUploadFailed:
             return "Error uploading image. Please try again later"
+        case .registrationFailed:
+            return "Error creating user. Please try again later"
         case .serverError(let error):
             return error
         }
