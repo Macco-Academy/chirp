@@ -13,7 +13,7 @@ private enum Table: String {
 }
 
 private enum Key: String {
-    case name, phoneNumber, profilePicture
+    case name, phoneNumber, profilePicture, isContributor
 }
 
 private enum Collection: String {
@@ -103,9 +103,7 @@ struct NetworkService {
         .eraseToAnyPublisher()
     }
     
-    
     func createUser(request: CreateUserRequest) -> AnyPublisher<User, Error> {
-    func getContributors(request: GetContributorsRequest) -> AnyPublisher<[User], Error> {
         Deferred {
             Future { promise in
                 db.collection(Table.users.rawValue).document(request.userID).setData([
@@ -123,28 +121,31 @@ struct NetworkService {
                                     profilePicture: request.profilePicture)
                     promise(.success(user))
                 }
-                db.collection(Table.users.rawValue)
-                    .getDocuments(completion: { snapshot, error in
-                        if let error = error {
-                            promise(.failure(error))
-                        } else if let data = snapshot?.documents, let users = data.decode(to: [User].self){
-                            var contributors: [User] = []
-                            users.forEach{
-                                if $0.isContributor == true {
-                                    contributors.append($0)
-                                }
-                            }
-                            promise(.success(contributors))
-                        } else {
-                            promise(.success([]))
-                        }
-                })
             }
         }
         .receive(on: DispatchQueue.main)
         .eraseToAnyPublisher()
     }
     
+    func getContributors(request: GetContributorsRequest) -> AnyPublisher<[User], Error> {
+        Deferred {
+            Future { promise in
+                db.collection(Table.users.rawValue)
+                    .whereField(Key.isContributor.rawValue, isEqualTo: true)
+                    .getDocuments(completion: { snapshot, error in
+                        if let error = error {
+                            promise(.failure(error))
+                        } else if let data = snapshot?.documents, let users = data.decode(to: [User].self){
+                            promise(.success(users))
+                        } else {
+                            promise(.success([]))
+                        }
+                    })
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    }
     
     func uploadProfileImage(request: UploadProfileImageRequest) -> AnyPublisher<URL, Error> {
         Deferred {

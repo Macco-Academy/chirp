@@ -78,7 +78,7 @@ extension MorePageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let rows: [CellNames] = [.pushNotification, .contributors, .logout]
-        if rows[indexPath.row].rawValue == "Contributors" {
+        if rows[indexPath.row] == .contributors {
             let contactsVC = ContactsViewController()
             contactsVC.type = .contributors
             navigationController?.pushViewController(contactsVC, animated: true)
