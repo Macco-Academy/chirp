@@ -42,6 +42,26 @@ class ContactsViewModel {
             .store(in: &cancellables)
     }
     
+    func fetchContributors(){
+        LoaderView.shared.show()
+        let request = GetContributorsRequest()
+        service.getContributors(request: request)
+            .sink { response in
+                LoaderView.shared.hide()
+                switch response {
+                case .failure(let error):
+                    AlertToast.showAlert(message: error.localizedDescription, type: .error)
+                case .finished:
+                    break
+                }
+            } receiveValue: { [weak self] contributors in
+                LoaderView.shared.hide()
+                self?.fullData = self?.setupTableData(users: contributors) ?? []
+                self?.updateSearchResult()
+            }
+            .store(in: &cancellables)
+    }
+    
     private func setupTableData(users: [User]) -> [Contacts] {
         var grouped: [String: [ContactsDetails]] = [:]
         users.forEach {

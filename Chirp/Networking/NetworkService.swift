@@ -96,5 +96,30 @@ struct NetworkService {
         .eraseToAnyPublisher()
     }
     
+    func getContributors(request: GetContributorsRequest) -> AnyPublisher<[User], Error> {
+        Deferred {
+            Future { promise in
+                db.collection(Table.users.rawValue)
+                    .getDocuments(completion: { snapshot, error in
+                        if let error = error {
+                            promise(.failure(error))
+                        } else if let data = snapshot?.documents, let users = data.decode(to: [User].self){
+                            var contributors: [User] = []
+                            users.forEach{
+                                if $0.isContributor == true {
+                                    contributors.append($0)
+                                }
+                            }
+                            promise(.success(contributors))
+                        } else {
+                            promise(.success([]))
+                        }
+                })
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    }
+    
 }
 

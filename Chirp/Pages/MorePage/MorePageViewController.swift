@@ -75,4 +75,13 @@ extension MorePageViewController: UITableViewDelegate, UITableViewDataSource {
         cell.cellImage.image = UIImage(named: name)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let rows: [CellNames] = [.pushNotification, .contributors, .logout]
+        if rows[indexPath.row].rawValue == "Contributors" {
+            let contactsVC = ContactsViewController()
+            contactsVC.type = .contributors
+            navigationController?.pushViewController(contactsVC, animated: true)
+        }
+    }
 }

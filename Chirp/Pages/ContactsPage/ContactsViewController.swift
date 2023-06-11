@@ -52,7 +52,11 @@ class ContactsViewController: UIViewController {
         setupSearchBar()
         navigationController?.navigationBar.prefersLargeTitles = true
         setupListeners()
-        viewModel.fetchAllUsers()
+        if type == .contact {
+            viewModel.fetchAllUsers()
+        } else {
+            viewModel.fetchContributors()
+        }
     }
     
     private func setupViews() {

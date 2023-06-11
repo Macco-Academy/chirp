@@ -13,6 +13,7 @@ struct User: Codable {
     var name: String?
     var phoneNumber: String?
     var profilePicture: String?
+    var isContributor: Bool?
 }
 
 extension User {
