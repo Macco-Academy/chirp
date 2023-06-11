@@ -32,11 +32,11 @@ class ChatViewModel {
     }
     
     var description: String? {
-        return chat.lastMessage
+        return chat.lastMessage?.message
     }
     
     var timestamp: Date? {
-        return chat.timestamp
+        return chat.lastMessage?.timestamp
     }
     
     var unreadCount: String? {

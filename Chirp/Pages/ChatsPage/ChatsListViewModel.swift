@@ -14,9 +14,11 @@ class ChatsListViewModel {
         didSet { updateSearchResults() }
     }
 
-    private var fullList = [ChatViewModel]()
     private var displayList = [ChatViewModel]()
-
+    private var fullList = [ChatViewModel]() {
+        didSet { displayList = fullList }
+    }
+    
     private let service = NetworkService.shared
     private var cancellables: Set<AnyCancellable> = []
 
@@ -74,7 +76,6 @@ class ChatsListViewModel {
         guard !responses.isEmpty else { return }
 
         fullList = []
-        displayList = []
         var requestCounter = 0
         let maxCount = (min(10, responses.count))
 
@@ -103,12 +104,12 @@ class ChatsListViewModel {
                                                 timestamp: response.timestamp,
                                                 unreadCount: response.unreadCount)
                     
-                    if !response.lastMessage.isEmpty {
+                    if let lastMessage = response.lastMessage,
+                       let message = lastMessage.message, !message.isEmpty {
                         self?.fullList.append(ChatViewModel(chat: recentChat))
                     }
                     
-                    if requestCounter == maxCount {
-                        self?.displayList = self?.fullList ?? []
+                    if requestCounter >= maxCount {
                         self?.newChatsFetched.send(true)
                     }
                 }
