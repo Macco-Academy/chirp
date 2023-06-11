@@ -13,7 +13,8 @@ private enum Table: String {
 }
 
 private enum Key: String {
-    case name, phoneNumber, profilePicture, id, timestamp, fcmToken, isContributor, members
+    case name, phoneNumber, profilePicture, id
+    case timestamp, fcmToken, isContributor, members, lastMessage
 }
 
 private enum Collection: String {
@@ -228,7 +229,7 @@ struct NetworkService {
         let promise = PassthroughSubject<[RecentChatResponse], Error>()
         
         db.collection(Table.chats.rawValue)
-            .order(by: Key.timestamp.rawValue, descending: false)
+            .order(by: "\(Key.lastMessage.rawValue).\(Key.timestamp.rawValue)", descending: false)
             .whereField(Key.members.rawValue, arrayContains: request.userID)
             .addSnapshotListener({ snapshot, error in
                 if let error = error {

@@ -15,6 +15,10 @@ class ChatViewModel {
         self.chat = chat
     }
     
+    var chatID: String? {
+        return chat.id
+    }
+    
     var sender: User? {
         return chat.members?.first(where: { $0.id == UserDefaults.standard.currentUser?.id })
     }
