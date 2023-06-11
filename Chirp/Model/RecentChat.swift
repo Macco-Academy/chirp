@@ -24,7 +24,7 @@ extension RecentChat {
         return ChatsListViewModel(imageUrl: secondUser?.profilePicture,
                                   title: secondUser?.name,
                                   description: self.lastMessage?.message,
-                                  timeStamp: self.lastMessage?.timeStamp,
+                                  timeStamp: self.lastMessage?.timestamp,
                                   unreadCount: self.unreadCount?["user1"])
     }
 }

@@ -59,6 +59,8 @@
 		E5DBA5AA2A35C9A60032BD95 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DBA5A92A35C9A60032BD95 /* UIView+Extension.swift */; };
 		E5DBA5AF2A35CACC0032BD95 /* MessageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DBA5AE2A35CACC0032BD95 /* MessageCellViewModel.swift */; };
 		E5DBA5B12A35CB0E0032BD95 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DBA5B02A35CB0E0032BD95 /* MessageTableViewCell.swift */; };
+		E5DBA5B52A35F15B0032BD95 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DBA5B42A35F15A0032BD95 /* Encodable+Extension.swift */; };
+		E5DBA5B72A35F2DB0032BD95 /* FetchMessagesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DBA5B62A35F2DB0032BD95 /* FetchMessagesRequest.swift */; };
 		EEA86C4E2A34FD2500D737DE /* SendOTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA86C4D2A34FD2500D737DE /* SendOTPRequest.swift */; };
 		EEA86C502A34FFD500D737DE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA86C4F2A34FFD500D737DE /* LoginViewModel.swift */; };
 		EEB1A4912A312A5500F6899D /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB1A4902A312A5500F6899D /* HomeTabBarController.swift */; };
@@ -121,6 +123,8 @@
 		E5DBA5A92A35C9A60032BD95 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		E5DBA5AE2A35CACC0032BD95 /* MessageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellViewModel.swift; sourceTree = "<group>"; };
 		E5DBA5B02A35CB0E0032BD95 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		E5DBA5B42A35F15A0032BD95 /* Encodable+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
+		E5DBA5B62A35F2DB0032BD95 /* FetchMessagesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMessagesRequest.swift; sourceTree = "<group>"; };
 		EEA86C4D2A34FD2500D737DE /* SendOTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendOTPRequest.swift; sourceTree = "<group>"; };
 		EEA86C4F2A34FFD500D737DE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		EEB1A4902A312A5500F6899D /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
@@ -179,15 +183,6 @@
 			path = "OTP Components";
 			sourceTree = "<group>";
 		};
-		042D1FAF2A30ABD0009D2573 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				04163DF22A320AA8003DF7B1 /* Contacts.swift */,
-				04163DF32A320AA9003DF7B1 /* ContactsDetails.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		0B3CE8292A312CB400D6305F /* LoginPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +210,7 @@
 				46EAB4552A350EA0002700E3 /* GetAllUsersRequest.swift */,
 				5F6778532A35EB110045199B /* CreateUserRequest.swift */,
 				5F6778512A35EB070045199B /* UploadProfileImageRequest.swift */,
+				E5DBA5B62A35F2DB0032BD95 /* FetchMessagesRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -250,6 +246,8 @@
 				E5DBA5A22A34E6620032BD95 /* AppError.swift */,
 				00E4F8AD2A3274B600C6FF0E /* RecentChat.swift */,
 				00E4F8AF2A32751C00C6FF0E /* Message.swift */,
+				04163DF22A320AA8003DF7B1 /* Contacts.swift */,
+				04163DF32A320AA9003DF7B1 /* ContactsDetails.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -344,7 +342,6 @@
 				467B96F92A30AB9E0012AB04 /* Model */,
 				467B96F52A30AB150012AB04 /* Pages */,
 				E5AC47DF2A305C270055C83A /* Extensions */,
-				042D1FAF2A30ABD0009D2573 /* Models */,
 				467B96FC2A30F8610012AB04 /* Components */,
 				E56C731E2A2D216D00532B3D /* AppDelegate.swift */,
 				E56C73202A2D216D00532B3D /* SceneDelegate.swift */,
@@ -366,6 +363,7 @@
 				0BA008802A34E89600040E43 /* UserDefaults+Extension.swift */,
 				00E4F8B32A3280E600C6FF0E /* Date+Extention.swift */,
 				E5DBA5A92A35C9A60032BD95 /* UIView+Extension.swift */,
+				E5DBA5B42A35F15A0032BD95 /* Encodable+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -506,6 +504,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5DBA5B72A35F2DB0032BD95 /* FetchMessagesRequest.swift in Sources */,
 				5F6778562A35EC020045199B /* RegistrationViewModel.swift in Sources */,
 				04163DFB2A326E8C003DF7B1 /* ContactsViewController.swift in Sources */,
 				042D1FA12A2FA765009D2573 /* AnimationName.swift in Sources */,
@@ -529,6 +528,7 @@
 				00E4F8AE2A3274B600C6FF0E /* RecentChat.swift in Sources */,
 				042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */,
 				04163DF42A320AA9003DF7B1 /* Contacts.swift in Sources */,
+				E5DBA5B52A35F15B0032BD95 /* Encodable+Extension.swift in Sources */,
 				E5DBA5A62A35C7E40032BD95 /* MessagesViewController.swift in Sources */,
 				04163DFC2A326E8C003DF7B1 /* ContactsTableViewCell.swift in Sources */,
 				0BA0087F2A34E60700040E43 /* OTPViewModel.swift in Sources */,

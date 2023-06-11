@@ -14,7 +14,7 @@ struct MessageCellViewModel {
     let senderId: String
     
     var iAmSender: Bool {
-        return senderId == "user1" // UserDefaults.standard.currentUser?.id
+        return senderId == UserDefaults.standard.currentUser?.id
     }
     
     var textColor: UIColor {

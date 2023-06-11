@@ -36,32 +36,19 @@ class MessagesViewModel {
     }
     
     func fetchMessages() {
-        let messages: [MessageCellViewModel] = [
-            MessageCellViewModel(chatId: "id", message: "This is a message", timestamp: Date().asTimeAgo, senderId: "thotherperson"),
-            MessageCellViewModel(chatId: "id", message: "This is a message", timestamp: Date().asTimeAgo, senderId: "thotherperson"),
-            MessageCellViewModel(chatId: "id", message: "This is a message", timestamp: Date().asTimeAgo, senderId: "thotherperson"),
-            MessageCellViewModel(chatId: "id", message: "This is a message", timestamp: Date().asTimeAgo, senderId: "thotherperson"),
-            MessageCellViewModel(chatId: "id", message: "This is a message", timestamp: Date().asTimeAgo, senderId: "user1"),
-            MessageCellViewModel(chatId: "id", message: "This is a message", timestamp: Date().asTimeAgo, senderId: "thotherperson"),
-            MessageCellViewModel(chatId: "id", message: "This is a message", timestamp: Date().asTimeAgo, senderId: "user1"),
-        ]
-        
-        self.messages.send(messages)
-        
-        
-//        let request = FetchMessagesRequest(id: id)
-//        service.fetchMessages(request: request)
-//            .sink { response in
-//                switch response {
-//                case .failure(let error):
-//                    print(error.localizedDescription)
-//                default:
-//                    print("Finished")
-//                }
-//            } receiveValue: { messages in
-//                self.messages.send(messages)
-//            }
-//            .store(in: &cancellables)
+        let request = FetchMessagesRequest(id: chatId)
+        service.fetchMessages(request: request)
+            .sink { response in
+                switch response {
+                case .failure(let error):
+                    AlertToast.showAlert(message: error.localizedDescription, type: .error)
+                default:
+                    break
+                }
+            } receiveValue: { messages in
+                self.messages.send(messages.map { $0.asMessageCellViewModel })
+            }
+            .store(in: &cancellables)
     }
     
     func sendMessage(_ text: String) {
