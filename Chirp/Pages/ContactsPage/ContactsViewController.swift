@@ -6,13 +6,13 @@
 //
 
 import UIKit
+import Combine
 
 class ContactsViewController: UIViewController {
     
-    private var fullData = [Contacts]()
-    private var tableData = [Contacts]()
     var type: `Type` = .contact
-    
+    private let viewModel = ContactsViewModel()
+    private var cancelables: Set<AnyCancellable> = []
     
     enum `Type` {
         case contact, contributors
@@ -50,9 +50,9 @@ class ContactsViewController: UIViewController {
         view.backgroundColor = UIColor.systemBackground
         setupViews()
         setupSearchBar()
-        fullData = setupTableData()
-        tableData = fullData
         navigationController?.navigationBar.prefersLargeTitles = true
+        setupListeners()
+        viewModel.fetchAllUsers()
     }
     
     private func setupViews() {
@@ -77,52 +77,28 @@ class ContactsViewController: UIViewController {
              navigationItem.searchController = searchController
          }
     
-    func setupTableData() -> [Contacts] {
-        let unsortedData = [
-            ContactsDetails(image: UIImage.placeholderImage, text: "Arlene McCoy"),
-            ContactsDetails(image: UIImage.placeholderImage, text: "Avon Lane"),
-            ContactsDetails(image: UIImage.placeholderImage, text: "Ben Dark"),
-            ContactsDetails(image: UIImage.placeholderImage, text: "Bishop Pope"),
-            ContactsDetails(image: UIImage.placeholderImage, text: "Aessie Cooper"),
-            ContactsDetails(image: UIImage.placeholderImage, text: "Cardless King"),
-            ContactsDetails(image: UIImage.placeholderImage, text: "Card Boy"),
-            ContactsDetails(image: UIImage.placeholderImage, text: "Mike Boy")
-        ]
-        
-        var grouped: [String: [ContactsDetails]] = [:]
-        unsortedData.forEach {
-            let key = "\(String(describing: $0.text.first))"
-            var users = grouped[key] ?? []
-            users.append($0)
-            grouped[key] = users
+    private func setupListeners(){
+        viewModel.tableData.sink { [weak self] _ in
+            self?.tableView.reloadData()
         }
-        
-        let contacts = grouped.values.map {
-            var key = ""
-            
-            if let firstChar = $0.first?.text.first {
-                let firstStr = String(firstChar)
-                key = firstStr
-            }
-            let contact = Contacts(sectionName: key, data: $0)
-            return contact
-        }
-        return contacts.sorted(by: { $0.sectionName < $1.sectionName })
+        .store(in: &cancelables)
     }
+    
+
 }
 
 extension ContactsViewController :UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableData[section].data.count
+        return viewModel.tableData.value[section].data.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return tableData.count
+        return viewModel.tableData.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let data = tableData[indexPath.section].data[indexPath.row]
+        let data = viewModel.tableData.value[indexPath.section].data[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: ContactsTableViewCell.id, for: indexPath) as! ContactsTableViewCell
         
         cell.setup(with: data)
@@ -137,50 +113,29 @@ extension ContactsViewController :UITableViewDataSource, UITableViewDelegate {
         let title = UILabel(frame: CGRect(x: 20, y: 5, width: 20, height: 20))
         title.textColor = .label
         title.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        guard tableData.count > section else {return header}
-        title.text = tableData[section].sectionName
+        guard viewModel.tableData.value.count > section else {return header}
+        title.text = viewModel.tableData.value[section].sectionName
         header.addSubview(title)
         return header
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let data = tableData[indexPath.section].data[indexPath.row]
+        let data = viewModel.tableData.value[indexPath.section].data[indexPath.row]
         
     }
 }
 
 extension ContactsViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
-        updateSearchResult()
+        viewModel.searchQuery = searchController.searchBar.text ?? ""
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        updateSearchResult()
+        viewModel.searchIsActive = true
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        updateSearchResult()
+        viewModel.searchIsActive = false
     }
     
-    private func updateSearchResult() {
-        guard let search = searchController.searchBar.searchTextField.text,
-        !search.isEmpty else {
-            self.tableData = fullData
-            tableView.reloadData()
-            return
-        }
-        tableData = fullData.filter {
-            $0.data.first?.text.lowercased().contains(search.lowercased()) ?? false
-        }
-        tableData = []
-        fullData.forEach { section in
-            let filteredList = section.data.filter {
-                $0.text.lowercased().contains(search.lowercased())
-            }
-            if !filteredList.isEmpty {
-                tableData.append(Contacts(sectionName: section.sectionName, data: filteredList))
-            }
-        }
-        tableView.reloadData()
-    }
 }

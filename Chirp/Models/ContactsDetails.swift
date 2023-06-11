@@ -8,6 +8,6 @@
 import UIKit
 
 struct ContactsDetails{
-    let image : UIImage
+    let image : String?
     let text : String
 }

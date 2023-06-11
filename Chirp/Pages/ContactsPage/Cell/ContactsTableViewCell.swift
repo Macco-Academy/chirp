@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ContactsTableViewCell: UITableViewCell {
     
@@ -23,7 +24,8 @@ class ContactsTableViewCell: UITableViewCell {
     }
     
     func setup(with data: ContactsDetails) {
-        image.image = data.image
+        let url = URL(string: data.image ?? "")
+        image.kf.setImage(with: url, placeholder: UIImage.placeholderImage)
         typesLabel.text = data.text
     }
     
