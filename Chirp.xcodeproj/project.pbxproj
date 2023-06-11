@@ -47,6 +47,8 @@
 		5F6778522A35EB070045199B /* UploadProfileImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6778512A35EB070045199B /* UploadProfileImageRequest.swift */; };
 		5F6778542A35EB110045199B /* CreateUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6778532A35EB110045199B /* CreateUserRequest.swift */; };
 		5F6778562A35EC020045199B /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6778552A35EC020045199B /* RegistrationViewModel.swift */; };
+		5F6778602A3674230045199B /* GetUserChatsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F67785F2A3674230045199B /* GetUserChatsRequest.swift */; };
+		5F6778622A36742F0045199B /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6778612A36742E0045199B /* ChatViewModel.swift */; };
 		809A35A9CD04CE147A4F0B6F /* Pods_Chirp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6EC265D6F867AC01E03BB0 /* Pods_Chirp.framework */; };
 		E5193CCF2A34A93000BEFAB2 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5193CCE2A34A93000BEFAB2 /* Loader.swift */; };
 		E5193CD12A34A9C500BEFAB2 /* loader_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = E5193CD02A34A9C400BEFAB2 /* loader_animation.json */; };
@@ -118,6 +120,8 @@
 		5F6778512A35EB070045199B /* UploadProfileImageRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadProfileImageRequest.swift; sourceTree = "<group>"; };
 		5F6778532A35EB110045199B /* CreateUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserRequest.swift; sourceTree = "<group>"; };
 		5F6778552A35EC020045199B /* RegistrationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		5F67785F2A3674230045199B /* GetUserChatsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserChatsRequest.swift; sourceTree = "<group>"; };
+		5F6778612A36742E0045199B /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		B739D4B4B8974D1601276D8A /* Pods-Chirp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chirp.release.xcconfig"; path = "Target Support Files/Pods-Chirp/Pods-Chirp.release.xcconfig"; sourceTree = "<group>"; };
 		DB6EC265D6F867AC01E03BB0 /* Pods_Chirp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chirp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5193CCE2A34A93000BEFAB2 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
@@ -170,6 +174,7 @@
 				00950E5B2A3160F900795FC4 /* ChatsTableViewCell.swift */,
 				00950E5A2A3160F800795FC4 /* ChatsViewController.swift */,
 				00E4F8B12A32777A00C6FF0E /* ChatsListViewModel.swift */,
+				5F6778612A36742E0045199B /* ChatViewModel.swift */,
 			);
 			path = ChatsPage;
 			sourceTree = "<group>";
@@ -238,6 +243,7 @@
 				E5DBA5B82A35F6250032BD95 /* CreateNewChatRequest.swift */,
 				E590250D2A364BAA00E05F36 /* UpdateFCMTokenRequest.swift */,
 				E590250F2A366ACF00E05F36 /* SendMessageRequest.swift */,
+				5F67785F2A3674230045199B /* GetUserChatsRequest.swift */,
 				E59025112A366B0700E05F36 /* UpdateLastMessageRequest.swift */,
 			);
 			path = Requests;
@@ -589,6 +595,7 @@
 				E5DBA5B12A35CB0E0032BD95 /* MessageTableViewCell.swift in Sources */,
 				0B3CE82B2A312CC800D6305F /* LoginPageViewController.swift in Sources */,
 				042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */,
+				5F6778622A36742F0045199B /* ChatViewModel.swift in Sources */,
 				469CED8C2A32524B00AED489 /* CustomHeader.swift in Sources */,
 				469CED8A2A32110600AED489 /* MorePageViewController.swift in Sources */,
 				469CED882A3210F700AED489 /* MorePageTableViewCell.swift in Sources */,
@@ -608,6 +615,7 @@
 				E5DBA5A32A34E6620032BD95 /* AppError.swift in Sources */,
 				E59025122A366B0700E05F36 /* UpdateLastMessageRequest.swift in Sources */,
 				467B96FB2A30ABB10012AB04 /* User.swift in Sources */,
+				5F6778602A3674230045199B /* GetUserChatsRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

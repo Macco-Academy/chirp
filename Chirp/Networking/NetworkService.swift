@@ -13,7 +13,8 @@ private enum Table: String {
 }
 
 private enum Key: String {
-    case name, phoneNumber, profilePicture, id, timestamp, fcmToken, isContributor
+    case name, phoneNumber, profilePicture, id
+    case timestamp, fcmToken, isContributor, members, lastMessage
 }
 
 private enum Collection: String {
@@ -227,6 +228,25 @@ struct NetworkService {
             .collection(Table.users.rawValue)
             .document(uid)
             .updateData([Key.fcmToken.rawValue: request.token])
+    }
+    
+    func getUserChats(request: GetUserChatsRequest) -> AnyPublisher<[RecentChatResponse], Error> {
+        let promise = PassthroughSubject<[RecentChatResponse], Error>()
+        
+        db.collection(Table.chats.rawValue)
+            .order(by: "\(Key.lastMessage.rawValue).\(Key.timestamp.rawValue)", descending: false)
+            .whereField(Key.members.rawValue, arrayContains: request.userID)
+            .addSnapshotListener({ snapshot, error in
+                if let error = error {
+                    promise.send(completion: .failure(error))
+                    return
+                }
+                
+                let response = snapshot?.documents.decode(to: [RecentChatResponse].self)
+                promise.send(response ?? [])
+            })
+        
+        return promise.eraseToAnyPublisher()
     }
     
     func fetchChatBy(id: String) -> AnyPublisher<ChatResponse?, Error> {

@@ -6,20 +6,12 @@
 //
 
 import UIKit
-
-// TODO: Remove
-let dummyData: [RecentChat] = [
-    RecentChat(id: "123", members: [User(id: "user1", name: "Tony", profilePicture: ""), User(id: "user2", name: "James", profilePicture: "")], lastMessage: Message(id: "", chatId: "", senderId: "user1", message: "abucdefg", timestamp: Date()), unreadCount: ["user1": 2]),
-    RecentChat(id: "123", members: [User(id: "user1", name: "Tony", profilePicture: ""), User(id: "user2", name: "Heidi Tom", profilePicture: "")], lastMessage: Message(id: "", chatId: "", senderId: "user1", message: "abucdefg", timestamp: Calendar.current.date(byAdding: .day, value: -1, to: Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date())!)!), unreadCount: ["user1": 2]),
-    RecentChat(id: "123", members: [User(id: "user1",name: "Tony", profilePicture: ""), User(id: "user2",name: "Tom Hanks", profilePicture: "")], lastMessage: Message(id: "", chatId: "", senderId: "user1", message: "abucdefg", timestamp: Date()), unreadCount: ["user1": 1232]),
-    RecentChat(id: "123", members: [User(id: "user1",name: "Tony", profilePicture: ""), User(id: "user2",name: "emmanuel this is a long name and to check it", profilePicture: "")], lastMessage: Message(id: "", chatId: "", senderId: "user1", message: "abucdefg", timestamp: Calendar.current.date(byAdding: .day, value: -1, to: Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date())!)!), unreadCount: ["user1": 0])
-]
+import Combine
 
 class ChatsViewController: UIViewController {
     
-    let fullList: [ChatsListViewModel] = dummyData.map {$0.asChatListViewModel}
-    
-    var list: [ChatsListViewModel] = []
+    private let viewModel = ChatsListViewModel()
+    private var cancellables: Set<AnyCancellable> = []
     
     var chatsTableView: UITableView = {
         let tableView = UITableView()
@@ -42,7 +34,8 @@ class ChatsViewController: UIViewController {
         setupSearchBar()
         setupViews()
         setupConstraints()
-        self.list = fullList
+        setupListeners()
+        viewModel.getRecentChats()
     }
     
     private func setupNavigationBarTitle() {
@@ -71,23 +64,40 @@ class ChatsViewController: UIViewController {
             chatsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
+    
+    private func setupListeners() {
+        viewModel.newChatsFetched.sink { [weak self] newChatsLoaded in
+            if newChatsLoaded {
+                self?.chatsTableView.reloadData()
+            }
+        }.store(in: &cancellables)
+        
+        viewModel.chatsFiltered.sink { [weak self] chatsFiltered in
+            if chatsFiltered {
+                self?.chatsTableView.reloadData()
+            }
+        }.store(in: &cancellables)
+    }
 }
 
 extension ChatsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list.count
+        return viewModel.numberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ChatsTableViewCell.identifier, for: indexPath) as! ChatsTableViewCell
-        cell.setup(viewModel: list[indexPath.row])
+        let model = viewModel.model(at: indexPath.row)
+        cell.setup(viewModel: model)
         return cell
     }
 }
 
 extension ChatsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewModel = MessagesViewModel(chatId: "chatId")
+        guard let chatID = viewModel.model(at: indexPath.row).chatID else { return }
+        
+        let viewModel = MessagesViewModel(chatId: chatID)
         let controller = MessagesViewController(viewModel: viewModel)
         controller.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(controller, animated: true)
@@ -108,16 +118,8 @@ extension ChatsViewController: UISearchResultsUpdating, UISearchBarDelegate {
     }
     
     private func updateSearchResult() {
-        guard let search = searchController.searchBar.searchTextField.text,
-              !search.isEmpty else {
-            self.list = fullList
-            chatsTableView.reloadData()
-            return
+        if let searchQuery = searchController.searchBar.searchTextField.text {
+            viewModel.searchQuery = searchQuery
         }
-        list = fullList.filter {
-            $0.title?.lowercased().contains(search.lowercased()) ?? false
-        }
-        chatsTableView.reloadData()
     }
-    
 }
