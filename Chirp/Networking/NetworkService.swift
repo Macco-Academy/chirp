@@ -282,5 +282,19 @@ struct NetworkService {
             .document(request.lastMessage.chatId ?? "")
             .updateData(request.asDictionary)
     }
-}
 
+    func logout() -> AnyPublisher<Bool, Error> {
+        Deferred {
+            Future { promise in
+                do {
+                    try Auth.auth().signOut()
+                    promise(.success(true))
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    }
+}
