@@ -25,6 +25,7 @@
 		0B8530E82A3273F700AF66D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B8530E72A3273F700AF66D3 /* GoogleService-Info.plist */; };
 		0BA0087F2A34E60700040E43 /* OTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0087E2A34E60700040E43 /* OTPViewModel.swift */; };
 		0BA008812A34E89600040E43 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA008802A34E89600040E43 /* UserDefaults+Extension.swift */; };
+		0BA524962A3657DD00C278C2 /* SendMessageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA524952A3657DD00C278C2 /* SendMessageRequest.swift */; };
 		0BE0F4852A34B6D600D581CA /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE0F4842A34B6D600D581CA /* NetworkService.swift */; };
 		0BE0F4892A34C51100D581CA /* VerifyOTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE0F4882A34C51100D581CA /* VerifyOTPRequest.swift */; };
 		0BE0F48D2A34DCF500D581CA /* GetUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE0F48C2A34DCF500D581CA /* GetUserRequest.swift */; };
@@ -90,6 +91,7 @@
 		0B8530E72A3273F700AF66D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0BA0087E2A34E60700040E43 /* OTPViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPViewModel.swift; sourceTree = "<group>"; };
 		0BA008802A34E89600040E43 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
+		0BA524952A3657DD00C278C2 /* SendMessageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SendMessageRequest.swift; path = ../../../../../../../../../../Documents/SendMessageRequest.swift; sourceTree = "<group>"; };
 		0BE0F4842A34B6D600D581CA /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		0BE0F4882A34C51100D581CA /* VerifyOTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPRequest.swift; sourceTree = "<group>"; };
 		0BE0F48C2A34DCF500D581CA /* GetUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserRequest.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				46CBF5E02A35F2DD00D59F82 /* GetContributorsRequest.swift */,
 				E5DBA5B62A35F2DB0032BD95 /* FetchMessagesRequest.swift */,
 				E5DBA5B82A35F6250032BD95 /* CreateNewChatRequest.swift */,
+				0BA524952A3657DD00C278C2 /* SendMessageRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -535,6 +538,7 @@
 				00E4F8B42A3280E600C6FF0E /* Date+Extention.swift in Sources */,
 				00E4F8B02A32751C00C6FF0E /* Message.swift in Sources */,
 				00950E5C2A3160F900795FC4 /* ChatsViewController.swift in Sources */,
+				0BA524962A3657DD00C278C2 /* SendMessageRequest.swift in Sources */,
 				5F6778542A35EB110045199B /* CreateUserRequest.swift in Sources */,
 				00E4F8AE2A3274B600C6FF0E /* RecentChat.swift in Sources */,
 				042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */,

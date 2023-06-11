@@ -40,13 +40,22 @@ class MessagesViewModel {
             }
             .store(in: &cancellables)
     }
-    
     func sendMessage(_ text: String) {
-        // TODO: Implement code to send message to user
-        
-        // TODO: Send push notification after message has sent successfully
-        
-        // TODO: Update the recent messages with the last message sent
+        let request = SendMessageRequest(chatId: chatId, message: text)
+        service.sendMessage(request: request)
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    AlertToast.showAlert(message: error.localizedDescription, type: .error)
+                case .finished:
+                    // Message sent successfully
+                    // Update the recent messages with the last message sent
+                    break
+                }
+            } receiveValue: { message in
+                // Handle the sent message if needed
+            }
+            .store(in: &cancellables)
     }
 }
 
