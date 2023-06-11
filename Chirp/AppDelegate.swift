@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITextField.appearance().tintColor = .appBrown
         UITextView.appearance().tintColor = .appBrown
         FirebaseApp.configure()
-        IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         IQKeyboardManager.shared.toolbarTintColor = .appBrown_white
 

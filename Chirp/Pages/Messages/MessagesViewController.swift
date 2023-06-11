@@ -31,6 +31,17 @@ class MessagesViewController: UIViewController {
     private let actionsContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        
+        let separatorView = UIView()
+        separatorView.backgroundColor = .textFieldBackground
+        separatorView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(separatorView)
+        NSLayoutConstraint.activate([
+            separatorView.heightAnchor.constraint(equalToConstant: 1),
+            separatorView.topAnchor.constraint(equalTo: view.topAnchor),
+            separatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            separatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
         return view
     }()
     private let actionsStackView: UIStackView = {
@@ -62,6 +73,8 @@ class MessagesViewController: UIViewController {
     private let maxTextViewHeight: CGFloat = 200
     private var viewModel: MessagesViewModel!
     private var cancellables: Set<AnyCancellable> = []
+    private var keyboardHeight: CGFloat = 0
+    private var textViewBottomConstraint: NSLayoutConstraint?
     
     init(viewModel: MessagesViewModel) {
         super.init(nibName: nil, bundle: nil)
@@ -119,21 +132,22 @@ class MessagesViewController: UIViewController {
     private func setupConstraints() {
         textViewHeightConstraint = textView.heightAnchor.constraint(equalToConstant: textView.intrinsicContentSize.height)
         textViewHeightConstraint?.isActive = true
+        textViewBottomConstraint = actionsContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        textViewBottomConstraint?.isActive = true
         let padding: CGFloat = actionsStackView.spacing
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             actionsContainerView.topAnchor.constraint(equalTo: tableView.bottomAnchor),
             actionsContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             actionsContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            actionsContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
-            actionsStackView.topAnchor.constraint(equalTo: actionsContainerView.topAnchor),
+            actionsStackView.topAnchor.constraint(equalTo: actionsContainerView.topAnchor, constant: padding * 2),
             actionsStackView.leadingAnchor.constraint(equalTo: actionsContainerView.leadingAnchor, constant: padding),
-            actionsStackView.trailingAnchor.constraint(equalTo: actionsContainerView.trailingAnchor, constant: -10),
-            actionsStackView.bottomAnchor.constraint(equalTo: actionsContainerView.bottomAnchor),
+            actionsStackView.trailingAnchor.constraint(equalTo: actionsContainerView.trailingAnchor, constant: -padding),
+            actionsStackView.bottomAnchor.constraint(equalTo: actionsContainerView.bottomAnchor, constant:  -(padding * 2)),
             
             sendBtn.heightAnchor.constraint(equalToConstant: 40),
             sendBtn.widthAnchor.constraint(equalToConstant: 40),
@@ -156,6 +170,8 @@ class MessagesViewController: UIViewController {
             }
         }
         .store(in: &cancellables)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateTextView(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     private func sendBtnClicked(sender: UIButton) {
@@ -164,6 +180,10 @@ class MessagesViewController: UIViewController {
         viewModel.sendMessage(text)
         textView.text = ""
         refreshTextViewHeight()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -175,6 +195,14 @@ extension MessagesViewController: UITextViewDelegate {
     
     private func refreshTextViewHeight() {
         textViewHeightConstraint?.constant = min(textView.contentSize.height, maxTextViewHeight)
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        refreshTextViewPosition()
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        refreshTextViewPosition()
     }
 }
 
@@ -188,5 +216,25 @@ extension MessagesViewController: UITableViewDelegate, UITableViewDataSource {
         let message = viewModel.messages.value[indexPath.row]
         cell.setup(viewModel: message)
         return cell
+    }
+}
+
+// MARK: - Keyboard Handler
+extension MessagesViewController {
+    private func refreshTextViewPosition() {
+        let keyboardActive = textView.isFirstResponder
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 6, options: [], animations: ({ [weak self] in
+            guard let self = self else { return }
+            self.textViewBottomConstraint?.constant = keyboardActive ? -(self.keyboardHeight - self.view.safeAreaInsets.bottom) : 0
+            self.view.layoutIfNeeded()
+        }), completion: nil)
+    }
+    
+    @objc func updateTextView(notification: Notification) {
+        let userInfo = notification.userInfo!
+        let keyboardEndFrameScreenCoordinates = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let keyboardEndFrame = self.view.convert(keyboardEndFrameScreenCoordinates, to: view.window)
+        self.keyboardHeight = keyboardEndFrame.height
+        self.refreshTextViewPosition()
     }
 }
