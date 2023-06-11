@@ -11,8 +11,8 @@ import FirebaseAuth
 
 class RegistrationViewModel {
     
-    private var phoneNumber: String
-    private var imageExtension: String = "jpg"
+    private let phoneNumber: String
+    private let imageExtension: String = "jpg"
     
     private let service = NetworkService.shared
     private var cancellables: Set<AnyCancellable> = []
@@ -25,7 +25,7 @@ class RegistrationViewModel {
     
     func createAccount(name: String, profileImage: UIImage?) {
         guard let userID = Auth.auth().currentUser?.uid else {
-            AlertToast.showAlert(message: AppError.registrationFailed.errorDescription ?? "Error", type: .error)
+            AlertToast.showAlert(message: AppError.registrationFailed.localizedDescription, type: .error)
             return
         }
         

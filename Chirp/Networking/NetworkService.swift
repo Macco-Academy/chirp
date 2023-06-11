@@ -94,6 +94,7 @@ struct NetworkService {
                 ]) { error in
                     if let error = error {
                         promise(.failure(error))
+                        return
                     }
                     
                     let user = User(id: request.userID,
@@ -120,6 +121,7 @@ struct NetworkService {
                 imageRef.putData(request.imageData) { metadata, error in
                     if let error = error {
                         promise(.failure(error))
+                        return
                     }
                     
                     imageRef.downloadURL { url, error in
