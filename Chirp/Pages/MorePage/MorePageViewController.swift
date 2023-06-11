@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class MorePageViewController: UIViewController {
 
@@ -16,6 +17,9 @@ class MorePageViewController: UIViewController {
     }
     
     let rows: [CellNames] = [.pushNotification, .contributors, .logout]
+    
+    private let morepageViewModel = MorePageViewModel()
+    private var cancellables: Set<AnyCancellable> = []
         
     let moreTableView: UITableView = {
         let tableView = UITableView()
@@ -35,6 +39,15 @@ class MorePageViewController: UIViewController {
         view.addSubview(moreTableView)
         setupTableView()
         setupConstraints()
+        setupListner()
+    }
+    
+    private func setupListner() {
+        morepageViewModel.logoutSuccessful.sink { success in
+            if success {
+                LoginPageViewController().makeRootViewController()
+            }
+        }.store(in: &cancellables)
     }
     
     private func setupTableView() {
@@ -76,10 +89,22 @@ extension MorePageViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if rows[indexPath.row] == .contributors {
+        switch rows[indexPath.row] {
+        case .pushNotification:
+            return
+        case .contributors:
             let contactsVC = ContactsViewController()
             contactsVC.type = .contributors
             navigationController?.pushViewController(contactsVC, animated: true)
+        case .logout:
+            AlertToast.showAlertWithButton(title: "Logout?",
+                                           message: "Are you sure you would like to log out? \nYour chat history will be cleared and you'll need to login again",
+                                           type: .info,
+                                           buttonTitle: "Logout") {
+                self.morepageViewModel.logoutUser()
+            }
+        default:
+            return
         }
     }
 }

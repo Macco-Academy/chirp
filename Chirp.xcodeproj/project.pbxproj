@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		00950E5C2A3160F900795FC4 /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00950E5A2A3160F800795FC4 /* ChatsViewController.swift */; };
 		00950E5D2A3160F900795FC4 /* ChatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00950E5B2A3160F900795FC4 /* ChatsTableViewCell.swift */; };
+		00C79F6B2A36590C00DDE1D5 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C79F6A2A36590C00DDE1D5 /* UIViewController+Extension.swift */; };
+		00C79F6D2A365C3100DDE1D5 /* MorePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C79F6C2A365C3100DDE1D5 /* MorePageViewModel.swift */; };
 		00E4F8AE2A3274B600C6FF0E /* RecentChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E4F8AD2A3274B600C6FF0E /* RecentChat.swift */; };
 		00E4F8B02A32751C00C6FF0E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E4F8AF2A32751C00C6FF0E /* Message.swift */; };
 		00E4F8B22A32777A00C6FF0E /* ChatsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E4F8B12A32777A00C6FF0E /* ChatsListViewModel.swift */; };
@@ -76,6 +78,8 @@
 /* Begin PBXFileReference section */
 		00950E5A2A3160F800795FC4 /* ChatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
 		00950E5B2A3160F900795FC4 /* ChatsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewCell.swift; sourceTree = "<group>"; };
+		00C79F6A2A36590C00DDE1D5 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		00C79F6C2A365C3100DDE1D5 /* MorePageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorePageViewModel.swift; sourceTree = "<group>"; };
 		00E4F8AD2A3274B600C6FF0E /* RecentChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentChat.swift; sourceTree = "<group>"; };
 		00E4F8AF2A32751C00C6FF0E /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		00E4F8B12A32777A00C6FF0E /* ChatsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListViewModel.swift; sourceTree = "<group>"; };
@@ -306,6 +310,7 @@
 				469CED872A3210F700AED489 /* MorePageTableViewCell.swift */,
 				469CED892A32110600AED489 /* MorePageViewController.swift */,
 				469CED8B2A32524B00AED489 /* CustomHeader.swift */,
+				00C79F6C2A365C3100DDE1D5 /* MorePageViewModel.swift */,
 			);
 			path = MorePage;
 			sourceTree = "<group>";
@@ -393,6 +398,7 @@
 				E5DBA5A92A35C9A60032BD95 /* UIView+Extension.swift */,
 				E5DBA5B42A35F15A0032BD95 /* Encodable+Extension.swift */,
 				E5DBA5BA2A35F7180032BD95 /* String+Extension.swift */,
+				00C79F6A2A36590C00DDE1D5 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -540,6 +546,7 @@
 				469CED902A339FD500AED489 /* CountdownView.swift in Sources */,
 				E5DBA5AA2A35C9A60032BD95 /* UIView+Extension.swift in Sources */,
 				E5DBA5AF2A35CACC0032BD95 /* MessageCellViewModel.swift in Sources */,
+				00C79F6D2A365C3100DDE1D5 /* MorePageViewModel.swift in Sources */,
 				04163E022A326EC4003DF7B1 /* OTPViewController.swift in Sources */,
 				E5DBA5BB2A35F7180032BD95 /* String+Extension.swift in Sources */,
 				04163DF52A320AA9003DF7B1 /* ContactsDetails.swift in Sources */,
@@ -591,6 +598,7 @@
 				0BE0F4852A34B6D600D581CA /* NetworkService.swift in Sources */,
 				467B97042A30F8610012AB04 /* Button.swift in Sources */,
 				E5DBA5A12A34DE230032BD95 /* FIRDocument+Extension.swift in Sources */,
+				00C79F6B2A36590C00DDE1D5 /* UIViewController+Extension.swift in Sources */,
 				E5DBA5A32A34E6620032BD95 /* AppError.swift in Sources */,
 				E59025122A366B0700E05F36 /* UpdateLastMessageRequest.swift in Sources */,
 				467B96FB2A30ABB10012AB04 /* User.swift in Sources */,
