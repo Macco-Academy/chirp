@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ContactsTableViewCell: UITableViewCell {
     
@@ -23,7 +24,8 @@ class ContactsTableViewCell: UITableViewCell {
     }
     
     func setup(with data: ContactsDetails) {
-        image.image = data.image
+        let url = URL(string: data.image ?? "")
+        image.kf.setImage(with: url, placeholder: UIImage.placeholderImage)
         typesLabel.text = data.text
     }
     
@@ -43,7 +45,7 @@ class ContactsTableViewCell: UITableViewCell {
     let typesLabel: UILabel = {
         let label = UILabel()
         label.text = "Test"
-        label.textColor = .black
+        label.textColor = .label
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textAlignment = .left
         return label

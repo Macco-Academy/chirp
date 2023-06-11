@@ -84,6 +84,26 @@ struct NetworkService {
         .eraseToAnyPublisher()
     }
     
+    func getAllUsers(request: GetAllUsersRequest) -> AnyPublisher<[User], Error> {
+        Deferred {
+            Future { promise in
+                db.collection(Table.users.rawValue)
+                    .getDocuments(completion: { snapshot, error in
+                        if let error = error {
+                            promise(.failure(error))
+                        } else if let data = snapshot?.documents, let users = data.decode(to: [User].self){
+                            promise(.success(users))
+                        } else {
+                            promise(.success([]))
+                        }
+                })
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    }
+    
+    
     func createUser(request: CreateUserRequest) -> AnyPublisher<User, Error> {
         Deferred {
             Future { promise in
@@ -97,8 +117,7 @@ struct NetworkService {
                         return
                     }
                     
-                    let user = User(id: request.userID,
-                                    name: request.name,
+                    let user = User(id: request.userID, name: request.name,
                                     phoneNumber: request.phoneNumber,
                                     profilePicture: request.profilePicture)
                     promise(.success(user))
@@ -108,6 +127,7 @@ struct NetworkService {
         .receive(on: DispatchQueue.main)
         .eraseToAnyPublisher()
     }
+    
     
     func uploadProfileImage(request: UploadProfileImageRequest) -> AnyPublisher<URL, Error> {
         Deferred {

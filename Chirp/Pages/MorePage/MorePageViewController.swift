@@ -29,7 +29,7 @@ class MorePageViewController: UIViewController {
     }
 
     private func doBasicSettings() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         view.addSubview(moreTableView)
         setupTableView()
         setupConstraints()

@@ -38,7 +38,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         let addImage = UIImageView()
         addImage.translatesAutoresizingMaskIntoConstraints = false
         addImage.image = UIImage.addImage
-        addImage.tintColor = .white
+        addImage.tintColor = .systemBackground
         view.addSubview(addImage)
         
         let imagePadding: CGFloat = 3
