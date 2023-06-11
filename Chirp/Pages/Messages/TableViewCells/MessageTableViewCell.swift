@@ -35,6 +35,8 @@ class MessageTableViewCell: UITableViewCell {
     }()
     
     private var viewModel: MessageCellViewModel!
+    private var leadingConstraint: NSLayoutConstraint?
+    private var trailingConstraint: NSLayoutConstraint?
     
     func setup(viewModel: MessageCellViewModel) {
         self.viewModel = viewModel
@@ -58,8 +60,9 @@ class MessageTableViewCell: UITableViewCell {
     
     private func setupConstraints() {
         let padding: CGFloat = 10
-        let leadingConstraint: NSLayoutConstraint
-        let trailingConstraint: NSLayoutConstraint
+        leadingConstraint?.isActive = false
+        trailingConstraint?.isActive = false
+        
         if viewModel.iAmSender {
             leadingConstraint = bubbleBackgroundView.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 100)
             trailingConstraint = bubbleBackgroundView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding)
@@ -76,8 +79,8 @@ class MessageTableViewCell: UITableViewCell {
             stackView.trailingAnchor.constraint(equalTo: bubbleBackgroundView.trailingAnchor, constant: -padding),
             stackView.bottomAnchor.constraint(equalTo: bubbleBackgroundView.bottomAnchor, constant: -padding),
             
-            leadingConstraint,
-            trailingConstraint
+            leadingConstraint!,
+            trailingConstraint!
         ])
     }
     

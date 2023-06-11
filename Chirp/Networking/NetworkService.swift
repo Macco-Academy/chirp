@@ -182,5 +182,24 @@ struct NetworkService {
             })
         return promise.eraseToAnyPublisher()
     }
+    
+    func createNewChat(request: CreateNewChatRequest) -> AnyPublisher<Bool, Error> {
+        Deferred {
+            Future { promise in
+                db
+                    .collection(Table.chats.rawValue)
+                    .document(request.id)
+                    .setData(request.asDictionary) { error in
+                        if let error = error {
+                            promise(.failure(error))
+                        } else {
+                            promise(.success(true))
+                        }
+                    }
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    }
 }
 

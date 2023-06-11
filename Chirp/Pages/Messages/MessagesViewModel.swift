@@ -20,21 +20,6 @@ class MessagesViewModel {
         fetchChatById()
     }
     
-    private func fetchChatById() {
-//        service.fetchChatBy(id: id)
-//            .sink { response in
-//                switch response {
-//                case .failure(let error):
-//                    print(error.localizedDescription)
-//                default: break
-//                }
-//            } receiveValue: { chatResponse in
-//                guard let chatResponse = chatResponse else { return }
-//                self.chat = chatResponse
-//            }
-//            .store(in: &cancellables)
-    }
-    
     func fetchMessages() {
         let request = FetchMessagesRequest(id: chatId)
         service.fetchMessages(request: request)
