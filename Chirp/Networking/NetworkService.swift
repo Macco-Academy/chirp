@@ -201,5 +201,31 @@ struct NetworkService {
         .receive(on: DispatchQueue.main)
         .eraseToAnyPublisher()
     }
+    
+    func sendMessage(request: SendMessageRequest) -> AnyPublisher<Bool, Error> {
+        Deferred {
+            Future { promise in
+        
+                let messageData: [String: Any] = [
+                    Key.timestamp.rawValue: Timestamp(),
+                    Key.messages.rawValue: request.text
+                ]
+                
+                db.collection(Table.chats.rawValue)
+                    .document(request.chatId)
+                    .collection(Key.messages.rawValue)
+                    .addDocument(data: messageData) { error in
+                        if let error = error {
+                            promise(.failure(error))
+                        } else {
+                            promise(.success(true))
+                        }
+                    }
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    }
+
 }
 
