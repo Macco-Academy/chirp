@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import UIKit
 
-struct User {
-    var userID: String
-    var name: String
-    var phoneNumber: String
-    var profileImageURL: String?
+struct User: Codable {
+    var id:String?
+    var name: String?
+    var phoneNumber: String?
+    var profilePicture: String?
 }

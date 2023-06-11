@@ -26,7 +26,7 @@ class UserService {
         database.collection(collection).document(userId).setData([
             nameKey: user.name,
             phoneNumberKey: user.phoneNumber,
-            profileImageURLKey: user.profileImageURL ?? ""
+            profileImageURLKey: user.profilePicture ?? ""
         ]) { error in
             guard error == nil else {
                 print(error!)
