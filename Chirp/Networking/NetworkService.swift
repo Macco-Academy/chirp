@@ -13,17 +13,17 @@ private enum Table: String {
 }
 
 private enum Key: String {
-    case name, phoneNumber, profilePicture, id
-    case members, messages, timestamp, isContributor
+    case name, phoneNumber, profilePicture, id, timestamp, fcmToken, isContributor, members
 }
 
 private enum Collection: String {
-    case images
+    case images, messages
 }
 
 struct NetworkService {
     static let shared = NetworkService()
     private let db = Firestore.firestore()
+    private let auth = Auth.auth()
     
     func sendOTPToPhoneNumber(request: SendOTPRequest )  -> AnyPublisher<String?, Error> {
         Deferred{
@@ -184,7 +184,7 @@ struct NetworkService {
         db
             .collection(Table.chats.rawValue)
             .document(request.id)
-            .collection(Key.messages.rawValue)
+            .collection(Collection.messages.rawValue)
             .order(by: Key.timestamp.rawValue)
             .addSnapshotListener({ snapshot, error in
                 if let error = error {
@@ -208,17 +208,20 @@ struct NetworkService {
                 db
                     .collection(Table.chats.rawValue)
                     .document(request.id)
-                    .setData(request.asDictionary) { error in
-                        if let error = error {
-                            promise(.failure(error))
-                        } else {
-                            promise(.success(true))
-                        }
-                    }
+                    .updateData(request.asDictionary)
+                promise(.success(true))
             }
         }
         .receive(on: DispatchQueue.main)
         .eraseToAnyPublisher()
+    }
+    
+    func updateFCMToken(request: UpdateFCMTokenRequest) {
+        guard let uid = auth.currentUser?.uid else { return }
+        db
+            .collection(Table.users.rawValue)
+            .document(uid)
+            .updateData([Key.fcmToken.rawValue: request.token])
     }
     
     func getUserChats(request: GetUserChatsRequest) -> AnyPublisher<[RecentChatResponse], Error> {
@@ -238,6 +241,60 @@ struct NetworkService {
             })
         
         return promise.eraseToAnyPublisher()
+    }
+    
+    func fetchChatBy(id: String) -> AnyPublisher<ChatResponse?, Error> {
+        Deferred {
+            Future { promise in
+                db
+                    .collection(Table.chats.rawValue)
+                    .document(id)
+                    .getDocument(completion: { document, error in
+                        if let error = error {
+                            promise(.failure(error))
+                        } else {
+                            if let data = document?.data() {
+                                guard let chat = data.decode(to: ChatResponse?.self) else {
+                                    promise(.failure(AppError.errorDecoding))
+                                    return
+                                }
+                                promise(.success(chat))
+                            } else {
+                                promise(.success(nil))
+                            }
+                        }
+                    })
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    }
+    
+    func sendMessage(request: SendMessageRequest) -> AnyPublisher<Bool, Error> {
+        Deferred {
+            Future { promise in
+                db
+                    .collection(Table.chats.rawValue)
+                    .document(request.chatId ?? "")
+                    .collection(Collection.messages.rawValue)
+                    .addDocument(data: request.asDictionary) { error in
+                        if let error = error {
+                            promise(.failure(error))
+                        } else {
+                            promise(.success(true))
+                        }
+                    }
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    }
+    
+    func updateLastMessage(request: UpdateLastMessageRequest) {
+        db
+            .collection(Table.chats.rawValue)
+            .document(request.lastMessage.chatId ?? "")
+            .updateData(request.asDictionary)
     }
 }
 

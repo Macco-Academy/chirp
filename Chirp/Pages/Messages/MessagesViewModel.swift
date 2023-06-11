@@ -11,6 +11,7 @@ import UIKit
 class MessagesViewModel {
     private let chatId: String
     private let service = NetworkService.shared
+    private var chat: ChatResponse?
     
     private var cancellables: Set<AnyCancellable> = []
     var messages = CurrentValueSubject<[MessageCellViewModel], Never>([])
@@ -21,8 +22,18 @@ class MessagesViewModel {
     }
     
     private func fetchChatById() {
-        // TODO: Fetch chat details using ID
-        // This will be used to get information about chat including member's fcmToken, and unreadCount
+        service.fetchChatBy(id: chatId)
+            .sink { response in
+                switch response {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                default: break
+                }
+            } receiveValue: { chatResponse in
+                guard let chatResponse = chatResponse else { return }
+                self.chat = chatResponse
+            }
+            .store(in: &cancellables)
     }
     
     func fetchMessages() {
@@ -42,11 +53,36 @@ class MessagesViewModel {
     }
     
     func sendMessage(_ text: String) {
-        // TODO: Implement code to send message to user
+        let request = SendMessageRequest(id: UUID().uuidString,
+                                         chatId: chatId,
+                                         senderId: UserDefaults.standard.currentUser?.id,
+                                         message: text,
+                                         type: .text)
+        service.sendMessage(request: request)
+            .sink { response in
+                switch response {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                default: break
+                }
+            } receiveValue: { _ in
+                self.updateRecentMessage(message: request)
+                let receiverId = self.chat?.members?.first { $0 != UserDefaults.standard.currentUser?.id } ?? ""
+                
+                // TODO: Send push notification after message has sent successfully
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func updateRecentMessage(message: SendMessageRequest) {
+        var unreadCount = chat?.unreadCount ?? [:]
+        if let receiverId = chat?.members?.first(where: { $0 != UserDefaults.standard.currentUser?.id }) {
+            unreadCount[receiverId] = (unreadCount[receiverId] ?? 0) + 1
+        }
+        chat?.unreadCount = unreadCount
         
-        // TODO: Send push notification after message has sent successfully
-        
-        // TODO: Update the recent messages with the last message sent
+        let request = UpdateLastMessageRequest(lastMessage: message, unreadCount: unreadCount)
+        service.updateLastMessage(request: request)
     }
 }
 
