@@ -32,10 +32,10 @@ class PushNotificationService {
                 }
             }, receiveValue: { [weak self] user in
                 guard let self = self else { return }
-                if let user = user,
-                   let token = user.fcmToken {
-                    self.sendMessageToUser(token: token,
-                                           title: user.name ?? "New Message",
+                if let receiverToken = user?.fcmToken,
+                   let senderName = UserDefaults.standard.currentUser?.name {
+                    self.sendMessageToUser(token: receiverToken,
+                                           title: senderName,
                                            message: body)
                 }
             })

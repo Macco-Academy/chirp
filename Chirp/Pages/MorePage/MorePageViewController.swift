@@ -95,6 +95,7 @@ extension MorePageViewController: UITableViewDelegate, UITableViewDataSource {
         case .contributors:
             let contactsVC = ContactsViewController()
             contactsVC.type = .contributors
+            contactsVC.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(contactsVC, animated: true)
         case .logout:
             AlertToast.showAlertWithButton(title: "Logout?",
@@ -103,8 +104,6 @@ extension MorePageViewController: UITableViewDelegate, UITableViewDataSource {
                                            buttonTitle: "Logout") {
                 self.morepageViewModel.logoutUser()
             }
-        default:
-            return
         }
     }
 }
