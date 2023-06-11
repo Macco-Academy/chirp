@@ -42,6 +42,9 @@
 		46CBF5E12A35F2DD00D59F82 /* GetContributorsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CBF5E02A35F2DD00D59F82 /* GetContributorsRequest.swift */; };
 		46EAB4562A350EA0002700E3 /* GetAllUsersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EAB4552A350EA0002700E3 /* GetAllUsersRequest.swift */; };
 		46EAB4582A351178002700E3 /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EAB4572A351178002700E3 /* ContactsViewModel.swift */; };
+		5F6778522A35EB070045199B /* UploadProfileImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6778512A35EB070045199B /* UploadProfileImageRequest.swift */; };
+		5F6778542A35EB110045199B /* CreateUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6778532A35EB110045199B /* CreateUserRequest.swift */; };
+		5F6778562A35EC020045199B /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6778552A35EC020045199B /* RegistrationViewModel.swift */; };
 		809A35A9CD04CE147A4F0B6F /* Pods_Chirp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6EC265D6F867AC01E03BB0 /* Pods_Chirp.framework */; };
 		E5193CCF2A34A93000BEFAB2 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5193CCE2A34A93000BEFAB2 /* Loader.swift */; };
 		E5193CD12A34A9C500BEFAB2 /* loader_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = E5193CD02A34A9C400BEFAB2 /* loader_animation.json */; };
@@ -94,6 +97,9 @@
 		46EAB4552A350EA0002700E3 /* GetAllUsersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllUsersRequest.swift; sourceTree = "<group>"; };
 		46EAB4572A351178002700E3 /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
 		529183B6341C55015C9D160F /* Pods-Chirp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chirp.debug.xcconfig"; path = "Target Support Files/Pods-Chirp/Pods-Chirp.debug.xcconfig"; sourceTree = "<group>"; };
+		5F6778512A35EB070045199B /* UploadProfileImageRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadProfileImageRequest.swift; sourceTree = "<group>"; };
+		5F6778532A35EB110045199B /* CreateUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserRequest.swift; sourceTree = "<group>"; };
+		5F6778552A35EC020045199B /* RegistrationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		B739D4B4B8974D1601276D8A /* Pods-Chirp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chirp.release.xcconfig"; path = "Target Support Files/Pods-Chirp/Pods-Chirp.release.xcconfig"; sourceTree = "<group>"; };
 		DB6EC265D6F867AC01E03BB0 /* Pods_Chirp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chirp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5193CCE2A34A93000BEFAB2 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
@@ -199,6 +205,8 @@
 				0BE0F48C2A34DCF500D581CA /* GetUserRequest.swift */,
 				EEA86C4D2A34FD2500D737DE /* SendOTPRequest.swift */,
 				46EAB4552A350EA0002700E3 /* GetAllUsersRequest.swift */,
+				5F6778532A35EB110045199B /* CreateUserRequest.swift */,
+				5F6778512A35EB070045199B /* UploadProfileImageRequest.swift */,
 				46CBF5E02A35F2DD00D59F82 /* GetContributorsRequest.swift */,
 			);
 			path = Requests;
@@ -221,6 +229,7 @@
 		467B96F62A30AB480012AB04 /* RegistrationPage */ = {
 			isa = PBXGroup;
 			children = (
+				5F6778552A35EC020045199B /* RegistrationViewModel.swift */,
 				467B96F72A30AB700012AB04 /* RegistrationViewController.swift */,
 			);
 			path = RegistrationPage;
@@ -469,6 +478,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F6778562A35EC020045199B /* RegistrationViewModel.swift in Sources */,
 				04163DFB2A326E8C003DF7B1 /* ContactsViewController.swift in Sources */,
 				042D1FA12A2FA765009D2573 /* AnimationName.swift in Sources */,
 				469CED902A339FD500AED489 /* CountdownView.swift in Sources */,
@@ -477,6 +487,7 @@
 				00950E5D2A3160F900795FC4 /* ChatsTableViewCell.swift in Sources */,
 				46EAB4582A351178002700E3 /* ContactsViewModel.swift in Sources */,
 				E5AC47E72A306AFD0055C83A /* UIImage+Extension.swift in Sources */,
+				5F6778522A35EB070045199B /* UploadProfileImageRequest.swift in Sources */,
 				467B96F82A30AB700012AB04 /* RegistrationViewController.swift in Sources */,
 				469CED8F2A339F1400AED489 /* PasscodeBoxView.swift in Sources */,
 				EEA86C502A34FFD500D737DE /* LoginViewModel.swift in Sources */,
@@ -484,6 +495,7 @@
 				00E4F8B42A3280E600C6FF0E /* Date+Extention.swift in Sources */,
 				00E4F8B02A32751C00C6FF0E /* Message.swift in Sources */,
 				00950E5C2A3160F900795FC4 /* ChatsViewController.swift in Sources */,
+				5F6778542A35EB110045199B /* CreateUserRequest.swift in Sources */,
 				00E4F8AE2A3274B600C6FF0E /* RecentChat.swift in Sources */,
 				042D1FA32A2FAE7D009D2573 /* UIColor+Extension.swift in Sources */,
 				04163DF42A320AA9003DF7B1 /* Contacts.swift in Sources */,

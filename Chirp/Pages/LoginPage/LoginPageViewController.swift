@@ -37,7 +37,7 @@ class LoginPageViewController: UIViewController {
     private let numberTextField : PhoneNumberTextField = {
         let textField = PhoneNumberTextField()
         textField.borderStyle = .roundedRect
-        textField.keyboardType = .namePhonePad
+        textField.keyboardType = .numberPad
         textField.translatesAutoresizingMaskIntoConstraints = false
         
         textField.withFlag = true
@@ -124,8 +124,9 @@ extension LoginPageViewController {
         if hasAccount {
             navigationController?.setViewControllers([HomeTabBarController()], animated: true)
         } else {
-            let controller = RegistrationViewController()
-            navigationController?.pushViewController(controller, animated: true)
+            let registrationVM = RegistrationViewModel(phoneNumber: phoneNumber)
+            let registrationVC = RegistrationViewController(viewModel: registrationVM)
+            navigationController?.pushViewController(registrationVC, animated: true)
         }
     }
     
