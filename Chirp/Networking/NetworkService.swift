@@ -13,8 +13,8 @@ private enum Table: String {
 }
 
 private enum Key: String {
-    case name, phoneNumber, profilePicture, id, messages, timestamp
-    case members
+    case name, phoneNumber, profilePicture, id
+    case members, messages, timestamp, isContributor
 }
 
 private enum Collection: String {
@@ -104,7 +104,6 @@ struct NetworkService {
         .eraseToAnyPublisher()
     }
     
-    
     func createUser(request: CreateUserRequest) -> AnyPublisher<User, Error> {
         Deferred {
             Future { promise in
@@ -130,6 +129,25 @@ struct NetworkService {
         .eraseToAnyPublisher()
     }
     
+    func getContributors(request: GetContributorsRequest) -> AnyPublisher<[User], Error> {
+        Deferred {
+            Future { promise in
+                db.collection(Table.users.rawValue)
+                    .whereField(Key.isContributor.rawValue, isEqualTo: true)
+                    .getDocuments(completion: { snapshot, error in
+                        if let error = error {
+                            promise(.failure(error))
+                        } else if let data = snapshot?.documents, let users = data.decode(to: [User].self){
+                            promise(.success(users))
+                        } else {
+                            promise(.success([]))
+                        }
+                    })
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    }
     
     func uploadProfileImage(request: UploadProfileImageRequest) -> AnyPublisher<URL, Error> {
         Deferred {
