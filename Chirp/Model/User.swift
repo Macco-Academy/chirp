@@ -17,6 +17,6 @@ struct User: Codable {
 
 extension User {
     var asContactDetail: ContactsDetails {
-        ContactsDetails(image: profilePicture, text: name ?? "")
+        ContactsDetails(id: id ?? "", image: profilePicture, text: name ?? "")
     }
 }

@@ -102,6 +102,7 @@ class ChatsTableViewCell: UITableViewCell {
         addSubview(lastMessageLabel)
         addSubview(lastMessageTimeLabel)
         addSubview(unreadMessageCounterLabel)
+        selectionStyle = .none
     }
     
     // Configure constraints for the subviews

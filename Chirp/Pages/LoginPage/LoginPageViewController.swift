@@ -122,7 +122,10 @@ extension LoginPageViewController {
     
     private func goToNextPage(hasAccount: Bool) {
         if hasAccount {
-            navigationController?.setViewControllers([HomeTabBarController()], animated: true)
+            let controller = HomeTabBarController()
+            controller.modalTransitionStyle = .crossDissolve
+            controller.modalPresentationStyle = .fullScreen
+            present(controller, animated: true)
         } else {
             let registrationVM = RegistrationViewModel(phoneNumber: phoneNumber)
             let registrationVC = RegistrationViewController(viewModel: registrationVM)

@@ -7,7 +7,8 @@
 
 import UIKit
 
-struct ContactsDetails{
+struct ContactsDetails {
+    let id: String
     let image : String?
     let text : String
 }
