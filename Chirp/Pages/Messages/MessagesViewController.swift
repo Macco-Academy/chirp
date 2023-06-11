@@ -107,6 +107,7 @@ class MessagesViewController: UIViewController {
         view.backgroundColor = .systemBackground
         setupTableView()
         setupTextView()
+        sendBtn.addTarget(self, action: #selector(self.sendBtnClicked), for: .touchUpInside)
     }
     
     override func viewDidLayoutSubviews() {
@@ -174,7 +175,7 @@ class MessagesViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateTextView(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
-    private func sendBtnClicked(sender: UIButton) {
+    @objc private func sendBtnClicked(sender: UIButton) {
         let text = textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { return }
         viewModel.sendMessage(text)

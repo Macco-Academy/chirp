@@ -53,6 +53,9 @@
 		E56C73282A2D216F00532B3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E56C73272A2D216F00532B3D /* Assets.xcassets */; };
 		E56C732B2A2D216F00532B3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56C73292A2D216F00532B3D /* LaunchScreen.storyboard */; };
 		E590250E2A364BAA00E05F36 /* UpdateFCMTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E590250D2A364BAA00E05F36 /* UpdateFCMTokenRequest.swift */; };
+		E59025102A366ACF00E05F36 /* SendMessageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E590250F2A366ACF00E05F36 /* SendMessageRequest.swift */; };
+		E59025122A366B0700E05F36 /* UpdateLastMessageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59025112A366B0700E05F36 /* UpdateLastMessageRequest.swift */; };
+		E59025142A366BDD00E05F36 /* ChatResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59025132A366BDD00E05F36 /* ChatResponse.swift */; };
 		E5AC47E72A306AFD0055C83A /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AC47E62A306AFD0055C83A /* UIImage+Extension.swift */; };
 		E5DBA5A12A34DE230032BD95 /* FIRDocument+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DBA5A02A34DE230032BD95 /* FIRDocument+Extension.swift */; };
 		E5DBA5A32A34E6620032BD95 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DBA5A22A34E6620032BD95 /* AppError.swift */; };
@@ -121,6 +124,9 @@
 		E56C732A2A2D216F00532B3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E56C732C2A2D216F00532B3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E590250D2A364BAA00E05F36 /* UpdateFCMTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateFCMTokenRequest.swift; sourceTree = "<group>"; };
+		E590250F2A366ACF00E05F36 /* SendMessageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageRequest.swift; sourceTree = "<group>"; };
+		E59025112A366B0700E05F36 /* UpdateLastMessageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLastMessageRequest.swift; sourceTree = "<group>"; };
+		E59025132A366BDD00E05F36 /* ChatResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatResponse.swift; sourceTree = "<group>"; };
 		E5AC47E62A306AFD0055C83A /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		E5DBA5A02A34DE230032BD95 /* FIRDocument+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FIRDocument+Extension.swift"; sourceTree = "<group>"; };
 		E5DBA5A22A34E6620032BD95 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
@@ -203,6 +209,7 @@
 		0BE0F4832A34B6BC00D581CA /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				E59025152A366BE400E05F36 /* Responses */,
 				0BE0F4872A34C42400D581CA /* Requests */,
 				0BE0F4842A34B6D600D581CA /* NetworkService.swift */,
 			);
@@ -222,6 +229,8 @@
 				E5DBA5B62A35F2DB0032BD95 /* FetchMessagesRequest.swift */,
 				E5DBA5B82A35F6250032BD95 /* CreateNewChatRequest.swift */,
 				E590250D2A364BAA00E05F36 /* UpdateFCMTokenRequest.swift */,
+				E590250F2A366ACF00E05F36 /* SendMessageRequest.swift */,
+				E59025112A366B0700E05F36 /* UpdateLastMessageRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -362,6 +371,14 @@
 				E56C732C2A2D216F00532B3D /* Info.plist */,
 			);
 			path = Chirp;
+			sourceTree = "<group>";
+		};
+		E59025152A366BE400E05F36 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				E59025132A366BDD00E05F36 /* ChatResponse.swift */,
+			);
+			path = Responses;
 			sourceTree = "<group>";
 		};
 		E5AC47DF2A305C270055C83A /* Extensions */ = {
@@ -552,6 +569,7 @@
 				EEA86C4E2A34FD2500D737DE /* SendOTPRequest.swift in Sources */,
 				E5DBA5A82A35C7FD0032BD95 /* MessagesViewModel.swift in Sources */,
 				467B96F82A30AB700012AB04 /* RegistrationViewController.swift in Sources */,
+				E59025102A366ACF00E05F36 /* SendMessageRequest.swift in Sources */,
 				00E4F8B22A32777A00C6FF0E /* ChatsListViewModel.swift in Sources */,
 				46EAB4562A350EA0002700E3 /* GetAllUsersRequest.swift in Sources */,
 				467B97052A30F8610012AB04 /* AlertToast.swift in Sources */,
@@ -561,6 +579,7 @@
 				469CED8C2A32524B00AED489 /* CustomHeader.swift in Sources */,
 				469CED8A2A32110600AED489 /* MorePageViewController.swift in Sources */,
 				469CED882A3210F700AED489 /* MorePageTableViewCell.swift in Sources */,
+				E59025142A366BDD00E05F36 /* ChatResponse.swift in Sources */,
 				E56C731F2A2D216D00532B3D /* AppDelegate.swift in Sources */,
 				04163E042A326EC4003DF7B1 /* PasscodeView.swift in Sources */,
 				EEB1A4912A312A5500F6899D /* HomeTabBarController.swift in Sources */,
@@ -573,6 +592,7 @@
 				467B97042A30F8610012AB04 /* Button.swift in Sources */,
 				E5DBA5A12A34DE230032BD95 /* FIRDocument+Extension.swift in Sources */,
 				E5DBA5A32A34E6620032BD95 /* AppError.swift in Sources */,
+				E59025122A366B0700E05F36 /* UpdateLastMessageRequest.swift in Sources */,
 				467B96FB2A30ABB10012AB04 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

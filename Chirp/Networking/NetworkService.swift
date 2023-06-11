@@ -208,13 +208,8 @@ struct NetworkService {
                 db
                     .collection(Table.chats.rawValue)
                     .document(request.id)
-                    .setData(request.asDictionary) { error in
-                        if let error = error {
-                            promise(.failure(error))
-                        } else {
-                            promise(.success(true))
-                        }
-                    }
+                    .updateData(request.asDictionary)
+                promise(.success(true))
             }
         }
         .receive(on: DispatchQueue.main)
@@ -227,6 +222,60 @@ struct NetworkService {
             .collection(Table.users.rawValue)
             .document(uid)
             .updateData([Key.fcmToken.rawValue: request.token])
+    }
+    
+    func fetchChatBy(id: String) -> AnyPublisher<ChatResponse?, Error> {
+        Deferred {
+            Future { promise in
+                db
+                    .collection(Table.chats.rawValue)
+                    .document(id)
+                    .getDocument(completion: { document, error in
+                        if let error = error {
+                            promise(.failure(error))
+                        } else {
+                            if let data = document?.data() {
+                                guard let chat = data.decode(to: ChatResponse?.self) else {
+                                    promise(.failure(AppError.errorDecoding))
+                                    return
+                                }
+                                promise(.success(chat))
+                            } else {
+                                promise(.success(nil))
+                            }
+                        }
+                    })
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    }
+    
+    func sendMessage(request: SendMessageRequest) -> AnyPublisher<Bool, Error> {
+        Deferred {
+            Future { promise in
+                db
+                    .collection(Table.chats.rawValue)
+                    .document(request.chatId ?? "")
+                    .collection(Collection.messages.rawValue)
+                    .addDocument(data: request.asDictionary) { error in
+                        if let error = error {
+                            promise(.failure(error))
+                        } else {
+                            promise(.success(true))
+                        }
+                    }
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    }
+    
+    func updateLastMessage(request: UpdateLastMessageRequest) {
+        db
+            .collection(Table.chats.rawValue)
+            .document(request.lastMessage.chatId ?? "")
+            .updateData(request.asDictionary)
     }
 }
 
