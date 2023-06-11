@@ -43,7 +43,7 @@ class ContactsTableViewCell: UITableViewCell {
     let typesLabel: UILabel = {
         let label = UILabel()
         label.text = "Test"
-        label.textColor = .black
+        label.textColor = .label
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textAlignment = .left
         return label
