@@ -39,6 +39,7 @@
 		469CED8C2A32524B00AED489 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469CED8B2A32524B00AED489 /* CustomHeader.swift */; };
 		469CED8F2A339F1400AED489 /* PasscodeBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04163E012A326EC4003DF7B1 /* PasscodeBoxView.swift */; };
 		469CED902A339FD500AED489 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04163DFF2A326EC4003DF7B1 /* CountdownView.swift */; };
+		46CBF5E12A35F2DD00D59F82 /* GetContributorsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CBF5E02A35F2DD00D59F82 /* GetContributorsRequest.swift */; };
 		46EAB4562A350EA0002700E3 /* GetAllUsersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EAB4552A350EA0002700E3 /* GetAllUsersRequest.swift */; };
 		46EAB4582A351178002700E3 /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EAB4572A351178002700E3 /* ContactsViewModel.swift */; };
 		5F6778522A35EB070045199B /* UploadProfileImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6778512A35EB070045199B /* UploadProfileImageRequest.swift */; };
@@ -101,6 +102,7 @@
 		469CED872A3210F700AED489 /* MorePageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorePageTableViewCell.swift; sourceTree = "<group>"; };
 		469CED892A32110600AED489 /* MorePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorePageViewController.swift; sourceTree = "<group>"; };
 		469CED8B2A32524B00AED489 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
+		46CBF5E02A35F2DD00D59F82 /* GetContributorsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContributorsRequest.swift; sourceTree = "<group>"; };
 		46EAB4552A350EA0002700E3 /* GetAllUsersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllUsersRequest.swift; sourceTree = "<group>"; };
 		46EAB4572A351178002700E3 /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
 		529183B6341C55015C9D160F /* Pods-Chirp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chirp.debug.xcconfig"; path = "Target Support Files/Pods-Chirp/Pods-Chirp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				46EAB4552A350EA0002700E3 /* GetAllUsersRequest.swift */,
 				5F6778532A35EB110045199B /* CreateUserRequest.swift */,
 				5F6778512A35EB070045199B /* UploadProfileImageRequest.swift */,
+				46CBF5E02A35F2DD00D59F82 /* GetContributorsRequest.swift */,
 				E5DBA5B62A35F2DB0032BD95 /* FetchMessagesRequest.swift */,
 				E5DBA5B82A35F6250032BD95 /* CreateNewChatRequest.swift */,
 			);
@@ -539,6 +542,7 @@
 				E5DBA5B52A35F15B0032BD95 /* Encodable+Extension.swift in Sources */,
 				E5DBA5A62A35C7E40032BD95 /* MessagesViewController.swift in Sources */,
 				04163DFC2A326E8C003DF7B1 /* ContactsTableViewCell.swift in Sources */,
+				46CBF5E12A35F2DD00D59F82 /* GetContributorsRequest.swift in Sources */,
 				0BA0087F2A34E60700040E43 /* OTPViewModel.swift in Sources */,
 				E5AC47E72A306AFD0055C83A /* UIImage+Extension.swift in Sources */,
 				EEA86C4E2A34FD2500D737DE /* SendOTPRequest.swift in Sources */,

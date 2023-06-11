@@ -14,6 +14,8 @@ class MorePageViewController: UIViewController {
         case contributors = "Contributors"
         case logout = "Logout"
     }
+    
+    let rows: [CellNames] = [.pushNotification, .contributors, .logout]
         
     let moreTableView: UITableView = {
         let tableView = UITableView()
@@ -62,15 +64,22 @@ class MorePageViewController: UIViewController {
 
 extension MorePageViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CellNames.allCases.count
+        return rows.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = moreTableView.dequeueReusableCell(withIdentifier: MorePageTableViewCell.identifier, for: indexPath) as! MorePageTableViewCell
-        let arrayOfNames: [CellNames] = [.pushNotification, .contributors, .logout]
-        let name = arrayOfNames[indexPath.row].rawValue
+        let name = rows[indexPath.row].rawValue
         cell.titleLabel.text = name
         cell.cellImage.image = UIImage(named: name)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if rows[indexPath.row] == .contributors {
+            let contactsVC = ContactsViewController()
+            contactsVC.type = .contributors
+            navigationController?.pushViewController(contactsVC, animated: true)
+        }
     }
 }
