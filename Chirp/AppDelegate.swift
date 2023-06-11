@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseCore
+import IQKeyboardManagerSwift
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -18,8 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backIndicatorImage = .backTailedArrow
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = .backTailedArrow
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000, vertical: 0), for:UIBarMetrics.default)
-        
+        UITextField.appearance().tintColor = .appBrown
+        UITextView.appearance().tintColor = .appBrown
         FirebaseApp.configure()
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        IQKeyboardManager.shared.toolbarTintColor = .appBrown_white
 
         return true
     }

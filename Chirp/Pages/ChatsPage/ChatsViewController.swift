@@ -9,10 +9,10 @@ import UIKit
 
 // TODO: Remove
 let dummyData: [RecentChat] = [
-    RecentChat(id: "123", members: [User(id: "user1", name: "Tony", profilePicture: ""), User(id: "user2", name: "James", profilePicture: "")], lastMessage: Message(senderId: "user1", message: "abucdefg", timeStamp: Date()), unreadCount: ["user1": 2]),
-    RecentChat(id: "123", members: [User(id: "user1", name: "Tony", profilePicture: ""), User(id: "user2", name: "Heidi Tom", profilePicture: "")], lastMessage: Message(senderId: "user1", message: "abucdefg", timeStamp: Calendar.current.date(byAdding: .day, value: -1, to: Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date())!)!), unreadCount: ["user1": 2]),
-    RecentChat(id: "123", members: [User(id: "user1",name: "Tony", profilePicture: ""), User(id: "user2",name: "Tom Hanks", profilePicture: "")], lastMessage: Message(senderId: "user1", message: "abucdefg", timeStamp: Date()), unreadCount: ["user1": 1232]),
-    RecentChat(id: "123", members: [User(id: "user1",name: "Tony", profilePicture: ""), User(id: "user2",name: "emmanuel this is a long name and to check it", profilePicture: "")], lastMessage: Message(senderId: "user1", message: "abucdefg", timeStamp: Calendar.current.date(byAdding: .day, value: -1, to: Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date())!)!), unreadCount: ["user1": 0])
+    RecentChat(id: "123", members: [User(id: "user1", name: "Tony", profilePicture: ""), User(id: "user2", name: "James", profilePicture: "")], lastMessage: Message(id: "", chatId: "", senderId: "user1", message: "abucdefg", timestamp: Date()), unreadCount: ["user1": 2]),
+    RecentChat(id: "123", members: [User(id: "user1", name: "Tony", profilePicture: ""), User(id: "user2", name: "Heidi Tom", profilePicture: "")], lastMessage: Message(id: "", chatId: "", senderId: "user1", message: "abucdefg", timestamp: Calendar.current.date(byAdding: .day, value: -1, to: Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date())!)!), unreadCount: ["user1": 2]),
+    RecentChat(id: "123", members: [User(id: "user1",name: "Tony", profilePicture: ""), User(id: "user2",name: "Tom Hanks", profilePicture: "")], lastMessage: Message(id: "", chatId: "", senderId: "user1", message: "abucdefg", timestamp: Date()), unreadCount: ["user1": 1232]),
+    RecentChat(id: "123", members: [User(id: "user1",name: "Tony", profilePicture: ""), User(id: "user2",name: "emmanuel this is a long name and to check it", profilePicture: "")], lastMessage: Message(id: "", chatId: "", senderId: "user1", message: "abucdefg", timestamp: Calendar.current.date(byAdding: .day, value: -1, to: Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date())!)!), unreadCount: ["user1": 0])
 ]
 
 class ChatsViewController: UIViewController {
@@ -86,7 +86,12 @@ extension ChatsViewController: UITableViewDataSource {
 }
 
 extension ChatsViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewModel = MessagesViewModel(chatId: "chatId")
+        let controller = MessagesViewController(viewModel: viewModel)
+        controller.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }
 
 extension ChatsViewController: UISearchResultsUpdating, UISearchBarDelegate {

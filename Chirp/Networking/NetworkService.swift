@@ -9,11 +9,11 @@ import Combine
 import Firebase
 
 private enum Table: String {
-    case users
+    case users, chats
 }
 
 private enum Key: String {
-    case name, phoneNumber, profilePicture, isContributor
+    case name, phoneNumber, profilePicture, id, messages, timestamp, isContributor
 }
 
 private enum Collection: String {
@@ -107,6 +107,7 @@ struct NetworkService {
         Deferred {
             Future { promise in
                 db.collection(Table.users.rawValue).document(request.userID).setData([
+                    Key.id.rawValue: request.userID,
                     Key.name.rawValue: request.name,
                     Key.phoneNumber.rawValue: request.phoneNumber,
                     Key.profilePicture.rawValue: request.profilePicture ?? ""
@@ -171,6 +172,48 @@ struct NetworkService {
                         promise(.success(url))
                     }
                 }
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    }
+    
+    func fetchMessages(request: FetchMessagesRequest) -> AnyPublisher<[Message], Error> {
+        let promise = PassthroughSubject<[Message], Error>()
+        db
+            .collection(Table.chats.rawValue)
+            .document(request.id)
+            .collection(Key.messages.rawValue)
+            .order(by: Key.timestamp.rawValue)
+            .addSnapshotListener({ snapshot, error in
+                if let error = error {
+                    promise.send(completion: .failure(error))
+                } else {
+                    if let data = snapshot?.documents,
+                       let messages = data.decode(to: [Message].self) {
+                        promise.send(messages)
+                    } else {
+                        promise.send([])
+                    }
+                    
+                }
+            })
+        return promise.eraseToAnyPublisher()
+    }
+    
+    func createNewChat(request: CreateNewChatRequest) -> AnyPublisher<Bool, Error> {
+        Deferred {
+            Future { promise in
+                db
+                    .collection(Table.chats.rawValue)
+                    .document(request.id)
+                    .setData(request.asDictionary) { error in
+                        if let error = error {
+                            promise(.failure(error))
+                        } else {
+                            promise(.success(true))
+                        }
+                    }
             }
         }
         .receive(on: DispatchQueue.main)

@@ -23,9 +23,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if Auth.auth().currentUser != nil && UserDefaults.standard.currentUser != nil {
             controller = HomeTabBarController()
         } else {
-            controller = LoginPageViewController()
+            controller = UINavigationController(rootViewController: LoginPageViewController())
         }
-        window?.rootViewController = UINavigationController(rootViewController: controller)
+        window?.rootViewController = controller
         window?.makeKeyAndVisible()
     }
 

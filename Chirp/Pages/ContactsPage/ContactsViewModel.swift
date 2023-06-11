@@ -64,7 +64,8 @@ class ContactsViewModel {
     
     private func setupTableData(users: [User]) -> [Contacts] {
         var grouped: [String: [ContactsDetails]] = [:]
-        users.forEach {
+        users.filter { $0.id != nil && $0.id != UserDefaults.standard.currentUser?.id }
+            .forEach {
             let key = "\(String(describing: $0.asContactDetail.text.first))"
             var users = grouped[key] ?? []
             users.append($0.asContactDetail)
@@ -99,6 +100,26 @@ class ContactsViewModel {
             }
         }
         self.tableData.send(filteredData)
+    }
+    
+    func startChat(with user2Id: String) {
+        guard let user1Id = UserDefaults.standard.currentUser?.id,
+              !user2Id.isEmpty else {
+            AlertToast.showAlert(message: "Invalid User", type: .error)
+            return
+        }
+        let request = CreateNewChatRequest(id: user2Id.uniqueChatIdWithMe,
+                                           members: [user1Id, user2Id])
+        service.createNewChat(request: request)
+            .sink { response in
+                switch response {
+                case .failure(let error):
+                    AlertToast.showAlert(message: error.localizedDescription, type: .error)
+                default: break
+                }
+            } receiveValue: { _ in }
+            .store(in: &cancellables)
+        
     }
     
 }
