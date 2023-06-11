@@ -53,7 +53,7 @@ class ChatsTableViewCell: UITableViewCell {
     
     lazy var unreadMessageCounterLabel: UILabel = {
         let label = UILabel()
-        label.text = "10"
+        label.text = "0"
         label.textColor = .white
         label.backgroundColor = .red
         label.clipsToBounds = true
@@ -72,17 +72,17 @@ class ChatsTableViewCell: UITableViewCell {
     }()
     
     // Setup tableview cell
-    func setup(viewModel: ChatsListViewModel) {
+    func setup(viewModel: ChatViewModel) {
         populateData(viewModel: viewModel)
         setupViews()
         setupConstraints()
     }
     
-    private func populateData(viewModel: ChatsListViewModel) {
+    private func populateData(viewModel: ChatViewModel) {
         fullNameLabel.text = viewModel.title
         lastMessageLabel.text = viewModel.description
-        lastMessageTimeLabel.text = viewModel.timeStamp?.asTimeAgo
-        unreadMessageCounterLabel.text = "\(viewModel.unreadCount ?? 0)"
+        lastMessageTimeLabel.text = viewModel.timestamp?.asTimeAgo
+        unreadMessageCounterLabel.text = viewModel.unreadCount
         unreadMessageCounterLabel.alpha = unreadMessageCounterLabel.text == "0" ? 0 : 1
         friendImageView.kf.setImage(with: URL(string: viewModel.imageUrl ?? ""), placeholder: UIImage.placeholderImage)
     }

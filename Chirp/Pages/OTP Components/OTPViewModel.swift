@@ -27,10 +27,9 @@ class OTPViewModel {
                     AlertToast.showAlert(message: error.localizedDescription, type: .error)
                     LoaderView.shared.hide()
                 }
-            } receiveValue: {[weak self] _ in
+            } receiveValue: { [weak self] _ in
                 self?.getUserDetails()
             }
-
             .store(in: &cancellables)
     }
     
@@ -40,30 +39,17 @@ class OTPViewModel {
         service.getUserData(request: request)
             .sink { response in
                 switch response {
-                    
                 case .finished:
-                break
+                    break
                 case .failure(let error):
                     AlertToast.showAlert(message: error.localizedDescription, type: .error)
                     LoaderView.shared.hide()
-
                 }
             } receiveValue: { [weak self] user in
                 UserDefaults.standard.currentUser = user
                 self?.foundUser.send(user != nil)
                 LoaderView.shared.hide()
-
             }
-
             .store(in: &cancellables)
-        
-        
     }
-    
-    
-    
-    
-    
-    
-    
 }

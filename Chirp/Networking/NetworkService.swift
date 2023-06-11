@@ -9,11 +9,12 @@ import Combine
 import Firebase
 
 private enum Table: String {
-    case users
+    case users, chats
 }
 
 private enum Key: String {
     case name, phoneNumber, profilePicture
+    case members, timestamp
 }
 
 private enum Collection: String {
@@ -23,6 +24,7 @@ private enum Collection: String {
 struct NetworkService {
     static let shared = NetworkService()
     private let db = Firestore.firestore()
+    private var newChatListener: ListenerRegistration?
     
     func sendOTPToPhoneNumber(request: SendOTPRequest )  -> AnyPublisher<String?, Error> {
         Deferred{
@@ -68,17 +70,14 @@ struct NetworkService {
                         } else if let data = snapshot?.data(){
                             if let user = data.decode(to: User.self) {
                                 promise(.success(user))
-
                             } else {
-                                
+                                promise(.failure(AppError.errorDecoding))
                             }
-                            
                         } else {
                             promise(.success(nil))
                         }
                     }
             }
-            
         }
         .receive(on: DispatchQueue.main)
         .eraseToAnyPublisher()
@@ -153,6 +152,28 @@ struct NetworkService {
                         promise(.success(url))
                     }
                 }
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    }
+    
+    
+    func getUserChats(request: GetUserChatsRequest) -> AnyPublisher<[RecentChatResponse], Error> {
+        Deferred {
+            Future { promise in
+                db.collection(Table.chats.rawValue)
+                    .whereField(Key.members.rawValue, arrayContains: request.userID)
+                    .order(by: Key.timestamp.rawValue, descending: false)
+                    .getDocuments { snapshot, error in
+                        if let error = error {
+                            promise(.failure(error))
+                            return
+                        }
+                        
+                        let response = snapshot?.documents.decode(to: [RecentChatResponse].self)
+                        promise(.success(response ?? []))
+                    }
             }
         }
         .receive(on: DispatchQueue.main)

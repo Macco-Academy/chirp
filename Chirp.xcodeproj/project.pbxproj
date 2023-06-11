@@ -44,6 +44,8 @@
 		5F6778522A35EB070045199B /* UploadProfileImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6778512A35EB070045199B /* UploadProfileImageRequest.swift */; };
 		5F6778542A35EB110045199B /* CreateUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6778532A35EB110045199B /* CreateUserRequest.swift */; };
 		5F6778562A35EC020045199B /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6778552A35EC020045199B /* RegistrationViewModel.swift */; };
+		5F6778582A35FB090045199B /* GetUserChatsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6778572A35FB090045199B /* GetUserChatsRequest.swift */; };
+		5F67785A2A362C020045199B /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6778592A362C020045199B /* ChatViewModel.swift */; };
 		809A35A9CD04CE147A4F0B6F /* Pods_Chirp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB6EC265D6F867AC01E03BB0 /* Pods_Chirp.framework */; };
 		E5193CCF2A34A93000BEFAB2 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5193CCE2A34A93000BEFAB2 /* Loader.swift */; };
 		E5193CD12A34A9C500BEFAB2 /* loader_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = E5193CD02A34A9C400BEFAB2 /* loader_animation.json */; };
@@ -98,6 +100,8 @@
 		5F6778512A35EB070045199B /* UploadProfileImageRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadProfileImageRequest.swift; sourceTree = "<group>"; };
 		5F6778532A35EB110045199B /* CreateUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserRequest.swift; sourceTree = "<group>"; };
 		5F6778552A35EC020045199B /* RegistrationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		5F6778572A35FB090045199B /* GetUserChatsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserChatsRequest.swift; sourceTree = "<group>"; };
+		5F6778592A362C020045199B /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		B739D4B4B8974D1601276D8A /* Pods-Chirp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chirp.release.xcconfig"; path = "Target Support Files/Pods-Chirp/Pods-Chirp.release.xcconfig"; sourceTree = "<group>"; };
 		DB6EC265D6F867AC01E03BB0 /* Pods_Chirp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chirp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5193CCE2A34A93000BEFAB2 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
@@ -134,6 +138,7 @@
 			children = (
 				00950E5B2A3160F900795FC4 /* ChatsTableViewCell.swift */,
 				00950E5A2A3160F800795FC4 /* ChatsViewController.swift */,
+				5F6778592A362C020045199B /* ChatViewModel.swift */,
 				00E4F8B12A32777A00C6FF0E /* ChatsListViewModel.swift */,
 			);
 			path = ChatsPage;
@@ -205,6 +210,7 @@
 				46EAB4552A350EA0002700E3 /* GetAllUsersRequest.swift */,
 				5F6778532A35EB110045199B /* CreateUserRequest.swift */,
 				5F6778512A35EB070045199B /* UploadProfileImageRequest.swift */,
+				5F6778572A35FB090045199B /* GetUserChatsRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -490,6 +496,7 @@
 				EEA86C502A34FFD500D737DE /* LoginViewModel.swift in Sources */,
 				E5193CCF2A34A93000BEFAB2 /* Loader.swift in Sources */,
 				00E4F8B42A3280E600C6FF0E /* Date+Extention.swift in Sources */,
+				5F6778582A35FB090045199B /* GetUserChatsRequest.swift in Sources */,
 				00E4F8B02A32751C00C6FF0E /* Message.swift in Sources */,
 				00950E5C2A3160F900795FC4 /* ChatsViewController.swift in Sources */,
 				5F6778542A35EB110045199B /* CreateUserRequest.swift in Sources */,
@@ -517,6 +524,7 @@
 				E56C73212A2D216D00532B3D /* SceneDelegate.swift in Sources */,
 				0BE0F48D2A34DCF500D581CA /* GetUserRequest.swift in Sources */,
 				0BE0F4892A34C51100D581CA /* VerifyOTPRequest.swift in Sources */,
+				5F67785A2A362C020045199B /* ChatViewModel.swift in Sources */,
 				0BE0F4852A34B6D600D581CA /* NetworkService.swift in Sources */,
 				467B97042A30F8610012AB04 /* Button.swift in Sources */,
 				E5DBA5A12A34DE230032BD95 /* FIRDocument+Extension.swift in Sources */,
