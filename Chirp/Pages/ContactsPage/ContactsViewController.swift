@@ -111,7 +111,7 @@ extension ContactsViewController :UITableViewDataSource, UITableViewDelegate {
         let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 20))
         header.backgroundColor = .systemGroupedBackground
         let title = UILabel(frame: CGRect(x: 20, y: 5, width: 20, height: 20))
-        title.textColor = .black
+        title.textColor = .label
         title.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         guard viewModel.tableData.value.count > section else {return header}
         title.text = viewModel.tableData.value[section].sectionName

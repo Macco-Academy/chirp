@@ -49,7 +49,7 @@ class CustomHeader: UITableViewHeaderFooterView {
     }
     
     private func basicSetup(){
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .systemBackground
         setupSubviews()
         setupConstraints()
         setupProfilePicture()
