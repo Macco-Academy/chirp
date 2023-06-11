@@ -204,24 +204,22 @@ struct NetworkService {
     }
     
     func getUserChats(request: GetUserChatsRequest) -> AnyPublisher<[RecentChatResponse], Error> {
-        Deferred {
-            Future { promise in
-                db.collection(Table.chats.rawValue)
-                    .whereField(Key.members.rawValue, arrayContains: request.userID)
-                    .order(by: Key.timestamp.rawValue, descending: false)
-                    .getDocuments { snapshot, error in
-                        if let error = error {
-                            promise(.failure(error))
-                            return
-                        }
-                        
-                        let response = snapshot?.documents.decode(to: [RecentChatResponse].self)
-                        promise(.success(response ?? []))
-                    }
-            }
-        }
-        .receive(on: DispatchQueue.main)
-        .eraseToAnyPublisher()
+        let promise = PassthroughSubject<[RecentChatResponse], Error>()
+        
+        db.collection(Table.chats.rawValue)
+            .order(by: Key.timestamp.rawValue, descending: false)
+            .whereField(Key.members.rawValue, arrayContains: request.userID)
+            .addSnapshotListener({ snapshot, error in
+                if let error = error {
+                    promise.send(completion: .failure(error))
+                    return
+                }
+                
+                let response = snapshot?.documents.decode(to: [RecentChatResponse].self)
+                promise.send(response ?? [])
+            })
+        
+        return promise.eraseToAnyPublisher()
     }
 }
 

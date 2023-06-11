@@ -36,9 +36,7 @@ class ChatViewModel {
     }
     
     var timestamp: Date? {
-        guard let timestamp = chat.timestamp else { return nil }
-        
-        return Date(timeIntervalSince1970: TimeInterval(timestamp))
+        return chat.timestamp
     }
     
     var unreadCount: String? {

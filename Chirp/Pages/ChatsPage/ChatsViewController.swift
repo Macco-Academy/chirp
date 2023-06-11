@@ -71,6 +71,12 @@ class ChatsViewController: UIViewController {
                 self?.chatsTableView.reloadData()
             }
         }.store(in: &cancellables)
+        
+        viewModel.chatsFiltered.sink { [weak self] chatsFiltered in
+            if chatsFiltered {
+                self?.chatsTableView.reloadData()
+            }
+        }.store(in: &cancellables)
     }
 }
 
@@ -110,17 +116,8 @@ extension ChatsViewController: UISearchResultsUpdating, UISearchBarDelegate {
     }
     
     private func updateSearchResult() {
-        //TODO: Update Search
-//        guard let search = searchController.searchBar.searchTextField.text,
-//              !search.isEmpty else {
-//            self.list = fullList
-//            chatsTableView.reloadData()
-//            return
-//        }
-//        list = fullList.filter {
-//            $0.title?.lowercased().contains(search.lowercased()) ?? false
-//        }
-//        chatsTableView.reloadData()
+        if let searchQuery = searchController.searchBar.searchTextField.text {
+            viewModel.searchQuery = searchQuery
+        }
     }
-    
 }

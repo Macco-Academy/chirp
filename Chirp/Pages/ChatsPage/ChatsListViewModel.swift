@@ -10,10 +10,12 @@ import Combine
 
 class ChatsListViewModel {
 
-    var searchQuery = ""
+    var searchQuery = "" {
+        didSet { updateSearchResults() }
+    }
 
-    private var chatViewModels = [ChatViewModel]()
-    private var filteredViewModels = [ChatViewModel]()
+    private var fullList = [ChatViewModel]()
+    private var displayList = [ChatViewModel]()
 
     private let service = NetworkService.shared
     private var cancellables: Set<AnyCancellable> = []
@@ -22,13 +24,28 @@ class ChatsListViewModel {
     var newChatsFetched = PassthroughSubject<Bool, Never>()
 
     func numberOfRows() -> Int {
-        return chatViewModels.count
+        return displayList.count
     }
 
     func model(at index: Int) -> ChatViewModel {
-        return chatViewModels[index]
+        return displayList[index]
     }
 
+    // Search
+    private func updateSearchResults() {
+        guard !searchQuery.isEmpty else {
+            displayList = fullList
+            chatsFiltered.send(true)
+            return
+        }
+        
+        displayList = fullList.filter {
+            $0.title?.lowercased().contains(searchQuery.lowercased()) ?? false
+        }
+        
+        chatsFiltered.send(true)
+    }
+    
     // Get Chats Response
     func getRecentChats() {
         guard let userID = UserDefaults.standard.currentUser?.id else {
@@ -56,11 +73,14 @@ class ChatsListViewModel {
     private func createChats(from responses: [RecentChatResponse]) {
         guard !responses.isEmpty else { return }
 
+        fullList = []
+        displayList = []
         var requestCounter = 0
         let maxCount = (min(10, responses.count))
 
         responses.forEach { response in
-            guard let memberIDs = response.members, memberIDs.count == 2 else { return }
+            guard let memberIDs = response.members,
+                    memberIDs.count == 2 else { return }
             
             memberIDs.forEach { memberID in
                 guard let currentUser = UserDefaults.standard.currentUser,
@@ -82,12 +102,17 @@ class ChatsListViewModel {
                                                 lastMessage: response.lastMessage,
                                                 timestamp: response.timestamp,
                                                 unreadCount: response.unreadCount)
-                    self?.chatViewModels.append(ChatViewModel(chat: recentChat))
                     
-                    if requestCounter == maxCount { self?.newChatsFetched.send(true) }
+                    if !response.lastMessage.isEmpty {
+                        self?.fullList.append(ChatViewModel(chat: recentChat))
+                    }
+                    
+                    if requestCounter == maxCount {
+                        self?.displayList = self?.fullList ?? []
+                        self?.newChatsFetched.send(true)
+                    }
                 }
                 .store(in: &cancellables)
-
             }
         }
     }

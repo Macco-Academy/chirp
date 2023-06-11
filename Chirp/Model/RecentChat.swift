@@ -11,7 +11,7 @@ struct RecentChatResponse: Codable {
     let id: String?
     let members: [String]?
     let lastMessage: String
-    let timestamp: Int?
+    let timestamp: Date?
     let unreadCount: [String: Int]?
 }
 
@@ -19,6 +19,6 @@ struct RecentChat: Codable {
     let id: String?
     let members: [User]?
     let lastMessage: String?
-    let timestamp: Int?
+    let timestamp: Date?
     let unreadCount: [String: Int]?
 }
