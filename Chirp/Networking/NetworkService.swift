@@ -12,6 +12,13 @@ private enum Table: String {
     case users
 }
 
+private enum Key: String {
+    case name, phoneNumber, profilePicture
+}
+
+private enum Collection: String {
+    case images
+}
 
 struct NetworkService {
     static let shared = NetworkService()
@@ -96,5 +103,60 @@ struct NetworkService {
         .eraseToAnyPublisher()
     }
     
+    
+    func createUser(request: CreateUserRequest) -> AnyPublisher<User, Error> {
+        Deferred {
+            Future { promise in
+                db.collection(Table.users.rawValue).document(request.userID).setData([
+                    Key.name.rawValue: request.name,
+                    Key.phoneNumber.rawValue: request.phoneNumber,
+                    Key.profilePicture.rawValue: request.profilePicture ?? ""
+                ]) { error in
+                    if let error = error {
+                        promise(.failure(error))
+                        return
+                    }
+                    
+                    let user = User(id: request.userID, name: request.name,
+                                    phoneNumber: request.phoneNumber,
+                                    profilePicture: request.profilePicture)
+                    promise(.success(user))
+                }
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    }
+    
+    
+    func uploadProfileImage(request: UploadProfileImageRequest) -> AnyPublisher<URL, Error> {
+        Deferred {
+            Future { promise in
+                
+                let storageRef = Storage.storage().reference()
+                let imagesCollectionRef = storageRef.child(Collection.images.rawValue)
+                let fileName = "profileImage_\(request.userID)_\(request.timestamp).\(request.imageExtension)"
+                let imageRef = imagesCollectionRef.child(fileName)
+                
+                imageRef.putData(request.imageData) { metadata, error in
+                    if let error = error {
+                        promise(.failure(error))
+                        return
+                    }
+                    
+                    imageRef.downloadURL { url, error in
+                        guard let url = url else {
+                            promise(.failure(error ?? AppError.imageUploadFailed))
+                            return
+                        }
+                        
+                        promise(.success(url))
+                    }
+                }
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    }
 }
 
