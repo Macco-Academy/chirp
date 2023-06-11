@@ -57,9 +57,7 @@ class MorePageViewController: UIViewController {
     
      func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = moreTableView.dequeueReusableHeaderFooterView(withIdentifier: CustomHeader.identifier) as! CustomHeader
-         view.profilePicture.image = UIImage(named: "mountains")
-         view.userNameLabel.text = "Cameron Elizabeth Williamson"
-         view.userPhoneNumber.text = "+91 999 2222 433"
+         view.populate(with: UserDefaults.standard.currentUser)
          return view
     }
 }
