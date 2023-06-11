@@ -771,6 +771,7 @@ PODS:
     - gRPC-Core/Interface (= 1.50.1)
   - gRPC-Core/Interface (1.50.1)
   - GTMSessionFetcher/Core (3.1.1)
+  - IQKeyboardManagerSwift (6.5.11)
   - Kingfisher (7.7.0)
   - leveldb-library (1.22.2)
   - lottie-ios (4.2.0)
@@ -795,6 +796,7 @@ DEPENDENCIES:
   - FirebaseAuth
   - FirebaseFirestore
   - FirebaseMessaging
+  - IQKeyboardManagerSwift
   - Kingfisher
   - lottie-ios
   - PhoneNumberKit
@@ -820,6 +822,7 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
+    - IQKeyboardManagerSwift
     - Kingfisher
     - leveldb-library
     - lottie-ios
@@ -847,6 +850,7 @@ SPEC CHECKSUMS:
   "gRPC-C++": 0968bace703459fd3e5dcb0b2bed4c573dbff046
   gRPC-Core: 17108291d84332196d3c8466b48f016fc17d816d
   GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
+  IQKeyboardManagerSwift: c7955c0bdbf7b2eb29bb7daaa44e3d90f55a9a85
   Kingfisher: f043ac666dfc96c1f37604f93effb45a7ee3a3e1
   leveldb-library: f03246171cce0484482ec291f88b6d563699ee06
   lottie-ios: 809ecf2d460ed650a6aed7aa88b2ec45fab4779c
@@ -855,6 +859,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   SwiftMessages: f0c7ef4705a570ad6c5e208b611f4333e660ed92
 
-PODFILE CHECKSUM: f11535ae7f260eeb8241b39d934d489e6060fdae
+PODFILE CHECKSUM: 43e3eb6922f50d50305adcc7a4fe0195d7645e51
 
 COCOAPODS: 1.12.1

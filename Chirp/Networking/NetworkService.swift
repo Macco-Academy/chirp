@@ -13,8 +13,8 @@ private enum Table: String {
 }
 
 private enum Key: String {
-    case name, phoneNumber, profilePicture
-    case members, timestamp
+    case name, phoneNumber, profilePicture, id, messages, timestamp
+    case members
 }
 
 private enum Collection: String {
@@ -24,7 +24,6 @@ private enum Collection: String {
 struct NetworkService {
     static let shared = NetworkService()
     private let db = Firestore.firestore()
-    private var newChatListener: ListenerRegistration?
     
     func sendOTPToPhoneNumber(request: SendOTPRequest )  -> AnyPublisher<String?, Error> {
         Deferred{
@@ -70,14 +69,17 @@ struct NetworkService {
                         } else if let data = snapshot?.data(){
                             if let user = data.decode(to: User.self) {
                                 promise(.success(user))
+
                             } else {
-                                promise(.failure(AppError.errorDecoding))
+                                
                             }
+                            
                         } else {
                             promise(.success(nil))
                         }
                     }
             }
+            
         }
         .receive(on: DispatchQueue.main)
         .eraseToAnyPublisher()
@@ -107,6 +109,7 @@ struct NetworkService {
         Deferred {
             Future { promise in
                 db.collection(Table.users.rawValue).document(request.userID).setData([
+                    Key.id.rawValue: request.userID,
                     Key.name.rawValue: request.name,
                     Key.phoneNumber.rawValue: request.phoneNumber,
                     Key.profilePicture.rawValue: request.profilePicture ?? ""
@@ -158,6 +161,47 @@ struct NetworkService {
         .eraseToAnyPublisher()
     }
     
+    func fetchMessages(request: FetchMessagesRequest) -> AnyPublisher<[Message], Error> {
+        let promise = PassthroughSubject<[Message], Error>()
+        db
+            .collection(Table.chats.rawValue)
+            .document(request.id)
+            .collection(Key.messages.rawValue)
+            .order(by: Key.timestamp.rawValue)
+            .addSnapshotListener({ snapshot, error in
+                if let error = error {
+                    promise.send(completion: .failure(error))
+                } else {
+                    if let data = snapshot?.documents,
+                       let messages = data.decode(to: [Message].self) {
+                        promise.send(messages)
+                    } else {
+                        promise.send([])
+                    }
+                    
+                }
+            })
+        return promise.eraseToAnyPublisher()
+    }
+    
+    func createNewChat(request: CreateNewChatRequest) -> AnyPublisher<Bool, Error> {
+        Deferred {
+            Future { promise in
+                db
+                    .collection(Table.chats.rawValue)
+                    .document(request.id)
+                    .setData(request.asDictionary) { error in
+                        if let error = error {
+                            promise(.failure(error))
+                        } else {
+                            promise(.success(true))
+                        }
+                    }
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    }
     
     func getUserChats(request: GetUserChatsRequest) -> AnyPublisher<[RecentChatResponse], Error> {
         Deferred {

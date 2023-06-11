@@ -20,7 +20,7 @@ class ContactsViewController: UIViewController {
         var pageName: String {
             switch self {
             case .contact:
-                return "Contacts"
+                return "Users"
             case .contributors:
                 return "Contributors"
             }
@@ -120,8 +120,12 @@ extension ContactsViewController :UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let data = viewModel.tableData.value[indexPath.section].data[indexPath.row]
-        
+        let user2Id = viewModel.tableData.value[indexPath.section].data[indexPath.row].id
+        viewModel.startChat(with: user2Id)
+        let messageViewModel = MessagesViewModel(chatId: user2Id.uniqueChatIdWithMe)
+        let controller = MessagesViewController(viewModel: messageViewModel)
+        controller.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 

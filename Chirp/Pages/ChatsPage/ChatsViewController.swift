@@ -74,7 +74,7 @@ class ChatsViewController: UIViewController {
     }
 }
 
-extension ChatsViewController: UITableViewDataSource, UITableViewDelegate {
+extension ChatsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows()
     }
@@ -84,6 +84,15 @@ extension ChatsViewController: UITableViewDataSource, UITableViewDelegate {
         let model = viewModel.model(at: indexPath.row)
         cell.setup(viewModel: model)
         return cell
+    }
+}
+
+extension ChatsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewModel = MessagesViewModel(chatId: "chatId")
+        let controller = MessagesViewController(viewModel: viewModel)
+        controller.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 

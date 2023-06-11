@@ -218,8 +218,10 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     // Navigation
     private func navigateToHome() {
-        let homeVC = HomeTabBarController()
-        navigationController?.setViewControllers([homeVC], animated: true)
+        let controller = HomeTabBarController()
+        controller.modalTransitionStyle = .crossDissolve
+        controller.modalPresentationStyle = .fullScreen
+        present(controller, animated: true)
     }
 }
 

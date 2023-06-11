@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CustomHeader: UITableViewHeaderFooterView {
     
@@ -53,6 +54,13 @@ class CustomHeader: UITableViewHeaderFooterView {
         setupSubviews()
         setupConstraints()
         setupProfilePicture()
+    }
+    
+    func populate(with user: User?) {
+        guard let user = UserDefaults.standard.currentUser else { return }
+        userNameLabel.text = user.name
+        profilePicture.kf.setImage(with: user.profilePicture?.asUrl, placeholder: UIImage.placeholderImage)
+        userPhoneNumber.text = user.phoneNumber
     }
     
     private func setupSubviews() {
