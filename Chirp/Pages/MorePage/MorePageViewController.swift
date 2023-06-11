@@ -14,6 +14,7 @@ class MorePageViewController: UIViewController {
         case pushNotification = "Push Notification"
         case contributors = "Contributors"
         case logout = "Logout"
+        case delete = "Delete Account"
     }
     
     let rows: [CellNames] = [.pushNotification, .contributors, .logout]
