@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import Photos
+import MobileCoreServices
 
 class RegistrationViewController: UIViewController, UITextFieldDelegate {
 
+    private var viewModel: RegistrationViewModel
+    
     let createAccLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -17,14 +21,14 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         return label
     }()
 
-    let userAvatarImage: UIImageView = {
+    let userAvatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage.placeholderImage
         return imageView
     }()
 
-    let addImage: UIView = {
+    let addImageView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .appBrown
@@ -59,27 +63,36 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         return button
     }()
 
-    var user = User()
-
+    // Life cycle
+    init(viewModel: RegistrationViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         doBasicSettings()
     }
 
+    // Setup
     private func doBasicSettings(){
         addSubviews()
         setupConstraints()
         setupUserImage()
         tuneAddBtn()
         setupTextField()
-        checkButton()
+        setupSubmitButton()
     }
 
     private func addSubviews(){
         view.addSubview(createAccLabel)
-        view.addSubview(userAvatarImage)
-        view.addSubview(addImage)
+        view.addSubview(userAvatarImageView)
+        view.addSubview(addImageView)
         view.addSubview(userNameTextField)
         view.addSubview(submitButton)
     }
@@ -90,17 +103,17 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
             createAccLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25),
             createAccLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -25),
 
-            userAvatarImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            userAvatarImage.topAnchor.constraint(equalTo: createAccLabel.bottomAnchor, constant: 65),
-            userAvatarImage.widthAnchor.constraint(equalToConstant: 130),
-            userAvatarImage.heightAnchor.constraint(equalToConstant: 130),
+            userAvatarImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            userAvatarImageView.topAnchor.constraint(equalTo: createAccLabel.bottomAnchor, constant: 65),
+            userAvatarImageView.widthAnchor.constraint(equalToConstant: 130),
+            userAvatarImageView.heightAnchor.constraint(equalToConstant: 130),
 
-            addImage.topAnchor.constraint(equalTo: userAvatarImage.topAnchor),
-            addImage.leadingAnchor.constraint(equalTo: userAvatarImage.leadingAnchor, constant: 93),
-            addImage.widthAnchor.constraint(equalToConstant: 30),
-            addImage.heightAnchor.constraint(equalToConstant: 30),
+            addImageView.topAnchor.constraint(equalTo: userAvatarImageView.topAnchor),
+            addImageView.leadingAnchor.constraint(equalTo: userAvatarImageView.leadingAnchor, constant: 93),
+            addImageView.widthAnchor.constraint(equalToConstant: 30),
+            addImageView.heightAnchor.constraint(equalToConstant: 30),
 
-            userNameTextField.topAnchor.constraint(equalTo: userAvatarImage.bottomAnchor, constant: 30),
+            userNameTextField.topAnchor.constraint(equalTo: userAvatarImageView.bottomAnchor, constant: 30),
             userNameTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25),
             userNameTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -25),
             userNameTextField.heightAnchor.constraint(equalToConstant: 40),
@@ -110,32 +123,18 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
             submitButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -25)
         ])
     }
-    
-    private func checkButton(){
-        submitButton.addTarget(self, action: #selector(validateForm), for: .touchUpInside)
-    }
-    
-    @objc private func validateForm(){
-        if let text = userNameTextField.text {
-            if text.trimmingCharacters(in: .whitespaces).isEmpty {
-                AlertToast.showAlert(message: "Please, enter your name", type: .error)
-            } else {
-                navigationController?.setViewControllers([HomeTabBarController()], animated: true)
-            }
-        }
-    }
 
     private func setupUserImage(){
-        userAvatarImage.layoutIfNeeded()
-        userAvatarImage.contentMode = .scaleAspectFill
-        userAvatarImage.layer.masksToBounds = true
-        userAvatarImage.layer.cornerRadius = userAvatarImage.layer.frame.size.width/2
+        userAvatarImageView.layoutIfNeeded()
+        userAvatarImageView.contentMode = .scaleAspectFill
+        userAvatarImageView.layer.masksToBounds = true
+        userAvatarImageView.layer.cornerRadius = userAvatarImageView.layer.frame.size.width/2
     }
 
     private func tuneAddBtn() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(addImageBtn))
-        addImage.addGestureRecognizer(tapGesture)
-        addImage.isUserInteractionEnabled = true
+        addImageView.addGestureRecognizer(tapGesture)
+        addImageView.isUserInteractionEnabled = true
     }
 
     private func setupTextField() {
@@ -155,21 +154,79 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
 
-    @objc private func addImageBtn(){
+    @objc private func addImageBtn() {
+        checkGalleryPermission()
+    }
+    
+    // Gallery
+    private func checkGalleryPermission() {
+        let galleryAuthStatus = PHPhotoLibrary.authorizationStatus()
+        switch galleryAuthStatus {
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization({ [weak self] status in
+                if status == PHAuthorizationStatus.authorized {
+                    DispatchQueue.main.async { self?.openGallery() }
+                }
+            })
+        case .authorized:
+            self.openGallery()
+        case .denied, .restricted:
+            AlertToast.showAlert(message: "Library access is required to set your profile picture.", type: .error)
+        default:
+            break
+        }
+    }
+    
+    private func openGallery() {
+        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary
+        vc.mediaTypes = [kUTTypeImage as String]
         vc.delegate = self
         vc.allowsEditing = true
         present(vc, animated: true)
     }
+    
+    // Registration
+    private func setupSubmitButton(){
+        submitButton.addTarget(self, action: #selector(validateForm), for: .touchUpInside)
+    }
+    
+    @objc private func validateForm(){
+        guard let name = userNameTextField.text else { return }
+        
+        if name.trimmingCharacters(in: .whitespaces).isEmpty {
+            AlertToast.showAlert(message: "Please, enter your name", type: .error)
+        } else {
+            submitButton.isLoading = true
+        }
+        
+        if let text = userNameTextField.text {
+            if text.trimmingCharacters(in: .whitespaces).isEmpty {
+                AlertToast.showAlert(message: "Please, enter your name", type: .error)
+            } else {
+                
+            }
+        }
+    }
 }
 
+// MARK: - UIImagePickerController Delegate
 extension RegistrationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
-            userAvatarImage.image = image
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let mediaType = info[UIImagePickerController.InfoKey.mediaType] as! CFString
+        guard mediaType == kUTTypeImage else { return }
+        
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            userAvatarImageView.image = image
         }
+        
+        if let imageURL = info[UIImagePickerController.InfoKey.imageURL] as? URL {
+            print(imageURL)
+        }
+        
         picker.dismiss(animated: true, completion: nil)
     }
 
