@@ -13,8 +13,7 @@ private enum Table: String {
 }
 
 private enum Key: String {
-    case name, phoneNumber, profilePicture, id, timestamp, isContributor
-    case name, phoneNumber, profilePicture, id, timestamp, fcmToken
+    case name, phoneNumber, profilePicture, id, timestamp, fcmToken, isContributor
 }
 
 private enum Collection: String {
