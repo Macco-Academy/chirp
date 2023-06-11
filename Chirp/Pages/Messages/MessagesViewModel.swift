@@ -20,6 +20,11 @@ class MessagesViewModel {
         fetchChatById()
     }
     
+    private func fetchChatById() {
+        // TODO: Fetch chat details using ID
+        // This will be used to get information about chat including member's fcmToken, and unreadCount
+    }
+    
     func fetchMessages() {
         let request = FetchMessagesRequest(id: chatId)
         service.fetchMessages(request: request)

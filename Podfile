@@ -25,5 +25,6 @@ target 'Chirp' do
   pod 'FirebaseMessaging'
   pod 'Firebase/Storage'
   pod 'Kingfisher'
+  pod 'IQKeyboardManagerSwift'
   
 end

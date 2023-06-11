@@ -16,7 +16,7 @@ class MessagesViewController: UIViewController {
     }()
     private let textView: UITextView = {
         let textView = UITextView()
-        textView.backgroundColor = .groupTableViewBackground
+        textView.backgroundColor = .textFieldBackground
         textView.font = .preferredFont(forTextStyle: .body)
         return textView
     }()
