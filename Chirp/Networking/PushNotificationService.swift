@@ -35,7 +35,7 @@ class PushNotificationService {
                 if let user = user,
                    let token = user.fcmToken {
                     self.sendMessageToUser(token: token,
-                                           title: "\(user.name ?? "") sent a new message",
+                                           title: user.name ?? "New Message",
                                            message: body)
                 }
             })
@@ -55,7 +55,6 @@ class PushNotificationService {
         ]
         
         guard let serverKey = serverKey else { return }
-        print("Sending:/......", param)
         var request = URLRequest(url: URL(string: urlString)!)
         request.httpMethod = "POST"
         request.httpBody = try? JSONSerialization.data(withJSONObject: param, options: .prettyPrinted)

@@ -68,8 +68,7 @@ class MessagesViewModel {
             } receiveValue: { _ in
                 self.updateRecentMessage(message: request)
                 let receiverId = self.chat?.members?.first { $0 != UserDefaults.standard.currentUser?.id } ?? ""
-                
-                // TODO: Send push notification after message has sent successfully
+                PushNotificationService.shared.sendPushNotification(to: receiverId, body: text)
             }
             .store(in: &cancellables)
     }

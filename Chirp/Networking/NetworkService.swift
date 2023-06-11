@@ -208,8 +208,13 @@ struct NetworkService {
                 db
                     .collection(Table.chats.rawValue)
                     .document(request.id)
-                    .updateData(request.asDictionary)
-                promise(.success(true))
+                    .setData(request.asDictionary, merge: true) { error in
+                        if let error = error {
+                            promise(.failure(error))
+                        } else {
+                            promise(.success(true))
+                        }
+                    }
             }
         }
         .receive(on: DispatchQueue.main)
