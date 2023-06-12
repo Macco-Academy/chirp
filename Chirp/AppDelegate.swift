@@ -6,7 +6,9 @@
 //
 
 import UIKit
-
+import FirebaseCore
+import FirebaseMessaging
+import IQKeyboardManagerSwift
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -14,6 +16,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        UINavigationBar.appearance().tintColor = .label
+        UINavigationBar.appearance().backIndicatorImage = .backTailedArrow
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = .backTailedArrow
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000, vertical: 0), for:UIBarMetrics.default)
+        UITextField.appearance().tintColor = .appBrown
+        UITextView.appearance().tintColor = .appBrown
+        FirebaseApp.configure()
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        IQKeyboardManager.shared.toolbarTintColor = .appBrown_white
+        
+        UNUserNotificationCenter.current().delegate = self
+        
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: authOptions,
+            completionHandler: { _, _ in }
+        )
+        
+        application.registerForRemoteNotifications()
+        Messaging.messaging().delegate = self
+        UIApplication.shared.applicationIconBadgeNumber = 0
+
         return true
     }
 
@@ -34,3 +58,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        if let userId = UserDefaults.standard.currentUser?.id {
+            let request = UpdateFCMTokenRequest(userId: userId, token: fcmToken ?? "")
+            NetworkService.shared.updateFCMToken(request: request)
+            UserDefaults.standard.fcmToken = fcmToken
+        }
+    }
+}
