@@ -49,6 +49,12 @@ class MorePageViewController: UIViewController {
                 LoginPageViewController().makeRootViewController()
             }
         }.store(in: &cancellables)
+        
+        morepageViewModel.deleteSuccessful.sink { success in
+            if success {
+                LoginPageViewController().makeRootViewController()
+            }
+        }.store(in: &cancellables)
     }
     
     private func setupTableView() {

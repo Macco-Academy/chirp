@@ -138,7 +138,13 @@ struct NetworkService {
                         promise(.failure(error))
                         return
                     }
-                    promise(.success("User with id \(request.userID) has been deleted"))
+                    self.auth.currentUser?.delete() { error in
+                        if let error = error {
+                            promise(.failure(error))
+                        } else {
+                            promise(.success("Your account has been deleted"))
+                        }
+                    }
                 }
             }
         }
@@ -260,36 +266,33 @@ struct NetworkService {
                 
                 let response = snapshot?.documents.decode(to: [RecentChatResponse].self)
                 promise.send(response ?? [])
+                
             })
         
-        return promise.eraseToAnyPublisher()
+        return promise.receive(on: DispatchQueue.main).eraseToAnyPublisher()
     }
     
     func fetchChatBy(id: String) -> AnyPublisher<ChatResponse?, Error> {
-        Deferred {
-            Future { promise in
-                db
-                    .collection(Table.chats.rawValue)
-                    .document(id)
-                    .getDocument(completion: { document, error in
-                        if let error = error {
-                            promise(.failure(error))
-                        } else {
-                            if let data = document?.data() {
-                                guard let chat = data.decode(to: ChatResponse?.self) else {
-                                    promise(.failure(AppError.errorDecoding))
-                                    return
-                                }
-                                promise(.success(chat))
-                            } else {
-                                promise(.success(nil))
-                            }
+        let promise = PassthroughSubject<ChatResponse?, Error>()
+        db
+            .collection(Table.chats.rawValue)
+            .document(id)
+            .addSnapshotListener({ document, error in
+                if let error = error {
+                    promise.send(completion: .failure(error))
+                } else {
+                    if let data = document?.data() {
+                        guard let chat = data.decode(to: ChatResponse?.self) else {
+                            promise.send(completion: .failure(AppError.errorDecoding))
+                            return
                         }
-                    })
-            }
-        }
-        .receive(on: DispatchQueue.main)
-        .eraseToAnyPublisher()
+                        promise.send(chat)
+                    } else {
+                        promise.send(nil)
+                    }
+                }
+            })
+        return promise.receive(on: DispatchQueue.main).eraseToAnyPublisher()
     }
     
     func sendMessage(request: SendMessageRequest) -> AnyPublisher<Bool, Error> {
@@ -318,6 +321,14 @@ struct NetworkService {
             .document(request.lastMessage.chatId ?? "")
             .updateData(request.asDictionary)
     }
+    
+    func resetUnreadCount(request: ResetUnreadCountRequest) {
+        db
+            .collection(Table.chats.rawValue)
+            .document(request.id ?? "")
+            .updateData(request.asDictionary)
+    }
+
 
     func logout() -> AnyPublisher<Bool, Error> {
         Deferred {

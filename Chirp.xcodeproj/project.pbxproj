@@ -61,6 +61,7 @@
 		E59025122A366B0700E05F36 /* UpdateLastMessageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59025112A366B0700E05F36 /* UpdateLastMessageRequest.swift */; };
 		E59025142A366BDD00E05F36 /* ChatResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59025132A366BDD00E05F36 /* ChatResponse.swift */; };
 		E59025182A36729A00E05F36 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59025172A36729A00E05F36 /* PushNotificationService.swift */; };
+		E590251D2A375AAB00E05F36 /* ResetUnreadCountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E590251C2A375AAB00E05F36 /* ResetUnreadCountRequest.swift */; };
 		E5AC47E72A306AFD0055C83A /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AC47E62A306AFD0055C83A /* UIImage+Extension.swift */; };
 		E5DBA5A12A34DE230032BD95 /* FIRDocument+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DBA5A02A34DE230032BD95 /* FIRDocument+Extension.swift */; };
 		E5DBA5A32A34E6620032BD95 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DBA5A22A34E6620032BD95 /* AppError.swift */; };
@@ -139,6 +140,7 @@
 		E59025132A366BDD00E05F36 /* ChatResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatResponse.swift; sourceTree = "<group>"; };
 		E59025172A36729A00E05F36 /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
 		E59025192A36844800E05F36 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		E590251C2A375AAB00E05F36 /* ResetUnreadCountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetUnreadCountRequest.swift; sourceTree = "<group>"; };
 		E5AC47E62A306AFD0055C83A /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		E5DBA5A02A34DE230032BD95 /* FIRDocument+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FIRDocument+Extension.swift"; sourceTree = "<group>"; };
 		E5DBA5A22A34E6620032BD95 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				5F67785F2A3674230045199B /* GetUserChatsRequest.swift */,
 				E59025112A366B0700E05F36 /* UpdateLastMessageRequest.swift */,
 				EEA86C512A36851400D737DE /* DeleteUserRequest.swift */,
+				E590251C2A375AAB00E05F36 /* ResetUnreadCountRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 				E59025142A366BDD00E05F36 /* ChatResponse.swift in Sources */,
 				E56C731F2A2D216D00532B3D /* AppDelegate.swift in Sources */,
 				04163E042A326EC4003DF7B1 /* PasscodeView.swift in Sources */,
+				E590251D2A375AAB00E05F36 /* ResetUnreadCountRequest.swift in Sources */,
 				EEB1A4912A312A5500F6899D /* HomeTabBarController.swift in Sources */,
 				467B97062A30F8610012AB04 /* AlertType.swift in Sources */,
 				0BA008812A34E89600040E43 /* UserDefaults+Extension.swift in Sources */,

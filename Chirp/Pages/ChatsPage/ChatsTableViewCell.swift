@@ -79,7 +79,7 @@ class ChatsTableViewCell: UITableViewCell {
     }
     
     private func populateData(viewModel: ChatViewModel) {
-        fullNameLabel.text = viewModel.title
+        fullNameLabel.text = viewModel.title ?? "Deactivated User"
         lastMessageLabel.text = viewModel.description
         lastMessageTimeLabel.text = viewModel.timestamp?.asTimeAgo
         unreadMessageCounterLabel.text = viewModel.unreadCount

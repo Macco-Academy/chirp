@@ -163,6 +163,11 @@ class MessagesViewController: UIViewController {
         ])
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.resetUnreadCount()
+    }
+    
     private func setupListeners() {
         viewModel.messages.sink { _ in
             self.tableView.reloadData()

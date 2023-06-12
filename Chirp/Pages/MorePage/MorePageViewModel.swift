@@ -33,15 +33,18 @@ class MorePageViewModel {
     
     func deleteUser(userID: String) {
         let request = DeleteUserRequest(userID: userID)
-        
+        LoaderView.shared.show(message: "Deleting Account...")
         service.deleteUser(request: request).sink { response in
             switch response {
             case .failure(let error):
                 AlertToast.showAlert(message: error.localizedDescription, type: .error)
+                LoaderView.shared.hide()
             case .finished:
                 break
             }
         } receiveValue: { [weak self] _ in
+            LoaderView.shared.hide()
+            UserDefaults.standard.currentUser = nil
             self?.deleteSuccessful.send(true)
         }.store(in: &cancellables)
     }
