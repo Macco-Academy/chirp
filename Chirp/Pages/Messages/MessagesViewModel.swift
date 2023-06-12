@@ -83,5 +83,16 @@ class MessagesViewModel {
         let request = UpdateLastMessageRequest(lastMessage: message, unreadCount: unreadCount)
         service.updateLastMessage(request: request)
     }
+    
+    func resetUnreadCount() {
+        var unreadCount = chat?.unreadCount ?? [:]
+        if let myId = chat?.members?.first(where: { $0 == UserDefaults.standard.currentUser?.id }) {
+            unreadCount[myId] = 0
+        }
+        chat?.unreadCount = unreadCount
+        
+        let request = ResetUnreadCountRequest(id: chatId, unreadCount: unreadCount)
+        service.resetUnreadCount(request: request)
+    }
 }
 

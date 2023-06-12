@@ -12,9 +12,13 @@ class MorePageViewModel {
     private let service = NetworkService.shared
     private var cancellables: Set<AnyCancellable> = []
     var logoutSuccessful = PassthroughSubject<Bool,Never>()
+    var deleteSuccessful = PassthroughSubject<Bool, Never>()
     
     func logoutUser() {
         LoaderView.shared.show(message: "Logging Out...")
+        let request = UpdateFCMTokenRequest(userId: UserDefaults.standard.currentUser?.id ?? "", token: "")
+        NetworkService.shared.updateFCMToken(request: request)
+        
         service.logout().sink { response in
             switch response {
             case .failure(let error):
@@ -27,6 +31,24 @@ class MorePageViewModel {
             UserDefaults.standard.currentUser = nil
             self?.logoutSuccessful.send(true)
             LoaderView.shared.hide()
+        }.store(in: &cancellables)
+    }
+    
+    func deleteUser(userID: String) {
+        let request = DeleteUserRequest(userID: userID)
+        LoaderView.shared.show(message: "Deleting Account...")
+        service.deleteUser(request: request).sink { response in
+            switch response {
+            case .failure(let error):
+                AlertToast.showAlert(message: error.localizedDescription, type: .error)
+                LoaderView.shared.hide()
+            case .finished:
+                break
+            }
+        } receiveValue: { [weak self] _ in
+            LoaderView.shared.hide()
+            UserDefaults.standard.currentUser = nil
+            self?.deleteSuccessful.send(true)
         }.store(in: &cancellables)
     }
 }

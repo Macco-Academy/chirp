@@ -14,9 +14,10 @@ class MorePageViewController: UIViewController {
         case pushNotification = "Push Notification"
         case contributors = "Contributors"
         case logout = "Logout"
+        case delete = "Delete Account"
     }
     
-    let rows: [CellNames] = [.pushNotification, .contributors, .logout]
+    let rows: [CellNames] = [.pushNotification, .contributors, .logout, .delete]
     
     private let morepageViewModel = MorePageViewModel()
     private var cancellables: Set<AnyCancellable> = []
@@ -44,6 +45,12 @@ class MorePageViewController: UIViewController {
     
     private func setupListner() {
         morepageViewModel.logoutSuccessful.sink { success in
+            if success {
+                LoginPageViewController().makeRootViewController()
+            }
+        }.store(in: &cancellables)
+        
+        morepageViewModel.deleteSuccessful.sink { success in
             if success {
                 LoginPageViewController().makeRootViewController()
             }
@@ -104,6 +111,17 @@ extension MorePageViewController: UITableViewDelegate, UITableViewDataSource {
                                            buttonTitle: "Logout") {
                 self.morepageViewModel.logoutUser()
             }
+        case .delete:
+            AlertToast.showAlertWithButton(title: "Delete Account?", message: "Are you sure you would like to delete your account? \nBy deleting your account permanently you will: \nDelete all messages and message history. ", type: .info, buttonTitle: "Delete Account") {
+                let uid: String = UserDefaults.standard.currentUser?.id ?? "Cant find user"
+                let loginVC = LoginPageViewController()
+                loginVC.modalPresentationStyle = .fullScreen
+                
+                self.morepageViewModel.deleteUser(userID: uid)
+                self.present(loginVC, animated: true)
+            }
+        default:
+            return
         }
     }
 }

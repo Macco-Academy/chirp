@@ -36,6 +36,9 @@ class HomeTabBarController: UITabBarController {
             items[i].selectedImage = activeImages[i]
         }
         
+        let request = UpdateFCMTokenRequest(userId: UserDefaults.standard.currentUser?.id ?? "",
+                                            token: UserDefaults.standard.fcmToken ?? "")
+        NetworkService.shared.updateFCMToken(request: request)
     }
     
     override func viewWillAppear(_ animated: Bool) {
