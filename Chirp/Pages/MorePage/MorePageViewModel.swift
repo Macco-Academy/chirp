@@ -16,6 +16,9 @@ class MorePageViewModel {
     
     func logoutUser() {
         LoaderView.shared.show(message: "Logging Out...")
+        let request = UpdateFCMTokenRequest(userId: UserDefaults.standard.currentUser?.id ?? "", token: "")
+        NetworkService.shared.updateFCMToken(request: request)
+        
         service.logout().sink { response in
             switch response {
             case .failure(let error):
