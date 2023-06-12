@@ -130,6 +130,22 @@ struct NetworkService {
         .eraseToAnyPublisher()
     }
     
+    func deleteUser(request: DeleteUserRequest) -> AnyPublisher<String, Error> {
+        Deferred {
+            Future { promise in
+                db.collection(Table.users.rawValue).document(request.userID).delete() { error in
+                    if let error = error {
+                        promise(.failure(error))
+                        return
+                    }
+                    promise(.success("User with id \(request.userID) has been deleted"))
+                }
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    }
+    
     func getContributors(request: GetContributorsRequest) -> AnyPublisher<[User], Error> {
         Deferred {
             Future { promise in

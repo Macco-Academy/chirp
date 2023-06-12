@@ -12,6 +12,7 @@ class MorePageViewModel {
     private let service = NetworkService.shared
     private var cancellables: Set<AnyCancellable> = []
     var logoutSuccessful = PassthroughSubject<Bool,Never>()
+    var deleteSuccessful = PassthroughSubject<Bool, Never>()
     
     func logoutUser() {
         LoaderView.shared.show(message: "Logging Out...")
@@ -27,6 +28,21 @@ class MorePageViewModel {
             UserDefaults.standard.currentUser = nil
             self?.logoutSuccessful.send(true)
             LoaderView.shared.hide()
+        }.store(in: &cancellables)
+    }
+    
+    func deleteUser(userID: String) {
+        let request = DeleteUserRequest(userID: userID)
+        
+        service.deleteUser(request: request).sink { response in
+            switch response {
+            case .failure(let error):
+                AlertToast.showAlert(message: error.localizedDescription, type: .error)
+            case .finished:
+                break
+            }
+        } receiveValue: { [weak self] _ in
+            self?.deleteSuccessful.send(true)
         }.store(in: &cancellables)
     }
 }

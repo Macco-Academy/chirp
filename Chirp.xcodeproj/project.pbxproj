@@ -75,6 +75,7 @@
 		E5DBA5BB2A35F7180032BD95 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DBA5BA2A35F7180032BD95 /* String+Extension.swift */; };
 		EEA86C4E2A34FD2500D737DE /* SendOTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA86C4D2A34FD2500D737DE /* SendOTPRequest.swift */; };
 		EEA86C502A34FFD500D737DE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA86C4F2A34FFD500D737DE /* LoginViewModel.swift */; };
+		EEA86C522A36851400D737DE /* DeleteUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA86C512A36851400D737DE /* DeleteUserRequest.swift */; };
 		EEB1A4912A312A5500F6899D /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB1A4902A312A5500F6899D /* HomeTabBarController.swift */; };
 /* End PBXBuildFile section */
 
@@ -152,6 +153,7 @@
 		E5DBA5BA2A35F7180032BD95 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		EEA86C4D2A34FD2500D737DE /* SendOTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendOTPRequest.swift; sourceTree = "<group>"; };
 		EEA86C4F2A34FFD500D737DE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		EEA86C512A36851400D737DE /* DeleteUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserRequest.swift; sourceTree = "<group>"; };
 		EEB1A4902A312A5500F6899D /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		EEE809342A339B8F00E6986B /* Chirp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chirp.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -245,6 +247,7 @@
 				E590250F2A366ACF00E05F36 /* SendMessageRequest.swift */,
 				5F67785F2A3674230045199B /* GetUserChatsRequest.swift */,
 				E59025112A366B0700E05F36 /* UpdateLastMessageRequest.swift */,
+				EEA86C512A36851400D737DE /* DeleteUserRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 				EEB1A4912A312A5500F6899D /* HomeTabBarController.swift in Sources */,
 				467B97062A30F8610012AB04 /* AlertType.swift in Sources */,
 				0BA008812A34E89600040E43 /* UserDefaults+Extension.swift in Sources */,
+				EEA86C522A36851400D737DE /* DeleteUserRequest.swift in Sources */,
 				E56C73212A2D216D00532B3D /* SceneDelegate.swift in Sources */,
 				0BE0F48D2A34DCF500D581CA /* GetUserRequest.swift in Sources */,
 				0BE0F4892A34C51100D581CA /* VerifyOTPRequest.swift in Sources */,
