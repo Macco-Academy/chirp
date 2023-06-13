@@ -38,11 +38,15 @@ class MessageTableViewCell: UITableViewCell {
     private var leadingConstraint: NSLayoutConstraint?
     private var trailingConstraint: NSLayoutConstraint?
     
-    func setup(viewModel: MessageCellViewModel) {
+    private var showShareDialog: ((String?) -> Void)!
+    
+    func setup(viewModel: MessageCellViewModel, share: @escaping (String?) -> Void) {
         self.viewModel = viewModel
+        self.showShareDialog = share
         setupViews()
         setupConstraints()
         populateViews()
+        setupListeners()
     }
     
     private func setupViews() {
@@ -56,6 +60,18 @@ class MessageTableViewCell: UITableViewCell {
         messageLbl.textColor = viewModel.textColor
         timestampLbl.textColor = viewModel.textColor
         selectionStyle = .none
+    }
+    
+    private func setupListeners() {
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressed))
+        addGestureRecognizer(longPressRecognizer)
+    }
+    
+    @objc private func longPressed(sender: UITapGestureRecognizer) {
+        if (sender.state == .began){
+            HapticFeedback.play(type: .light)
+            showShareDialog(messageLbl.text)
+        }
     }
     
     private func setupConstraints() {

@@ -24,6 +24,10 @@ public final class AlertToast {
         SwiftMessages.show(config: config, view: view)
     }
     
+    public static func hideAlert() {
+        SwiftMessages.hide()
+    }
+    
     public static func showAlertWithButton(title: String, message: String, type: AlertType, buttonTitle: String, buttonAction: (() -> Void)?) {
         let view = MessageView.viewFromNib(layout: .centeredView)
         view.configureTheme(backgroundColor: type.tintColor, foregroundColor: .black, iconImage: type.icon)

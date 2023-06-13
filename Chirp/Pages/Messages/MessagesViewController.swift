@@ -172,6 +172,7 @@ class MessagesViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         viewModel.resetUnreadCount()
+        AlertToast.hideAlert()
     }
     
     private func setupListeners() {
@@ -236,8 +237,16 @@ extension MessagesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MessageTableViewCell.identifier) as! MessageTableViewCell
         let message = viewModel.messages.value[indexPath.row]
-        cell.setup(viewModel: message)
+        cell.setup(viewModel: message) { [weak self] text in self?.showShareDialog(text: text) }
         return cell
+    }
+    
+    private func showShareDialog(text: String?) {
+        let textToShare = [text ?? ""] as [Any]
+        let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop,]
+        self.present(activityViewController, animated: true, completion: nil)
     }
 }
 

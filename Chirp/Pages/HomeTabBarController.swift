@@ -39,10 +39,17 @@ class HomeTabBarController: UITabBarController {
         let request = UpdateFCMTokenRequest(userId: UserDefaults.standard.currentUser?.id ?? "",
                                             token: UserDefaults.standard.fcmToken ?? "")
         NetworkService.shared.updateFCMToken(request: request)
+        self.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+}
+
+extension HomeTabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        HapticFeedback.play(type: .light)
     }
 }
