@@ -26,6 +26,15 @@ struct NetworkService {
     private let db = Firestore.firestore()
     private let auth = Auth.auth()
     
+    private init() {
+        let settings = FirestoreSettings()
+        settings.cacheSettings = MemoryCacheSettings(garbageCollectorSettings: MemoryLRUGCSettings())
+
+        // Use persistent disk cache, with 100 MB cache size
+        settings.cacheSettings = PersistentCacheSettings(sizeBytes: 100 * 1024 * 1024 as NSNumber)
+        db.settings = settings
+    }
+    
     func sendOTPToPhoneNumber(request: SendOTPRequest )  -> AnyPublisher<String?, Error> {
         Deferred{
             Future { promise in
