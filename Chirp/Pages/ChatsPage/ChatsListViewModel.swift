@@ -38,78 +38,41 @@ class ChatsListViewModel {
             AlertToast.showAlert(message: AppError.chatsError.localizedDescription, type: .error)
             return
         }
-
         LoaderView.shared.show(message: "Fetching chats...")
         let request = GetUserChatsRequest(userID: userID)
-        service.getUserChats(request: request).sink { response in
-            switch response {
-            case .failure(let error):
-                AlertToast.showAlert(message: error.localizedDescription, type: .error)
-            case .finished:
-                break
-            }
-        } receiveValue: { [weak self] chatsResponses in
-            self?.createChats(from: chatsResponses)
-        }
-        .store(in: &cancellables)
-    }
-
-    
-    
-    // Create Chat objects from response
-    private func createChats(from responses: [ChatResponse]) {
-        guard !responses.isEmpty else {
-            LoaderView.shared.hide()
-            return
-        }
-
-        var requestCounter = 0
-        let maxCount = (min(10, responses.count))
-
-        responses.forEach { response in
-            guard let memberIDs = response.members, memberIDs.count == 2 else { return }
-            guard let message = response.lastMessage?.message, !message.isEmpty else { return }
-            guard let currentUser = UserDefaults.standard.currentUser,
-                  let senderID = memberIDs.filter({ $0 != currentUser.id }).first else { return }
-            
-            requestCounter += 1
-            let request = GetUserRequest(userId: senderID)
-            service.getUserData(request: request).sink { userResponse in
-                switch userResponse {
-                case .finished:
-                    break
+        service.getUserChats(request: request)
+            .sink { response in
+                switch response {
                 case .failure(let error):
-                    AlertToast.showAlert(message: error.localizedDescription, type: .error)
+                    print(error.localizedDescription)
+                default: break
                 }
-            } receiveValue: { [weak self] user in
-                let sender = user ?? User(id: senderID)
-                let chatMembers = [currentUser, sender]
-                let chat = RecentChat(id: response.id, members: chatMembers,
-                                            lastMessage: response.lastMessage,
-                                            unreadCount: response.unreadCount)
-                let chatViewModel = ChatViewModel(chat: chat)
-                self?.appendAndSortChatVM(chatViewModel)
-                
-                if requestCounter >= maxCount {
-                    LoaderView.shared.hide()
-                    self?.updateSearchResults()
-                }
+            } receiveValue: { chatsResponse in
+                let usersToPopulate = Set(chatsResponse.map { $0.members ?? [] }).joined().map { $0 }
+                self.fetchUsersByIds(ids: usersToPopulate, chatResponse: chatsResponse)
             }
             .store(in: &cancellables)
-        }
     }
-    
-    // Append+Sort
-    private func appendAndSortChatVM(_ chatVM: ChatViewModel) {
-        if let existingChatIndex = fullList.firstIndex(where: { $0.chatID == chatVM.chatID }) {
-            if fullList[existingChatIndex].lastMessage?.id != chatVM.lastMessage?.id {
-                fullList[existingChatIndex] = chatVM
+
+    private func fetchUsersByIds(ids: [String], chatResponse: [ChatResponse]) {
+        let request = GetSpecificUsersRequest(userIds: ids)
+        self.service.fetchUsersByIds(request: request)
+            .sink { res in } receiveValue: { users in
+                let chats = chatResponse.map { chatResponse in
+                    let members = chatResponse.members?.map { memberId in
+                        users.first { $0.id! ==  memberId}
+                    }.compactMap({ $0 })
+                    return ChatViewModel(chat: RecentChat(id: chatResponse.id,
+                                                          members: members,
+                                                          lastMessage: chatResponse.lastMessage,
+                                                          unreadCount: chatResponse.unreadCount))
+                }
+                
+                self.fullList = chats.sorted(by: { $0.lastMessage?.timestamp ?? Date() > $1.lastMessage?.timestamp ?? Date() })
+                self.updateSearchResults()
+                LoaderView.shared.hide()
             }
-        } else {
-            fullList.append(chatVM)
-        }
-        
-        fullList.sort(by: { ($0.timestamp ?? Date.distantPast) > ($1.timestamp ?? Date.distantPast) })
+            .store(in: &self.cancellables)
     }
     
     // Search

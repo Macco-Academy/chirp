@@ -86,6 +86,35 @@ struct NetworkService {
         .eraseToAnyPublisher()
     }
     
+    func fetchUsersByIds(request: GetSpecificUsersRequest) -> AnyPublisher<[User], Error> {
+        Deferred {
+            Future { promise in
+                guard !request.userIds.isEmpty else { return }
+                db
+                    .collection(Table.users.rawValue)
+                    .whereField(Key.id.rawValue, in: request.userIds)
+                    .getDocuments(completion: { document, error in
+                        if let error = error {
+                            promise(.failure(error))
+                        } else {
+                            if let data = document?.documents {
+                                guard let users = data.decode(to: [User].self) else {
+                                    promise(.failure(AppError.errorDecoding))
+                                    return
+                                }
+                                promise(.success(users))
+                            } else {
+                                promise(.success([]))
+                            }
+                            
+                        }
+                    })
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    }
+    
     func getAllUsers(request: GetAllUsersRequest) -> AnyPublisher<[User], Error> {
         Deferred {
             Future { promise in

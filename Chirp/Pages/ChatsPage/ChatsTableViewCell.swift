@@ -71,11 +71,13 @@ class ChatsTableViewCell: UITableViewCell {
         return view
     }()
     
+    private var messageLabelTrailingConstraint: NSLayoutConstraint?
+    
     // Setup tableview cell
     func setup(viewModel: ChatViewModel) {
-        populateData(viewModel: viewModel)
         setupViews()
         setupConstraints()
+        populateData(viewModel: viewModel)
     }
     
     private func populateData(viewModel: ChatViewModel) {
@@ -85,6 +87,7 @@ class ChatsTableViewCell: UITableViewCell {
         unreadMessageCounterLabel.text = viewModel.unreadCount
         unreadMessageCounterLabel.alpha = unreadMessageCounterLabel.text == "0" ? 0 : 1
         friendImageView.kf.setImage(with: URL(string: viewModel.imageUrl ?? ""), placeholder: UIImage.placeholderImage)
+        messageLabelTrailingConstraint?.constant = unreadMessageCounterLabel.alpha == 0 ? labelHeight : -3
     }
     
     override func layoutSubviews() {
@@ -107,6 +110,9 @@ class ChatsTableViewCell: UITableViewCell {
     
     // Configure constraints for the subviews
     private func setupConstraints() {
+        messageLabelTrailingConstraint?.isActive = false
+        messageLabelTrailingConstraint = lastMessageLabel.trailingAnchor.constraint(equalTo: unreadMessageCounterLabel.leadingAnchor)
+        messageLabelTrailingConstraint?.isActive = true
         NSLayoutConstraint.activate([
             cellBoundaryview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
             cellBoundaryview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),

@@ -75,6 +75,7 @@ class MessagesViewController: UIViewController {
     private var cancellables: Set<AnyCancellable> = []
     private var keyboardHeight: CGFloat = 0
     private var textViewBottomConstraint: NSLayoutConstraint?
+    private var isDonePresenting = false
     
     init(viewModel: MessagesViewModel) {
         super.init(nibName: nil, bundle: nil)
@@ -108,6 +109,11 @@ class MessagesViewController: UIViewController {
         setupTableView()
         setupTextView()
         sendBtn.addTarget(self, action: #selector(self.sendBtnClicked), for: .touchUpInside)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        isDonePresenting = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -169,15 +175,21 @@ class MessagesViewController: UIViewController {
     }
     
     private func setupListeners() {
-        viewModel.messages.sink { _ in
+        viewModel.messages.sink { [weak self] _ in
+            guard let self = self else { return }
             self.tableView.reloadData()
             if !self.viewModel.messages.value.isEmpty {
-                self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.messages.value.count - 1, section: 0), at: .bottom, animated: false)
+                self.scrollMessagesToBottom(animate: self.isDonePresenting)
             }
         }
         .store(in: &cancellables)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateTextView(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.didChangeKeyboardFrame), name: UIResponder.keyboardDidChangeFrameNotification, object: nil)
+    }
+    
+    @objc private func didChangeKeyboardFrame() {
+        scrollMessagesToBottom()
     }
     
     @objc private func sendBtnClicked(sender: UIButton) {
@@ -209,6 +221,10 @@ extension MessagesViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         refreshTextViewPosition()
+    }
+    
+    private func scrollMessagesToBottom(animate: Bool = true) {
+        self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.messages.value.count - 1, section: 0), at: .bottom, animated: animate)
     }
 }
 
