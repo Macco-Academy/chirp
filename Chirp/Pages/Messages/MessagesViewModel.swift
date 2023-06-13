@@ -15,9 +15,11 @@ class MessagesViewModel {
     
     private var cancellables: Set<AnyCancellable> = []
     var messages = CurrentValueSubject<[MessageCellViewModel], Never>([])
+    let recipientName: String
     
-    init(chatId: String) {
+    init(chatId: String, recipientName: String) {
         self.chatId = chatId
+        self.recipientName = recipientName
         fetchChatById()
     }
     

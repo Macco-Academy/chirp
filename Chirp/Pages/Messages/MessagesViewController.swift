@@ -104,7 +104,7 @@ class MessagesViewController: UIViewController {
         sendBtnContainerView.addSubview(sendBtn)
         textView.addSubview(textViewPlaceholder)
         navigationItem.largeTitleDisplayMode = .never
-        title = "Chat"
+        title = viewModel.recipientName
         view.backgroundColor = .systemBackground
         setupTableView()
         setupTextView()

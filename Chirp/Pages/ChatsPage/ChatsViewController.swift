@@ -95,7 +95,7 @@ extension ChatsViewController: UITableViewDelegate {
         guard let chatVM = viewModel.model(at: indexPath.row),
                             let chatID = chatVM.chatID else { return }
         
-        let viewModel = MessagesViewModel(chatId: chatID)
+        let viewModel = MessagesViewModel(chatId: chatID, recipientName: chatVM.title ?? "Deactivated User")
         let controller = MessagesViewController(viewModel: viewModel)
         controller.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(controller, animated: true)

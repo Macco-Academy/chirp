@@ -126,7 +126,7 @@ extension ContactsViewController :UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user2Id = viewModel.tableData.value[indexPath.section].data[indexPath.row].id
         viewModel.startChat(with: user2Id)
-        let messageViewModel = MessagesViewModel(chatId: user2Id.uniqueChatIdWithMe)
+        let messageViewModel = MessagesViewModel(chatId: user2Id.uniqueChatIdWithMe, recipientName: viewModel.tableData.value[indexPath.section].data[indexPath.row].text)
         let controller = MessagesViewController(viewModel: messageViewModel)
         controller.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(controller, animated: true)
