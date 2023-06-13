@@ -98,7 +98,22 @@ extension MorePageViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch rows[indexPath.row] {
         case .pushNotification:
-            return
+            let settingsURL: URL
+            if #available(iOS 16.0, *) {
+                guard let settingsUrl = URL(string: UIApplication.openNotificationSettingsURLString) else {
+                    return
+                }
+                settingsURL = settingsUrl
+            } else {
+                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                    return
+                }
+                settingsURL = settingsUrl
+            }
+            
+            if UIApplication.shared.canOpenURL(settingsURL) {
+                UIApplication.shared.open(settingsURL)
+            }
         case .contributors:
             let contactsVC = ContactsViewController()
             contactsVC.type = .contributors
@@ -120,8 +135,6 @@ extension MorePageViewController: UITableViewDelegate, UITableViewDataSource {
                 self.morepageViewModel.deleteUser(userID: uid)
                 self.present(loginVC, animated: true)
             }
-        default:
-            return
         }
     }
 }
