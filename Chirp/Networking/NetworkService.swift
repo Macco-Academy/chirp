@@ -252,11 +252,11 @@ struct NetworkService {
             .updateData([Key.fcmToken.rawValue: request.token])
     }
     
-    func getUserChats(request: GetUserChatsRequest) -> AnyPublisher<[RecentChatResponse], Error> {
-        let promise = PassthroughSubject<[RecentChatResponse], Error>()
+    func getUserChats(request: GetUserChatsRequest) -> AnyPublisher<[ChatResponse], Error> {
+        let promise = PassthroughSubject<[ChatResponse], Error>()
         
         db.collection(Table.chats.rawValue)
-            .order(by: "\(Key.lastMessage.rawValue).\(Key.timestamp.rawValue)", descending: false)
+            .order(by: "\(Key.lastMessage.rawValue).\(Key.timestamp.rawValue)", descending: true)
             .whereField(Key.members.rawValue, arrayContains: request.userID)
             .addSnapshotListener({ snapshot, error in
                 if let error = error {
@@ -264,7 +264,7 @@ struct NetworkService {
                     return
                 }
                 
-                let response = snapshot?.documents.decode(to: [RecentChatResponse].self)
+                let response = snapshot?.documents.decode(to: [ChatResponse].self)
                 promise.send(response ?? [])
                 
             })

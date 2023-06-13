@@ -66,12 +66,6 @@ class ChatsViewController: UIViewController {
     }
     
     private func setupListeners() {
-        viewModel.newChatsFetched.sink { [weak self] newChatsLoaded in
-            if newChatsLoaded {
-                self?.chatsTableView.reloadData()
-            }
-        }.store(in: &cancellables)
-        
         viewModel.chatsFiltered.sink { [weak self] chatsFiltered in
             if chatsFiltered {
                 self?.chatsTableView.reloadData()
@@ -86,16 +80,20 @@ extension ChatsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ChatsTableViewCell.identifier, for: indexPath) as! ChatsTableViewCell
-        let model = viewModel.model(at: indexPath.row)
-        cell.setup(viewModel: model)
+        let cell = tableView.dequeueReusableCell(withIdentifier: ChatsTableViewCell.identifier,
+                                                         for: indexPath) as! ChatsTableViewCell
+        if let model = viewModel.model(at: indexPath.row) {
+            cell.setup(viewModel: model)
+        }
+        
         return cell
     }
 }
 
 extension ChatsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let chatID = viewModel.model(at: indexPath.row).chatID else { return }
+        guard let chatVM = viewModel.model(at: indexPath.row),
+                            let chatID = chatVM.chatID else { return }
         
         let viewModel = MessagesViewModel(chatId: chatID)
         let controller = MessagesViewController(viewModel: viewModel)

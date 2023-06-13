@@ -35,6 +35,10 @@ class ChatViewModel {
         return receiver?.name
     }
     
+    var lastMessage: Message? {
+        return chat.lastMessage
+    }
+    
     var description: String? {
         return chat.lastMessage?.message
     }
