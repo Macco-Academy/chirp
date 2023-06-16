@@ -48,6 +48,10 @@ class ChatsListViewModel {
                 default: break
                 }
             } receiveValue: { chatsResponse in
+                guard !chatsResponse.isEmpty else {
+                    LoaderView.shared.hide()
+                    return
+                }
                 let usersToPopulate = Set(chatsResponse.map { $0.members ?? [] }).joined().map { $0 }
                 self.fetchUsersByIds(ids: usersToPopulate, chatResponse: chatsResponse)
             }
