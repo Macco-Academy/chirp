@@ -225,7 +225,9 @@ extension MessagesViewController: UITextViewDelegate {
     }
     
     private func scrollMessagesToBottom(animate: Bool = true) {
-        self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.messages.value.count - 1, section: 0), at: .bottom, animated: animate)
+        if self.viewModel.messages.value.count != 0 {
+            self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.messages.value.count - 1, section: 0), at: .bottom, animated: animate)
+        }
     }
 }
 
