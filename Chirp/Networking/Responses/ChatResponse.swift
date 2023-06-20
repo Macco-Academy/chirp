@@ -12,4 +12,5 @@ struct ChatResponse: Codable {
     let members: [String]?
     var lastMessage: Message?
     var unreadCount: [String: Int]?
+    var typingStatus: [String: Bool]?
 }

@@ -93,6 +93,7 @@ class MessagesViewController: UIViewController {
         setupConstraints()
         setupListeners()
         viewModel.fetchMessages()
+        viewModel.updateMyTypingStatus(to: false)
     }
     
     private func setupViews() {
@@ -126,6 +127,8 @@ class MessagesViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(MessageTableViewCell.self, forCellReuseIdentifier: MessageTableViewCell.identifier)
+        tableView.register(TypingIndicatorTableViewCell.self,
+                           forCellReuseIdentifier: TypingIndicatorTableViewCell.identifier)
         tableView.separatorStyle = .none
     }
     
@@ -171,6 +174,7 @@ class MessagesViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        viewModel.updateMyTypingStatus(to: false)
         viewModel.resetUnreadCount()
         AlertToast.hideAlert()
     }
@@ -182,6 +186,13 @@ class MessagesViewController: UIViewController {
             if !self.viewModel.messages.value.isEmpty {
                 self.scrollMessagesToBottom(animate: self.isDonePresenting)
             }
+        }
+        .store(in: &cancellables)
+        
+        viewModel.oppositeUserTyping.sink { [weak self] _ in
+            guard let self = self else { return }
+            self.tableView.reloadData()
+            self.scrollToTypingIndicator()
         }
         .store(in: &cancellables)
         
@@ -217,28 +228,54 @@ extension MessagesViewController: UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        viewModel.updateMyTypingStatus(to: true)
         refreshTextViewPosition()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
+        viewModel.updateMyTypingStatus(to: false)
         refreshTextViewPosition()
     }
     
     private func scrollMessagesToBottom(animate: Bool = true) {
-        self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.messages.value.count - 1, section: 0), at: .bottom, animated: animate)
+        guard self.viewModel.numberOfRows > 0 else { return }
+        self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.numberOfRows - 1, section: 0), at: .bottom, animated: animate)
+    }
+    
+    private func scrollToTypingIndicator(animated: Bool = true) {
+        guard let lastVisibleRow = tableView.indexPathsForVisibleRows?.last?.row else { return }
+        
+        let lastMessageRow = viewModel.numberOfRows - 2
+        if lastVisibleRow == lastMessageRow { scrollMessagesToBottom() }
     }
 }
 
 extension MessagesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.messages.value.count
+        return viewModel.numberOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MessageTableViewCell.identifier) as! MessageTableViewCell
-        let message = viewModel.messages.value[indexPath.row]
-        cell.setup(viewModel: message) { [weak self] text in self?.showShareDialog(text: text) }
-        return cell
+        let isTyping = viewModel.oppositeUserTyping.value
+        let isLastRow = indexPath.row == (viewModel.numberOfRows - 1)
+        
+        if isTyping && isLastRow {
+            let cell = tableView.dequeueReusableCell(withIdentifier: TypingIndicatorTableViewCell.identifier)
+                                                                        as! TypingIndicatorTableViewCell
+            cell.startDotAnimation()
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: MessageTableViewCell.identifier) as! MessageTableViewCell
+            let message = viewModel.messages.value[indexPath.row]
+            cell.setup(viewModel: message) { [weak self] text in self?.showShareDialog(text: text) }
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let typingIndicatorCell = cell as? TypingIndicatorTableViewCell {
+            typingIndicatorCell.stopDotAnimation()
+        }
     }
     
     private func showShareDialog(text: String?) {
