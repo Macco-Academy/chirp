@@ -33,6 +33,7 @@ struct NetworkService {
         // Use persistent disk cache, with 100 MB cache size
         settings.cacheSettings = PersistentCacheSettings(sizeBytes: 100 * 1024 * 1024 as NSNumber)
         db.settings = settings
+        auth.settings?.isAppVerificationDisabledForTesting = true
     }
     
     func sendOTPToPhoneNumber(request: SendOTPRequest )  -> AnyPublisher<String?, Error> {
