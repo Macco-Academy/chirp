@@ -69,13 +69,13 @@ class MessagesViewController: UIViewController {
         return button
     }()
     private var textViewHeightConstraint: NSLayoutConstraint?
-    
     private let maxTextViewHeight: CGFloat = 200
     private var viewModel: MessagesViewModel!
     private var cancellables: Set<AnyCancellable> = []
     private var keyboardHeight: CGFloat = 0
     private var textViewBottomConstraint: NSLayoutConstraint?
     private var isDonePresenting = false
+    private var isInitialScroll = true
     
     init(viewModel: MessagesViewModel) {
         super.init(nibName: nil, bundle: nil)
@@ -207,6 +207,7 @@ class MessagesViewController: UIViewController {
     @objc private func sendBtnClicked(sender: UIButton) {
         let text = textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { return }
+        viewModel.updateMyTypingStatus(to: false)
         viewModel.sendMessage(text)
         textView.text = ""
         refreshTextViewHeight()
@@ -220,6 +221,7 @@ class MessagesViewController: UIViewController {
 extension MessagesViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         textViewPlaceholder.isHidden = textView.text.isEmpty == false
+        viewModel.updateMyTypingStatus(to: !textView.text.isEmpty)
         refreshTextViewHeight()
     }
     
@@ -228,7 +230,6 @@ extension MessagesViewController: UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        viewModel.updateMyTypingStatus(to: true)
         refreshTextViewPosition()
     }
     
@@ -242,11 +243,21 @@ extension MessagesViewController: UITextViewDelegate {
         self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.numberOfRows - 1, section: 0), at: .bottom, animated: animate)
     }
     
-    private func scrollToTypingIndicator(animated: Bool = true) {
-        guard let lastVisibleRow = tableView.indexPathsForVisibleRows?.last?.row else { return }
+    private func scrollToTypingIndicator(animate: Bool = true) {
+        guard viewModel.oppositeUserTyping.value else { return }
         
-        let lastMessageRow = viewModel.numberOfRows - 2
-        if lastVisibleRow == lastMessageRow { scrollMessagesToBottom() }
+        let contentHeight = tableView.contentSize.height
+        let contentOffY = tableView.contentOffset.y
+        let tableHeight = tableView.frame.size.height
+        
+        if isInitialScroll && contentOffY >= tableHeight {
+            isInitialScroll = false
+            scrollMessagesToBottom(animate: animate)
+        }
+        
+        if (contentOffY + tableHeight) >= (contentHeight - 100) {
+            scrollMessagesToBottom(animate: animate)
+        }
     }
 }
 
