@@ -69,7 +69,8 @@ class ChatsListViewModel {
                     return ChatViewModel(chat: RecentChat(id: chatResponse.id,
                                                           members: members,
                                                           lastMessage: chatResponse.lastMessage,
-                                                          unreadCount: chatResponse.unreadCount))
+                                                          unreadCount: chatResponse.unreadCount,
+                                                          typingStatus: chatResponse.typingStatus))
                 }
                 
                 self.fullList = chats.sorted(by: { $0.lastMessage?.timestamp ?? Date() > $1.lastMessage?.timestamp ?? Date() })

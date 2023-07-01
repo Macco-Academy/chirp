@@ -367,6 +367,12 @@ struct NetworkService {
             .updateData(request.asDictionary)
     }
 
+    func updateTypingStatus(request: UpdateTypingStatusRequest) {
+        db
+            .collection(Table.chats.rawValue)
+            .document(request.id ?? "")
+            .updateData(request.asDictionary)
+    }
 
     func logout() -> AnyPublisher<Bool, Error> {
         Deferred {

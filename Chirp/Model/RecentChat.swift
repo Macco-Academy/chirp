@@ -12,4 +12,5 @@ struct RecentChat: Codable {
     let members: [User]?
     let lastMessage: Message?
     let unreadCount: [String: Int]?
+    let typingStatus: [String: Bool]?
 }
