@@ -21,5 +21,6 @@ extension UIImage {
     static let settingsBordered = UIImage(systemName: "square.grid.2x2")
     static let backTailedArrow = UIImage(systemName: "arrow.backward")
     static let sendMessagePlane = UIImage(systemName: "paperplane")
+    static let attachPicture = UIImage(systemName: "camera")
     
 }

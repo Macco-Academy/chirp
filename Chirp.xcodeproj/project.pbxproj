@@ -143,7 +143,6 @@
 		E59025112A366B0700E05F36 /* UpdateLastMessageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLastMessageRequest.swift; sourceTree = "<group>"; };
 		E59025132A366BDD00E05F36 /* ChatResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatResponse.swift; sourceTree = "<group>"; };
 		E59025172A36729A00E05F36 /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
-		E59025192A36844800E05F36 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		E590251C2A375AAB00E05F36 /* ResetUnreadCountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetUnreadCountRequest.swift; sourceTree = "<group>"; };
 		E5AC47E62A306AFD0055C83A /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		E5DBA5A02A34DE230032BD95 /* FIRDocument+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FIRDocument+Extension.swift"; sourceTree = "<group>"; };
@@ -393,7 +392,6 @@
 			children = (
 				0BE0F4832A34B6BC00D581CA /* Networking */,
 				EEE809342A339B8F00E6986B /* Chirp.entitlements */,
-				E59025192A36844800E05F36 /* Config.xcconfig */,
 				467B96F92A30AB9E0012AB04 /* Model */,
 				467B96F52A30AB150012AB04 /* Pages */,
 				E5AC47DF2A305C270055C83A /* Extensions */,
@@ -659,7 +657,6 @@
 /* Begin XCBuildConfiguration section */
 		E56C732D2A2D216F00532B3D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E59025192A36844800E05F36 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -720,7 +717,6 @@
 		};
 		E56C732E2A2D216F00532B3D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E59025192A36844800E05F36 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

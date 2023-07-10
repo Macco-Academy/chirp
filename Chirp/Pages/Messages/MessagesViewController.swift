@@ -68,6 +68,27 @@ class MessagesViewController: UIViewController {
         button.imageEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
         return button
     }()
+    
+    private let attachPhotoBtnContainerView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let attachPhotoBtn: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(.attachPicture, for: .normal)
+        button.contentVerticalAlignment = .fill
+        button.imageView?.contentMode = .scaleAspectFit
+        button.contentHorizontalAlignment = .fill
+        button.backgroundColor = .appBrown
+        button.tintColor = .white
+        button.imageEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        return button
+        
+    }()
+    
     private var textViewHeightConstraint: NSLayoutConstraint?
     
     private let maxTextViewHeight: CGFloat = 200
@@ -99,8 +120,10 @@ class MessagesViewController: UIViewController {
         view.addSubview(tableView)
         view.addSubview(actionsContainerView)
         actionsContainerView.addSubview(actionsStackView)
+        actionsStackView.addArrangedSubview(attachPhotoBtnContainerView)
         actionsStackView.addArrangedSubview(textView)
         actionsStackView.addArrangedSubview(sendBtnContainerView)
+        attachPhotoBtnContainerView.addSubview(attachPhotoBtn)
         sendBtnContainerView.addSubview(sendBtn)
         textView.addSubview(textViewPlaceholder)
         navigationItem.largeTitleDisplayMode = .never
@@ -120,6 +143,7 @@ class MessagesViewController: UIViewController {
         super.viewDidLayoutSubviews()
         textView.layer.cornerRadius = 20
         sendBtn.layer.cornerRadius = 20
+        attachPhotoBtn.layer.cornerRadius = 20
     }
     
     private func setupTableView() {
@@ -155,6 +179,13 @@ class MessagesViewController: UIViewController {
             actionsStackView.leadingAnchor.constraint(equalTo: actionsContainerView.leadingAnchor, constant: padding),
             actionsStackView.trailingAnchor.constraint(equalTo: actionsContainerView.trailingAnchor, constant: -padding),
             actionsStackView.bottomAnchor.constraint(equalTo: actionsContainerView.bottomAnchor, constant:  -(padding * 2)),
+            
+            attachPhotoBtn.heightAnchor.constraint(equalToConstant: 40),
+            attachPhotoBtn.widthAnchor.constraint(equalToConstant: 40),
+            attachPhotoBtn.topAnchor.constraint(greaterThanOrEqualTo: attachPhotoBtnContainerView.topAnchor),
+            attachPhotoBtn.leadingAnchor.constraint(equalTo: attachPhotoBtnContainerView.leadingAnchor),
+            attachPhotoBtn.trailingAnchor.constraint(equalTo: attachPhotoBtnContainerView.trailingAnchor),
+            attachPhotoBtn.bottomAnchor.constraint(equalTo: attachPhotoBtnContainerView.bottomAnchor),
             
             sendBtn.heightAnchor.constraint(equalToConstant: 40),
             sendBtn.widthAnchor.constraint(equalToConstant: 40),
